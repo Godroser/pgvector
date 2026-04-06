@@ -1,0 +1,26 @@
+{
+  "coef": {
+    "actual_rows": 7.42661212105086e-05,
+    "plan_width": -0.11273725638830998,
+    "relpages": 0.0007955669302921485,
+    "reltuples": 1.18099610891999e-05
+  },
+  "features": [
+    "relpages",
+    "reltuples",
+    "actual_rows",
+    "plan_width"
+  ],
+  "intercept_ms": 10.940287922324636,
+  "operator": "Seq Scan",
+  "test_mae_ms": 1.290024851245809,
+  "test_mape_pct": 5.545830327946407,
+  "test_n": 10,
+  "test_r2": 0.9938037720818582,
+  "test_rmse_ms": 1.926295733369231,
+  "total_samples": 55,
+  "train_mae_ms": 1.5284245621075405,
+  "train_n": 40,
+  "train_r2": 0.9997665155108779,
+  "train_rmse_ms": 2.1430300470255643
+}

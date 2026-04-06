@@ -1,0 +1,10 @@
+{"tag": "sup_m2_r0", "actual_ms": 17.851, "predicted_ms": 14.253635930302181, "abs_error_ms": 3.597364069697818}
+{"tag": "cust_m2_r0", "actual_ms": 68.683, "predicted_ms": 73.25581021367111, "abs_error_ms": 4.572810213671104}
+{"tag": "cust_m7_r1", "actual_ms": 59.729, "predicted_ms": 59.994034682989366, "abs_error_ms": 0.2650346829893664}
+{"tag": "sup_m3_r1", "actual_ms": 13.54, "predicted_ms": 13.015916754207845, "abs_error_ms": 0.5240832457921538}
+{"tag": "cust_m5_r2", "actual_ms": 62.505, "predicted_ms": 62.115892032094806, "abs_error_ms": 0.38910796790519697}
+{"tag": "cust_m11_r3", "actual_ms": 59.112, "predicted_ms": 58.065046450667616, "abs_error_ms": 1.046953549332386}
+{"tag": "sup_m3_r2", "actual_ms": 12.258, "predicted_ms": 13.015842488086633, "abs_error_ms": 0.7578424880866343}
+{"tag": "sup_m5_r1", "actual_ms": 12.478, "predicted_ms": 12.025652293986923, "abs_error_ms": 0.45234770601307694}
+{"tag": "sup_m7_r3", "actual_ms": 11.104, "predicted_ms": 11.601295677390077, "abs_error_ms": 0.49729567739007763}
+{"tag": "sup_m11_r0", "actual_ms": 10.418, "predicted_ms": 11.215408911580274, "abs_error_ms": 0.7974089115802752}

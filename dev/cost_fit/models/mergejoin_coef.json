@@ -1,0 +1,26 @@
+{
+  "coef": {
+    "actual_rows": 6.464122806416485e-05,
+    "inner_actual_rows": 4.5574829107820866e-05,
+    "outer_actual_rows": 4.073244112290779e-05,
+    "plan_width": 0.0
+  },
+  "features": [
+    "outer_actual_rows",
+    "inner_actual_rows",
+    "actual_rows",
+    "plan_width"
+  ],
+  "intercept_ms": 3.584319518815221,
+  "operator": "Merge Join",
+  "test_mae_ms": 3.8081072086977863,
+  "test_mape_pct": 239.9601491554619,
+  "test_n": 10,
+  "test_r2": 0.9980843231406882,
+  "test_rmse_ms": 4.732396277063423,
+  "total_samples": 55,
+  "train_mae_ms": 6.133742200637579,
+  "train_n": 40,
+  "train_r2": 0.9988731763876693,
+  "train_rmse_ms": 8.761430075452207
+}

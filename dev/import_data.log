@@ -1,0 +1,68 @@
+nohup: ignoring input
+==========================================
+TPCH10 导入 PostgreSQL
+  主机: 127.0.0.1:5432
+  用户: dzh
+  数据库: tpch10
+  SQL: /data/dzh/pgvector/dev/load_table_tpch10.sql
+==========================================
+
+步骤 1: 确保数据库 tpch10 存在...
+数据库 tpch10 已存在
+
+步骤 2: 执行 /data/dzh/pgvector/dev/load_table_tpch10.sql ...
+BEGIN
+CREATE TABLE
+COPY 5
+COMMIT
+BEGIN
+CREATE TABLE
+COPY 25
+COMMIT
+BEGIN
+CREATE TABLE
+COPY 100000
+COMMIT
+BEGIN
+CREATE TABLE
+COPY 1500000
+COMMIT
+BEGIN
+CREATE TABLE
+COPY 15000000
+COMMIT
+BEGIN
+CREATE TABLE
+COPY 59986052
+COMMIT
+CREATE EXTENSION
+BEGIN
+CREATE TABLE
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 0
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 10
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 20
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 30
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 40
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 50
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 60
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 70
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 80
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:153: NOTICE:  已加载 Part 文件: 90
+DO
+COMMIT
+BEGIN
+CREATE TABLE
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 0 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 50 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 100 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 150 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 200 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 250 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 300 / 400
+psql:/data/dzh/pgvector/dev/load_table_tpch10.sql:218: NOTICE:  PARTSUPP 加载进度: 350 / 400
+DO
+COMMIT
+
+==========================================
+导入完成
+==========================================

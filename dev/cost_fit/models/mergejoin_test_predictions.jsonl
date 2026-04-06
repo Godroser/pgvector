@@ -1,0 +1,10 @@
+{"tag": "mj_ol_12000", "actual_ms": 0.4730000000000001, "predicted_ms": 4.141104183959478, "abs_error_ms": 3.6681041839594783}
+{"tag": "mj_ps_1_200000", "actual_ms": 52.605999999999995, "predicted_ms": 49.91392656066468, "abs_error_ms": 2.692073439335317}
+{"tag": "mj_sn_11", "actual_ms": 0.9100000000000001, "predicted_ms": 4.543305542453407, "abs_error_ms": 3.6333055424534066}
+{"tag": "mj_ol_90000", "actual_ms": 4.492999999999999, "predicted_ms": 7.779570599816782, "abs_error_ms": 3.2865705998167822}
+{"tag": "mj_sn_5", "actual_ms": 1.552999999999999, "predicted_ms": 5.692932273284369, "abs_error_ms": 4.13993227328437}
+{"tag": "mj_sn_23", "actual_ms": 0.43299999999999983, "predicted_ms": 4.043518229499121, "abs_error_ms": 3.610518229499121}
+{"tag": "mj_ol_200000", "actual_ms": 9.2, "predicted_ms": 12.900798324313595, "abs_error_ms": 3.7007983243135953}
+{"tag": "mj_ol_900000", "actual_ms": 44.878, "predicted_ms": 45.46375851794784, "abs_error_ms": 0.5857585179478377}
+{"tag": "mj_co_5", "actual_ms": 286.7919999999999, "predicted_ms": 285.5857626460227, "abs_error_ms": 1.206237353977201}
+{"tag": "mj_co_7", "actual_ms": 274.72399999999993, "predicted_ms": 263.1662263776092, "abs_error_ms": 11.557773622390755}

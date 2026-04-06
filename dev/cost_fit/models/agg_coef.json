@@ -1,0 +1,26 @@
+{
+  "coef": {
+    "actual_rows": -0.00012673004176860946,
+    "child_actual_rows": 0.00017654688849878821,
+    "num_group_keys": 0.0023991517616907673,
+    "plan_width": 0.00031290852408795834
+  },
+  "features": [
+    "child_actual_rows",
+    "actual_rows",
+    "num_group_keys",
+    "plan_width"
+  ],
+  "intercept_ms": 0.005325347114679392,
+  "operator": "Aggregate",
+  "test_mae_ms": 0.006655859727218598,
+  "test_mape_pct": 29.125796634489753,
+  "test_n": 10,
+  "test_r2": 0.7621310737999547,
+  "test_rmse_ms": 0.00893522950964772,
+  "total_samples": 55,
+  "train_mae_ms": 0.007956722802919104,
+  "train_n": 40,
+  "train_r2": 0.9999659432572259,
+  "train_rmse_ms": 0.016965332486279405
+}

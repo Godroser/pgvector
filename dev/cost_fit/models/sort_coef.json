@@ -1,0 +1,16 @@
+{
+  "coef": {
+    "actual_rows": 2.9634631367524147,
+    "plan_width": -90.67401061098762,
+    "sort_external": -31135.40641722504
+  },
+  "features": [
+    "actual_rows",
+    "plan_width",
+    "sort_external"
+  ],
+  "intercept_ms": -16578.92526962752,
+  "n": 5,
+  "operator": "Sort",
+  "rmse_ms": 9966.081551901321
+}

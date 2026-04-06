@@ -1,0 +1,17 @@
+# Local large datasets (root only; not for GitHub)
+/data/
+
+/dist/
+/log/
+/results/
+/tmp_check/
+/sql/vector--?.?.?.sql
+regression.*
+*.o
+*.so
+*.bc
+*.dll
+*.dylib
+*.obj
+*.lib
+*.exp

@@ -1,0 +1,497 @@
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Optional: indexes for index-scan workloads ===
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:2: NOTICE:  relation "idx_lineitem_shipdate" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:3: NOTICE:  relation "idx_lineitem_partkey" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:4: NOTICE:  relation "idx_orders_orderdate" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:5: NOTICE:  relation "idx_orders_custkey" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:6: NOTICE:  relation "idx_customer_nationkey" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:7: NOTICE:  relation "idx_partsupp_partkey" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_indexes.sql:8: NOTICE:  relation "idx_part_partkey" already exists, skipping
+CREATE INDEX
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Python deps ===
+=== Collect + fit ===
+region_all -> 0.006 ms
+nation_all -> 0.008 ms
+sup_m2_r0 -> 17.851 ms
+sup_m2_r1 -> 15.526 ms
+sup_m3_r0 -> 13.024 ms
+sup_m3_r1 -> 13.54 ms
+sup_m3_r2 -> 12.258 ms
+sup_m5_r0 -> 14.523 ms
+sup_m5_r1 -> 12.478 ms
+sup_m5_r2 -> 11.561 ms
+sup_m5_r3 -> 12.176 ms
+sup_m7_r0 -> 11.475 ms
+sup_m7_r1 -> 15.526 ms
+sup_m7_r2 -> 11.978 ms
+sup_m7_r3 -> 11.104 ms
+sup_m11_r0 -> 10.418 ms
+sup_m11_r1 -> 10.989 ms
+sup_m11_r2 -> 10.651 ms
+sup_m11_r3 -> 10.45 ms
+sup_m13_r0 -> 10.968 ms
+sup_m13_r1 -> 10.822 ms
+sup_m13_r2 -> 10.819 ms
+sup_m13_r3 -> 10.262 ms
+sup_m17_r0 -> 10.583 ms
+sup_m17_r1 -> 10.602 ms
+sup_m17_r2 -> 10.086 ms
+sup_m17_r3 -> 10.064 ms
+cust_m2_r0 -> 68.683 ms
+cust_m2_r1 -> 68.697 ms
+cust_m3_r0 -> 63.47 ms
+cust_m3_r1 -> 67.036 ms
+cust_m3_r2 -> 64.573 ms
+cust_m5_r0 -> 63.747 ms
+cust_m5_r1 -> 63.634 ms
+cust_m5_r2 -> 62.505 ms
+cust_m5_r3 -> 62.74 ms
+cust_m7_r0 -> 59.36 ms
+cust_m7_r1 -> 59.729 ms
+cust_m7_r2 -> 59.806 ms
+cust_m7_r3 -> 62.566 ms
+cust_m11_r0 -> 61.151 ms
+cust_m11_r1 -> 56.395 ms
+cust_m11_r2 -> 59.623 ms
+cust_m11_r3 -> 59.112 ms
+cust_m13_r0 -> 62.029 ms
+cust_m13_r1 -> 58.495 ms
+cust_m13_r2 -> 58.634 ms
+cust_m13_r3 -> 58.094 ms
+cust_m17_r0 -> 61.033 ms
+cust_m17_r1 -> 54.987 ms
+cust_m17_r2 -> 51.735 ms
+cust_m17_r3 -> 58.488 ms
+ord_m2_r0 -> 577.713 ms
+ord_m2_r1 -> 585.348 ms
+ord_m3_r0 -> 517.18 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/scan_samples.jsonl count 55
+{
+  "operator": "Seq Scan",
+  "features": [
+    "relpages",
+    "reltuples",
+    "actual_rows",
+    "plan_width"
+  ],
+  "total_samples": 55,
+  "intercept_ms": 10.940287922324636,
+  "coef": {
+    "relpages": 0.0007955669302921485,
+    "reltuples": 1.18099610891999e-05,
+    "actual_rows": 7.42661212105086e-05,
+    "plan_width": -0.11273725638830998
+  },
+  "train_rmse_ms": 2.1430300470255643,
+  "train_mae_ms": 1.5284245621075405,
+  "train_r2": 0.9997665155108779,
+  "test_rmse_ms": 1.926295733369231,
+  "test_mae_ms": 1.290024851245809,
+  "test_r2": 0.9938037720818582,
+  "test_mape_pct": 5.545830327946407,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/scan_coef.json and /data/dzh/pgvector/dev/cost_fit/models/scan_test_predictions.jsonl
+[warn] idx_li_0_150000: no Index Scan in plan
+[warn] idx_li_0_400000: no Index Scan in plan
+[warn] idx_li_0_800000: no Index Scan in plan
+[warn] idx_li_1_50000: no Index Scan in plan
+[warn] idx_li_1_150000: no Index Scan in plan
+[warn] idx_li_1_400000: no Index Scan in plan
+[warn] idx_li_1_800000: no Index Scan in plan
+[warn] idx_li_2_50000: no Index Scan in plan
+[warn] idx_li_2_150000: no Index Scan in plan
+[warn] idx_li_2_400000: no Index Scan in plan
+[warn] idx_li_2_800000: no Index Scan in plan
+[warn] idx_li_3_50000: no Index Scan in plan
+[warn] idx_li_3_150000: no Index Scan in plan
+[warn] idx_li_3_400000: no Index Scan in plan
+[warn] idx_li_3_800000: no Index Scan in plan
+[warn] idx_li_4_150000: no Index Scan in plan
+[warn] idx_li_4_400000: no Index Scan in plan
+[warn] idx_li_4_800000: no Index Scan in plan
+[warn] idx_li_5_50000: no Index Scan in plan
+[warn] idx_li_5_150000: no Index Scan in plan
+[warn] idx_li_5_400000: no Index Scan in plan
+[warn] idx_li_5_800000: no Index Scan in plan
+[warn] idx_li_6_150000: no Index Scan in plan
+[warn] idx_li_6_400000: no Index Scan in plan
+[warn] idx_li_6_800000: no Index Scan in plan
+[warn] idx_ord_1992-06-01: no Index Scan in plan
+[warn] idx_ord_1993-01-01: no Index Scan in plan
+[warn] idx_ord_1994-06-01: no Index Scan in plan
+[warn] idx_ord_1995-01-01: no Index Scan in plan
+[warn] idx_ord_1996-01-01: no Index Scan in plan
+[warn] idx_ord_cust_20: no Index Scan in plan
+[warn] idx_ord_cust_50: no Index Scan in plan
+[warn] idx_ord_cust_100: no Index Scan in plan
+[warn] idx_ord_cust_200: no Index Scan in plan
+[warn] idx_ord_cust_300: no Index Scan in plan
+[warn] idx_ord_cust_500: no Index Scan in plan
+[warn] idx_ord_cust_1000: no Index Scan in plan
+[warn] idx_ord_cust_2000: no Index Scan in plan
+[warn] idx_cust_nat_0: no Index Scan in plan
+[warn] idx_cust_nat_1: no Index Scan in plan
+[warn] idx_cust_nat_2: no Index Scan in plan
+[warn] idx_cust_nat_3: no Index Scan in plan
+[warn] idx_cust_nat_5: no Index Scan in plan
+[warn] only 12 index-scan samples (<50).
+idx_li_0_50000 206.703 ms
+idx_li_4_50000 213.901 ms
+idx_li_6_50000 187.192 ms
+idx_part_1_40000 4.677 ms
+idx_part_10000_90000 8.836 ms
+idx_part_50000_200000 16.582 ms
+idx_part_1_120000 11.928 ms
+idx_part_3000_80000 7.64 ms
+idx_ps_1_8000 2.524 ms
+idx_ps_5000_25000 6.157 ms
+idx_ps_10000_40000 8.855 ms
+idx_ps_1_50000 10.396 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/index_scan_samples.jsonl count 12
+Need >= 50 samples, got 12.
+skip index fit (need indexes/data)
+[warn] sort_od_4000: no Sort node
+[warn] sort_od_12000: no Sort node
+[warn] sort_od_25000: no Sort node
+[warn] sort_od_45000: no Sort node
+[warn] sort_od_70000: no Sort node
+[warn] sort_od_95000: no Sort node
+[warn] sort_od_140000: no Sort node
+[warn] only 48 sort samples (<50).
+sort_lip_4000 4442.848 ms
+sort_liq_4000 2104.905 ms
+sort_lid_4000 2020.132 ms
+sort_ot_4000 1370.5280000000002 ms
+sort_pn_4000 115.45299999999999 ms
+sort_ca_4000 79.469 ms
+sort_sa_4000 18.228 ms
+sort_lip_12000 4653.615 ms
+sort_liq_12000 2012.8440000000003 ms
+sort_lid_12000 1993.3290000000002 ms
+sort_ot_12000 1456.522 ms
+sort_pn_12000 166.122 ms
+sort_ca_12000 115.75699999999999 ms
+sort_sa_12000 39.147000000000006 ms
+sort_lip_25000 5161.414000000001 ms
+sort_liq_25000 2119.975 ms
+sort_lid_25000 1983.5640000000003 ms
+sort_ot_25000 1797.221 ms
+sort_pn_25000 381.488 ms
+sort_ca_25000 169.291 ms
+sort_sa_25000 89.333 ms
+sort_lip_45000 72404.12 ms
+sort_liq_45000 10664.502 ms
+sort_lid_45000 10310.835000000001 ms
+sort_ot_45000 15549.708 ms
+sort_pn_45000 797.9730000000001 ms
+sort_ca_45000 462.565 ms
+sort_sa_45000 76.798 ms
+sort_lip_70000 64891.702999999994 ms
+sort_liq_70000 10958.511999999999 ms
+sort_lid_70000 9511.639000000001 ms
+sort_ot_70000 19236.172 ms
+sort_pn_70000 669.8489999999999 ms
+sort_ca_70000 427.032 ms
+sort_sa_70000 78.655 ms
+sort_lip_95000 91805.948 ms
+sort_liq_95000 10619.395 ms
+sort_lid_95000 9113.659 ms
+sort_ot_95000 15473.949999999999 ms
+sort_pn_95000 666.274 ms
+sort_ca_95000 463.817 ms
+sort_sa_95000 103.401 ms
+sort_lip_140000 67177.374 ms
+sort_liq_140000 11253.124 ms
+sort_lid_140000 9046.338 ms
+sort_ot_140000 17491.143 ms
+sort_pn_140000 825.254 ms
+sort_ca_140000 400.288 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/sort_samples.jsonl count 48
+Need >= 50 samples, got 48.
+skip sort fit (need >=4 sort samples)
+hj_ol_m1 5321.825999999999 ms
+hj_ol_m2 2386.311 ms
+hj_ol_m3 1669.0349999999999 ms
+hj_ol_m4 1271.7639999999992 ms
+hj_ol_m5 1003.8829999999998 ms
+hj_ol_m6 1330.6530000000002 ms
+hj_ol_m7 758.6039999999998 ms
+hj_ol_m9 570.1110000000003 ms
+hj_ol_m10 547.1620000000003 ms
+hj_ol_m11 495.404 ms
+hj_ol_m13 415.09500000000025 ms
+hj_ol_m15 366.74400000000014 ms
+hj_ol_m17 937.6349999999998 ms
+hj_ol_m19 289.3789999999999 ms
+hj_ol_m21 251.44000000000005 ms
+hj_ol_m23 247.15200000000004 ms
+hj_ol_m25 223.19000000000005 ms
+hj_ol_m27 210.14299999999957 ms
+hj_ol_m29 139.72900000000027 ms
+hj_ol_m31 146.19900000000007 ms
+hj_ol_m33 107.13599999999997 ms
+hj_ol_m37 126.34400000000005 ms
+hj_ol_m41 95.21499999999969 ms
+hj_ol_m43 91.26499999999987 ms
+hj_ol_m47 91.15399999999954 ms
+hj_ol_band_3000 1053.977 ms
+hj_ol_band_8000 1012.133 ms
+hj_ol_band_15000 1072.9489999999996 ms
+hj_ol_band_50000 1161.7390000000003 ms
+hj_ol_band_100000 1291.546 ms
+hj_ol_band_350000 1415.548 ms
+hj_ol_band_600000 1427.891 ms
+hj_ol_band_900000 1602.852 ms
+hj_ol_band_1400000 1805.556 ms
+hj_ol_band_2200000 3207.549 ms
+hj_co_m2 960.8389999999999 ms
+hj_co_m3 413.58899999999994 ms
+hj_co_m4 419.409 ms
+hj_co_m5 440.5720000000001 ms
+hj_co_m7 406.67600000000004 ms
+hj_co_m9 313.66599999999994 ms
+hj_co_m11 374.97199999999987 ms
+hj_co_m13 342.8800000000001 ms
+hj_co_m17 324.254 ms
+hj_co_m19 317.6840000000001 ms
+hj_co_m23 351.837 ms
+hj_ps_1_8000 154.73099999999997 ms
+hj_ps_1_35000 179.42900000000003 ms
+hj_ps_1000_90000 208.246 ms
+hj_ps_5000_70000 223.37900000000002 ms
+hj_ps_1_180000 208.531 ms
+hj_sn_1 12.689000000000004 ms
+hj_sn_2 6.795000000000002 ms
+hj_sn_3 4.629000000000001 ms
+hj_sn_5 2.7650000000000006 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/hashjoin_samples.jsonl count 55
+{
+  "operator": "Hash Join",
+  "features": [
+    "outer_actual_rows",
+    "inner_actual_rows",
+    "actual_rows",
+    "plan_width"
+  ],
+  "total_samples": 55,
+  "intercept_ms": 7.327468922568433,
+  "coef": {
+    "outer_actual_rows": 6.513343054084081e-05,
+    "inner_actual_rows": -9.209713950499218e-06,
+    "actual_rows": 0.00020373900283757686,
+    "plan_width": 0.0
+  },
+  "train_rmse_ms": 146.59397822238188,
+  "train_mae_ms": 82.70187987038665,
+  "train_r2": 0.9734730968693184,
+  "test_rmse_ms": 579.2050946334368,
+  "test_mae_ms": 280.8239424677351,
+  "test_r2": 0.5595520037621056,
+  "test_mape_pct": 18.692797918501146,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/hashjoin_coef.json /data/dzh/pgvector/dev/cost_fit/models/hashjoin_test_predictions.jsonl
+mj_ol_3000 0.123 ms
+mj_ol_6000 0.242 ms
+mj_ol_12000 0.4730000000000001 ms
+mj_ol_15000 0.619 ms
+mj_ol_40000 2.0040000000000004 ms
+mj_ol_90000 4.492999999999999 ms
+mj_ol_200000 9.2 ms
+mj_ol_450000 22.501000000000005 ms
+mj_ol_900000 44.878 ms
+mj_ol_1600000 80.34200000000001 ms
+mj_ol_2100000 104.93499999999999 ms
+mj_co_2 416.53200000000015 ms
+mj_co_3 257.044 ms
+mj_co_4 294.9540000000002 ms
+mj_co_5 286.7919999999999 ms
+mj_co_7 274.72399999999993 ms
+mj_co_9 218.16200000000003 ms
+mj_co_11 236.889 ms
+mj_co_13 257.5579999999999 ms
+mj_co_16 226.82299999999987 ms
+mj_co_17 225.83800000000008 ms
+mj_co_19 224.24099999999999 ms
+mj_co_23 232.58199999999988 ms
+mj_co_29 248.6740000000001 ms
+mj_ps_1_50000 15.633 ms
+mj_ps_1_150000 42.88100000000001 ms
+mj_ps_5000_90000 27.135000000000005 ms
+mj_ps_1_200000 52.605999999999995 ms
+mj_ps_2000_60000 15.357 ms
+mj_ps_1_80000 24.807000000000002 ms
+mj_ps_10000_120000 31.939000000000007 ms
+mj_ps_30000_180000 41.25 ms
+mj_sn_1 9.872999999999998 ms
+mj_sn_3 2.6959999999999997 ms
+mj_sn_5 1.552999999999999 ms
+mj_sn_7 1.4369999999999994 ms
+mj_sn_9 1.1029999999999998 ms
+mj_sn_11 0.9100000000000001 ms
+mj_sn_13 0.6269999999999989 ms
+mj_sn_15 0.6669999999999998 ms
+mj_sn_17 0.5980000000000008 ms
+mj_sn_19 0.6810000000000009 ms
+mj_sn_21 0.48300000000000054 ms
+mj_sn_23 0.43299999999999983 ms
+mj_sn_25 0.40199999999999925 ms
+mj_sn_27 0.37899999999999956 ms
+mj_sn_29 0.35199999999999854 ms
+mj_sn_31 0.32899999999999885 ms
+mj_sn_37 0.28600000000000136 ms
+mj_sn_41 0.25 ms
+mj_nr 0.006999999999999999 ms
+mj_cn 41.82100000000001 ms
+mj_lip_1 989.039999999999 ms
+mj_lip_4 978.2650000000012 ms
+mj_lip_9 976.2390000000014 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/mergejoin_samples.jsonl count 55
+{
+  "operator": "Merge Join",
+  "features": [
+    "outer_actual_rows",
+    "inner_actual_rows",
+    "actual_rows",
+    "plan_width"
+  ],
+  "total_samples": 55,
+  "intercept_ms": 3.584319518815221,
+  "coef": {
+    "outer_actual_rows": 4.073244112290779e-05,
+    "inner_actual_rows": 4.5574829107820866e-05,
+    "actual_rows": 6.464122806416485e-05,
+    "plan_width": 0.0
+  },
+  "train_rmse_ms": 8.761430075452207,
+  "train_mae_ms": 6.133742200637579,
+  "train_r2": 0.9988731763876693,
+  "test_rmse_ms": 4.732396277063423,
+  "test_mae_ms": 3.8081072086977863,
+  "test_r2": 0.9980843231406882,
+  "test_mape_pct": 239.9601491554619,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/mergejoin_coef.json /data/dzh/pgvector/dev/cost_fit/models/mergejoin_test_predictions.jsonl
+agg_li_rf 0.007999999999810825 ms Aggregate
+agg_li_ls 0.01300000000082946 ms Aggregate
+agg_li_sm 0.032000000000152795 ms Aggregate
+agg_li_si 0.009000000000014552 ms Aggregate
+agg_li_rf_ls 0.023000000000138243 ms Aggregate
+agg_ord_st 0.009000000000014552 ms Aggregate
+agg_ord_pr 0.009000000000014552 ms Aggregate
+agg_ord_date_y 0.008000000000038199 ms Aggregate
+agg_part_ty 0.06399999999999295 ms Aggregate
+agg_part_mf 0.015999999999991132 ms Aggregate
+agg_part_cont 0.02200000000001978 ms Aggregate
+agg_cust_seg 0.00899999999998613 ms Aggregate
+agg_cust_nat 0.04800000000000182 ms Aggregate
+agg_sup_nat 17.663 ms Aggregate
+agg_li_tax_2 0.04500000000007276 ms Aggregate
+agg_li_tax_3 0.03400000000056025 ms Aggregate
+agg_li_tax_5 0.03099999999994907 ms Aggregate
+agg_li_tax_7 0.03000000000020009 ms Aggregate
+agg_li_tax_11 0.028999999999996362 ms Aggregate
+agg_li_disc_13 0.022999999999683496 ms Aggregate
+agg_li_disc_17 0.023000000000138243 ms Aggregate
+agg_li_ship_1994-01-01 0.010000000000218279 ms Aggregate
+agg_li_ship_1995-06-01 0.010000000000218279 ms Aggregate
+agg_li_ship_1996-01-01 0.010000000000218279 ms Aggregate
+agg_ord_clerk_3 4.088000000000193 ms Aggregate
+agg_ord_clerk_5 4.0779999999999745 ms Aggregate
+agg_ord_clerk_7 3.9670000000000982 ms Aggregate
+agg_pad_li_0 0.010999999999967258 ms Aggregate
+agg_pad_li_1 0.011000000000194632 ms Aggregate
+agg_pad_li_2 0.010999999999967258 ms Aggregate
+agg_pad_li_3 0.009999999999990905 ms Aggregate
+agg_pad_li_4 0.009999999999990905 ms Aggregate
+agg_pad_li_5 0.009999999999990905 ms Aggregate
+agg_pad_li_6 0.010999999999967258 ms Aggregate
+agg_pad_li_7 0.010999999999967258 ms Aggregate
+agg_pad_li_8 0.05100000000015825 ms Aggregate
+agg_pad_li_9 0.011999999999943611 ms Aggregate
+agg_pad_li_10 0.010999999999967258 ms Aggregate
+agg_pad_li_11 0.011000000000194632 ms Aggregate
+agg_pad_li_12 0.009999999999990905 ms Aggregate
+agg_pad_li_13 0.010999999999967258 ms Aggregate
+agg_pad_li_14 0.010999999999967258 ms Aggregate
+agg_pad_li_15 0.011999999999716238 ms Aggregate
+agg_pad_li_16 0.010000000000218279 ms Aggregate
+agg_pad_li_17 0.011000000000194632 ms Aggregate
+agg_pad_li_18 0.011999999999943611 ms Aggregate
+agg_pad_li_19 0.010999999999967258 ms Aggregate
+agg_pad_li_20 0.010999999999967258 ms Aggregate
+agg_pad_li_21 0.009999999999990905 ms Aggregate
+agg_pad_li_22 0.010000000000218279 ms Aggregate
+agg_pad_li_23 0.009999999999990905 ms Aggregate
+agg_pad_li_24 0.010999999999967258 ms Aggregate
+agg_pad_li_25 0.011999999999943611 ms Aggregate
+agg_pad_li_26 0.010999999999967258 ms Aggregate
+agg_pad_li_27 0.010999999999967258 ms Aggregate
+wrote /data/dzh/pgvector/dev/cost_fit/data/agg_samples.jsonl count 55
+{
+  "operator": "Aggregate",
+  "features": [
+    "child_actual_rows",
+    "actual_rows",
+    "num_group_keys",
+    "plan_width"
+  ],
+  "total_samples": 55,
+  "intercept_ms": 0.005325347114679392,
+  "coef": {
+    "child_actual_rows": 0.00017654688849878821,
+    "actual_rows": -0.00012673004176860946,
+    "num_group_keys": 0.0023991517616907673,
+    "plan_width": 0.00031290852408795834
+  },
+  "train_rmse_ms": 0.016965332486279405,
+  "train_mae_ms": 0.007956722802919104,
+  "train_r2": 0.9999659432572259,
+  "test_rmse_ms": 0.00893522950964772,
+  "test_mae_ms": 0.006655859727218598,
+  "test_r2": 0.7621310737999547,
+  "test_mape_pct": 29.125796634489753,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/agg_coef.json /data/dzh/pgvector/dev/cost_fit/models/agg_test_predictions.jsonl
+=== Test metrics (40 train / 10 test by default) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Sort ===
+  samples: None  train: None  test: None
+Traceback (most recent call last):
+  File "/data/dzh/pgvector/dev/cost_fit/99_print_test_metrics.py", line 42, in <module>
+    main()
+  File "/data/dzh/pgvector/dev/cost_fit/99_print_test_metrics.py", line 32, in main
+    f"  train RMSE (ms): {d.get('train_rmse_ms'):.6g}  R²: {d.get('train_r2'):.6f}"
+TypeError: unsupported format string passed to NoneType.__format__

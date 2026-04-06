@@ -1,0 +1,26 @@
+{
+  "coef": {
+    "actual_rows": 0.00020373900283757686,
+    "inner_actual_rows": -9.209713950499218e-06,
+    "outer_actual_rows": 6.513343054084081e-05,
+    "plan_width": 0.0
+  },
+  "features": [
+    "outer_actual_rows",
+    "inner_actual_rows",
+    "actual_rows",
+    "plan_width"
+  ],
+  "intercept_ms": 7.327468922568433,
+  "operator": "Hash Join",
+  "test_mae_ms": 280.8239424677351,
+  "test_mape_pct": 18.692797918501146,
+  "test_n": 10,
+  "test_r2": 0.5595520037621056,
+  "test_rmse_ms": 579.2050946334368,
+  "total_samples": 55,
+  "train_mae_ms": 82.70187987038665,
+  "train_n": 40,
+  "train_r2": 0.9734730968693184,
+  "train_rmse_ms": 146.59397822238188
+}
