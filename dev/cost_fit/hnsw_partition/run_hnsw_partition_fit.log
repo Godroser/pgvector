@@ -1,0 +1,180 @@
+nohup: ignoring input
+=== [hnsw_partition] create 100 partitions + load from part/partsupp (long) ===
+SET
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:12: NOTICE:  table "partsupp_vec_p" does not exist, skipping
+DROP TABLE
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:13: NOTICE:  table "part_vec_p" does not exist, skipping
+DROP TABLE
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:14: NOTICE:  table "_cost_fit_hnsw_ps_bounds" does not exist, skipping
+DROP TABLE
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:15: NOTICE:  table "_cost_fit_hnsw_part_bounds" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+DO
+BEGIN
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 0 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 10 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 20 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 30 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 40 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 50 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 60 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 70 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 80 / 99
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:147: NOTICE:  cost_fit part_vec_p CSV: 90 / 99
+DO
+COMMIT
+BEGIN
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 0 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 50 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 100 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 150 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 200 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 250 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 300 / 399
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:195: NOTICE:  cost_fit partsupp_vec_p CSV: 350 / 399
+DO
+COMMIT
+ANALYZE
+ANALYZE
+=== [hnsw_partition] HNSW on partitions 16, 49, 82 only ===
+SET
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_part_vec_p_p016" does not exist, skipping
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_part_vec_p_p049" does not exist, skipping
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_part_vec_p_p082" does not exist, skipping
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_partsupp_vec_p_p016" does not exist, skipping
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_partsupp_vec_p_p049" does not exist, skipping
+psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/01_create_hnsw_on_selected_partitions.sql:35: NOTICE:  index "idx_hnsw_partsupp_vec_p_p082" does not exist, skipping
+DO
+ANALYZE
+ANALYZE
+=== [hnsw_partition] Python deps ===
+=== [hnsw_partition] collect + fit ===
+hnswp_ps_320001_340000_ef56_lim20_o4501 41.981 ms
+hnswp_ps_320001_340000_ef200_lim10_o401 46.241 ms
+hnswp_part_980001_1000000_ef128_lim80_o67 16.11 ms
+hnswp_part_320001_340000_ef40_lim20_o131 14.408 ms
+hnswp_ps_980001_1000000_ef56_lim5_o4501 42.132 ms
+hnswp_part_1640001_1660000_ef200_lim40_o5 23.912 ms
+hnswp_part_980001_1000000_ef96_lim400_o67 8.39 ms
+hnswp_part_320001_340000_ef128_lim100_o131 16.958 ms
+hnswp_ps_320001_340000_ef200_lim200_o2003 52.491 ms
+hnswp_part_320001_340000_ef16_lim80_o997 8.371 ms
+hnswp_part_320001_340000_ef80_lim5_o29 10.068 ms
+hnswp_part_320001_340000_ef56_lim80_o131 7.676 ms
+hnswp_part_980001_1000000_ef24_lim20_o997 8.471 ms
+hnswp_ps_980001_1000000_ef56_lim5_o127 25.941 ms
+hnswp_part_1640001_1660000_ef32_lim10_o307 9.432 ms
+hnswp_ps_320001_340000_ef80_lim80_o11 35.721 ms
+hnswp_ps_320001_340000_ef128_lim20_o997 36.717 ms
+hnswp_ps_980001_1000000_ef32_lim40_o4501 29.554 ms
+hnswp_ps_980001_1000000_ef200_lim200_o4501 37.557 ms
+hnswp_ps_320001_340000_ef96_lim40_o3 31.145 ms
+hnswp_part_1640001_1660000_ef96_lim200_o2 16.573 ms
+hnswp_ps_320001_340000_ef128_lim20_o3 28.495 ms
+hnswp_part_980001_1000000_ef96_lim80_o307 10.596 ms
+hnswp_part_1640001_1660000_ef56_lim10_o5 9.456 ms
+hnswp_part_320001_340000_ef24_lim200_o701 7.498 ms
+hnswp_part_320001_340000_ef32_lim40_o29 7.622 ms
+hnswp_part_980001_1000000_ef16_lim400_o701 8.479 ms
+hnswp_part_320001_340000_ef80_lim40_o307 12.797 ms
+hnswp_ps_980001_1000000_ef16_lim400_o997 29.49 ms
+hnswp_part_320001_340000_ef128_lim5_o997 14.207 ms
+hnswp_ps_980001_1000000_ef56_lim80_o0 36.295 ms
+hnswp_part_980001_1000000_ef24_lim40_o67 7.405 ms
+hnswp_ps_1640001_1660000_ef96_lim100_o4501 50.564 ms
+hnswp_part_1640001_1660000_ef40_lim5_o0 150.608 ms
+hnswp_ps_1640001_1660000_ef40_lim5_o11 32.434 ms
+hnswp_part_980001_1000000_ef56_lim5_o307 9.064 ms
+hnswp_ps_320001_340000_ef24_lim20_o11 30.817 ms
+hnswp_ps_1640001_1660000_ef32_lim40_o997 32.392 ms
+hnswp_part_320001_340000_ef24_lim400_o67 9.279 ms
+hnswp_part_320001_340000_ef80_lim20_o131 12.554 ms
+hnswp_ps_320001_340000_ef200_lim5_o3 36.122 ms
+hnswp_ps_1640001_1660000_ef56_lim200_o0 37.378 ms
+hnswp_ps_1640001_1660000_ef16_lim10_o4501 33.591 ms
+hnswp_ps_980001_1000000_ef40_lim20_o11 38.608 ms
+hnswp_ps_320001_340000_ef32_lim5_o401 31.081 ms
+hnswp_ps_1640001_1660000_ef96_lim40_o4501 38.896 ms
+hnswp_part_980001_1000000_ef24_lim40_o29 8.915 ms
+hnswp_ps_1640001_1660000_ef40_lim40_o127 34.105 ms
+hnswp_part_1640001_1660000_ef32_lim5_o307 11.603 ms
+hnswp_part_980001_1000000_ef40_lim80_o131 8.744 ms
+hnswp_ps_980001_1000000_ef200_lim100_o401 270.773 ms
+hnswp_ps_320001_340000_ef24_lim400_o3 28.671 ms
+hnswp_part_1640001_1660000_ef96_lim200_o131 16.862 ms
+hnswp_part_980001_1000000_ef80_lim40_o131 8.631 ms
+hnswp_part_1640001_1660000_ef200_lim400_o997 23.436 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/hnsw_partition_scan_samples.jsonl count 55
+{
+  "operator": "Index Scan (hnsw, partition)",
+  "features": [
+    "relpages",
+    "reltuples",
+    "actual_rows",
+    "plan_width",
+    "limit_k",
+    "ef_search"
+  ],
+  "total_samples": 55,
+  "intercept_ms": 3.352651074297314,
+  "coef": {
+    "relpages": 4.606286173961162,
+    "reltuples": -0.11768965555669086,
+    "actual_rows": -0.11847872045965913,
+    "plan_width": 35.761603613192705,
+    "limit_k": -0.0018158751832371635,
+    "ef_search": 0.3736199477809281
+  },
+  "train_rmse_ms": 38.93786388638345,
+  "train_mae_ms": 19.460082528022895,
+  "train_r2": 0.2594173743442574,
+  "test_rmse_ms": 19.677340553142166,
+  "test_mae_ms": 15.342104055698309,
+  "test_r2": -1.0399599626004328,
+  "test_mape_pct": 74.78081416625574,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_test_predictions.jsonl
+=== [hnsw_partition] metrics (full cost_fit model list) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 38.9379  R²: 0.259417
+  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
+
+=== Index Scan (ivfflat) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 234.12  R²: 0.806840
+  test  RMSE (ms): 264.504  MAE: 228.625  R²: 0.052930  MAPE: 411.3149%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Partition HNSW coef: /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_coef.json

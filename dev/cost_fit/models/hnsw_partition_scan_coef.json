@@ -1,0 +1,30 @@
+{
+  "coef": {
+    "actual_rows": -0.11847872045965913,
+    "ef_search": 0.3736199477809281,
+    "limit_k": -0.0018158751832371635,
+    "plan_width": 35.761603613192705,
+    "relpages": 4.606286173961162,
+    "reltuples": -0.11768965555669086
+  },
+  "features": [
+    "relpages",
+    "reltuples",
+    "actual_rows",
+    "plan_width",
+    "limit_k",
+    "ef_search"
+  ],
+  "intercept_ms": 3.352651074297314,
+  "operator": "Index Scan (hnsw, partition)",
+  "test_mae_ms": 15.342104055698309,
+  "test_mape_pct": 74.78081416625574,
+  "test_n": 10,
+  "test_r2": -1.0399599626004328,
+  "test_rmse_ms": 19.677340553142166,
+  "total_samples": 55,
+  "train_mae_ms": 19.460082528022895,
+  "train_n": 40,
+  "train_r2": 0.2594173743442574,
+  "train_rmse_ms": 38.93786388638345
+}

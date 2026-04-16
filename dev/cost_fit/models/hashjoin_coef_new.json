@@ -1,0 +1,40 @@
+{
+  "coef": {
+    "J_plan": -0.003360403553837476,
+    "R_inner_plan": 0.015945184856167707,
+    "R_outer_times_k": 4.163334853846178e-05,
+    "hash_spill_proxy": 0.0,
+    "hash_spill_rows_proxy": 0.0,
+    "proj_proxy_join_bytes": 0.0
+  },
+  "cost_ascii_section": "\u00a74 Hash Join",
+  "feature_notes": {
+    "J_plan": "join output J (Plan Rows)",
+    "R_inner_plan": "build side size R_I (plan rows inner)",
+    "R_outer_times_k": "R_O * k term scale (plan-time)",
+    "hash_spill_proxy": "1 if Hash Batches > 1",
+    "hash_spill_rows_proxy": "spill * (outer_plan+inner_plan) for multi-batch I/O scale",
+    "intercept": "O/I child path constants + f_bucket / inner_unique omitted",
+    "proj_proxy_join_bytes": "T_pt * R_out proxy"
+  },
+  "features": [
+    "R_outer_times_k",
+    "R_inner_plan",
+    "J_plan",
+    "proj_proxy_join_bytes",
+    "hash_spill_proxy",
+    "hash_spill_rows_proxy"
+  ],
+  "intercept_ms": 99.75871681254299,
+  "operator": "Hash Join",
+  "test_mae_ms": 403.2105469251752,
+  "test_mape_pct": 51.422189694704144,
+  "test_n": 10,
+  "test_r2": 0.5052753336147191,
+  "test_rmse_ms": 594.311372007205,
+  "total_samples": 55,
+  "train_mae_ms": 332.2401195824403,
+  "train_n": 40,
+  "train_r2": 0.2127868962205699,
+  "train_rmse_ms": 740.4831381361823
+}

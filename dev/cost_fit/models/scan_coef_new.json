@@ -1,0 +1,34 @@
+{
+  "coef": {
+    "N_heap_tuples": -0.04034108376812741,
+    "N_times_qual_proxy": 0.04040209112263436,
+    "P_pages": -0.0018692628543375699,
+    "proj_proxy_plan_row_bytes": 0.0004640105226402652
+  },
+  "cost_ascii_section": "\u00a72 Seq Scan + filter + projection",
+  "feature_notes": {
+    "N_heap_tuples": "doc N; pg_class.reltuples \u2014 full-table seq scan assumption",
+    "N_times_qual_proxy": "substitute for Qs_pt * N scale; N * Filter AND-clause count",
+    "P_pages": "doc P (baserel->pages); from pg_class.relpages",
+    "intercept": "absorbs Qs_su + T_su and constant bias (not separate in EXPLAIN)",
+    "proj_proxy_plan_row_bytes": "substitute for T_pt * R_out = Plan Rows * Plan Width"
+  },
+  "features": [
+    "P_pages",
+    "N_heap_tuples",
+    "proj_proxy_plan_row_bytes",
+    "N_times_qual_proxy"
+  ],
+  "intercept_ms": -0.015470423378457885,
+  "operator": "Seq Scan",
+  "test_mae_ms": 3.396335294119884,
+  "test_mape_pct": 12.45329362889803,
+  "test_n": 10,
+  "test_r2": 0.9532114206448088,
+  "test_rmse_ms": 5.333800751525194,
+  "total_samples": 55,
+  "train_mae_ms": 6.103585242555587,
+  "train_n": 40,
+  "train_r2": 0.981469333492594,
+  "train_rmse_ms": 18.707410471905106
+}

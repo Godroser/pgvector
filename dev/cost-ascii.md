@@ -80,28 +80,38 @@ run     ~ (indexTotal - indexStartup) + heap_IO_run
 
 ### 3.1 genericcostestimate baseline
 
-s      = combined selectivity (quals + partial index predicate as applicable)
-N_sa   = number of index scans from ScalarArrayOp etc. (>=1)
+Let:
+  s         = combined index selectivity (index quals + partial predicate)
+  N_sa      = ScalarArray-induced internal scan count (>=1)
+  N_outer   = loop_count
+  N_scan    = N_sa * N_outer
+  N_idx_tot = total index tuples
+  P_idx_tot = total index pages
+  P_nl      = non-leaf index pages
 
-N_idx ~ round( (s * N_heap) / N_sa )   then clamp to index size, min 1
-If index pages/tuples > 1:
-  P_idx ~ ceil( N_idx * index_pages_total / index_tuples_total )
-else P_idx ~ 1
+Per-scan visited index tuples:
+  N_idx ~ clamp( round( (s * N_heap) / N_sa ), [1, N_idx_tot] )
 
-Single-scan index I/O part:
-  indexTotal_IO ~ P_idx * C_rnd
-With multiple outer loops, total fetches scaled by index_pages_fetched(),
-then cost divided by loop_count.
+Per-scan touched index pages:
+  P_idx ~ max(1, ceil( N_idx * (P_idx_tot - P_nl) / N_idx_tot ))
 
-Index CPU (n_q = #indexquals, n_o = #index order by ops):
+I/O part:
+  if N_scan == 1:
+    C_io = P_idx * C_rnd
+  else:
+    pages_fetched = index_pages_fetched(P_idx * N_scan, P_idx_tot, P_idx_tot, root)
+    C_io = (pages_fetched * C_rnd) / N_outer
 
-  Q_arg = cost of eval index qual_operand args (see index_other_operands_eval_cost)
+CPU part (n_q = #indexquals, n_o = #index order by expressions):
+  Q_arg = index_other_operands_eval_cost(indexQuals)
+        + index_other_operands_eval_cost(indexOrderBys)
+  Q_op  = C_op * (n_q + n_o)
+  C_cpu = Q_arg + N_idx * N_sa * (C_idx + Q_op)
 
-  indexTotal += Q_arg
-  indexTotal += N_idx * N_sa * ( C_idx + C_op * (n_q + n_o) )
-  indexStartup ~ Q_arg
-
-indexCorrelation = 0 for generic estimate.
+So:
+  indexStartup = Q_arg
+  indexTotal   = C_io + C_cpu
+  indexCorrelation = 0 (generic assumption)
 
 ------------------------------------------------------------------------------
 
@@ -206,13 +216,24 @@ L     = lists (from metapage)
 p     = ivfflat_probes GUC
 r     = min(p / L, 1.0)
 seq_ratio = 0.5  (hardcoded in ivfflat.c)
+P_idx = costs.numIndexPages
+P_heap = rel->pages
 
-  indexTotal' = indexTotal - seq_ratio * numIndexPages * (C_rnd - C_seq)
-  indexStartup ~ indexTotal' * r
+  indexTotal' =
+    indexTotal_gen - seq_ratio * P_idx * (C_rnd - C_seq)
 
-Further startup tweak when startupPages vs rel->pages (TOAST / seq page fix).
+  indexStartup0 = indexTotal' * r
+  startupPages  = P_idx * r
 
-Selectivity still from generic path.
+If startupPages > P_heap and r < 0.5:
+  indexStartup =
+    indexStartup0
+    - (1 - seq_ratio) * startupPages * (C_rnd - C_seq)
+    - (startupPages - P_heap) * C_seq
+else:
+  indexStartup = indexStartup0
+
+indexSelectivity/indexCorrelation/indexPages stay from generic path.
 
 ------------------------------------------------------------------------------
 

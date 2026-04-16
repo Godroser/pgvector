@@ -1,0 +1,37 @@
+{
+  "coef": {
+    "G_plan": -0.0010809719374719239,
+    "G_times_width_proxy": 4.594258401032165e-05,
+    "N_child_plan": 0.0008812263485561794,
+    "N_times_g_plan": -0.0006915716051176194,
+    "num_group_keys": 0.006818056440879615
+  },
+  "cost_ascii_section": "\u00a76 Aggregate",
+  "feature_notes": {
+    "G_plan": "doc G; agg node Plan Rows (groups estimate)",
+    "G_times_width_proxy": "C_tuple*G + output width proxy",
+    "N_child_plan": "doc N; child Plan Rows",
+    "N_times_g_plan": "g * C_op * N scale (HASHED/SORTED style)",
+    "intercept": "trans/final AggClauseCosts + spill omitted",
+    "num_group_keys": "doc g from Group Key length"
+  },
+  "features": [
+    "N_child_plan",
+    "num_group_keys",
+    "G_plan",
+    "N_times_g_plan",
+    "G_times_width_proxy"
+  ],
+  "intercept_ms": 0.0069491229370141185,
+  "operator": "Aggregate",
+  "test_mae_ms": 0.01042862168875634,
+  "test_mape_pct": 34.85933262364932,
+  "test_n": 10,
+  "test_r2": 0.6020710889082135,
+  "test_rmse_ms": 0.01551461308034706,
+  "total_samples": 55,
+  "train_mae_ms": 0.0069680378977169805,
+  "train_n": 40,
+  "train_r2": 0.9999812831392149,
+  "train_rmse_ms": 0.0133932904879701
+}

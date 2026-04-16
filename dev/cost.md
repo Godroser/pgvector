@@ -76,23 +76,59 @@ AM 先给出：`indexStartupCost`、`indexTotalCost`、选择性 \(s_\text{idx}\
 
 ### 3.1 `genericcostestimate`（多数自定义 AM 的基线）
 
-- 索引扫描触及元组数（每次扫描）：\(N_\text{idx} \approx \text{round}((s \cdot N_\text{heap}) / n_\text{sa})\)（有 ScalarArray 时乘 \(n_\text{sa}\)）。
-- 索引页数：\(P_\text{idx} \approx \left\lceil N_\text{idx}\, P_\text{idx}^\text{tot} / N_\text{idx}^\text{tot} \right\rceil\)。
+记：
 
-单次扫描 I/O：
+- \(s\)：`clauselist_selectivity` 得到的 index 选择性（含 partial index predicate）
+- \(n_\text{sa}\)：ScalarArray 导致的内部扫描次数（\(\ge 1\)）
+- \(n_\text{outer}=\text{loop\_count}\)
+- \(n_\text{scan}=n_\text{sa}\,n_\text{outer}\)
+- \(N_\text{idx}^\text{tot}\)、\(P_\text{idx}^\text{tot}\)：索引总元组数/总页数
+- \(P_\text{nl}\)：非叶子页（`numNonLeafPages`）
+
+每次索引扫描命中元组数（先估再夹逼）：
 
 \[
-\text{indexTotal}_\text{IO} \approx P_\text{idx}\, C_\text{rnd} \quad (\text{多次外相关时用 } \text{index\_pages\_fetched} \text{ 修正总量再分摊})
+N_\text{idx}
+=
+\operatorname{clamp}_{[1,\,N_\text{idx}^\text{tot}]}
+\left(
+\operatorname{round}
+\left(
+\frac{s \cdot N_\text{heap}}{n_\text{sa}}
+\right)
+\right)
 \]
 
-索引侧 CPU（\(n_q\) 个 qual，\(n_o\) 个 orderby）：
+每次扫描触达索引页数：
 
 \[
-\text{indexTotal} \mathrel{+}= Q_\text{arg} + N_\text{idx}\, n_\text{sa}\,\bigl(C_\text{idx} + C_\text{op}(n_q + n_o)\bigr)
+P_\text{idx}
+\approx
+\max\!\left(1,\left\lceil
+N_\text{idx}\cdot\frac{P_\text{idx}^\text{tot}-P_\text{nl}}{N_\text{idx}^\text{tot}}
+\right\rceil\right)
+\]
+
+I/O 代价：
+
+\[
+C_\text{io}=
+\begin{cases}
+P_\text{idx}\,C_\text{rnd}, & n_\text{scan}=1\\[4pt]
+\dfrac{\text{index\_pages\_fetched}(P_\text{idx}\,n_\text{scan},\,P_\text{idx}^\text{tot},\,P_\text{idx}^\text{tot},\,root)\,C_\text{rnd}}{n_\text{outer}}, & n_\text{scan}>1
+\end{cases}
+\]
+
+CPU 代价（\(n_q\) 个 indexqual，\(n_o\) 个 indexorderby）：
+
+\[
+Q_\text{op}=C_\text{op}(n_q+n_o),\qquad
+C_\text{cpu}=Q_\text{arg}+N_\text{idx}\,n_\text{sa}\,(C_\text{idx}+Q_\text{op})
 \]
 
 \[
-\text{indexStartup} \approx Q_\text{arg}
+\text{indexStartup}=Q_\text{arg},\qquad
+\text{indexTotal}=C_\text{io}+C_\text{cpu}
 \]
 
 相关性：`indexCorrelation = 0`（generic 假设）。
@@ -204,21 +240,41 @@ C_\text{cmp} = C_\text{cmp}^\text{extra} + 2\, C_\text{op}
 若无 `ORDER BY` / `indexorderbys`，代价为 \(\infty\)（优化器不用该索引路径）。
 
 - \(L\)：索引 `lists`（元页）
-- \(p\)：GUC `ivfflat_probes`
-- \(r = \min(p/L,\, 1)\)
-- `sequentialRatio` \(= 0.5\)（源码常量）
+- \(p\)：GUC `ivfflat.probes`
+- \(r=\min(1,\;p/L)\)
+- \(\alpha=0.5\)（`sequentialRatio` 常量）
+- \(P_\text{idx}=\texttt{costs.numIndexPages}\)
+- \(P_\text{heap}=\texttt{rel->pages}\)
+
+先对 generic 总代价做“部分随机页按顺序页计价”修正：
 
 \[
-\text{indexTotal}' = \text{indexTotal} - 0.5\, P_\text{idx}\,(C_\text{rnd} - C_\text{seq})
+\text{indexTotal}'
+=
+\text{indexTotal}^{gen}
+-\alpha\,P_\text{idx}\,(C_\text{rnd}-C_\text{seq})
 \]
+
+startup 初值按 probes/lists 缩放：
 
 \[
-\text{indexStartup} \approx \text{indexTotal}' \cdot r
+\text{indexStartup}_0=\text{indexTotal}'\cdot r,\qquad
+P_\text{startup}=P_\text{idx}\cdot r
 \]
 
-随后在 `startupPages` 与堆 `rel->pages` 关系下可对 startup 再减随机/顺序价差（TOAST 修正，见 `ivfflatcostestimate`）。
+若 \(P_\text{startup}>P_\text{heap}\) 且 \(r<0.5\)，再执行两段扣减：
 
-**选择性等仍来自 generic**（`indexSelectivity`、`indexTotal` 基准）。
+\[
+\text{indexStartup}
+=
+\text{indexStartup}_0
+-(1-\alpha)\,P_\text{startup}\,(C_\text{rnd}-C_\text{seq})
+-(P_\text{startup}-P_\text{heap})\,C_\text{seq}
+\]
+
+否则 \(\text{indexStartup}=\text{indexStartup}_0\)。
+
+`indexSelectivity` / `indexCorrelation` / `indexPages` 仍沿用 generic（其中 `indexCorrelation` 通常为 0）。
 
 ---
 

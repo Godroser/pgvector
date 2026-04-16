@@ -162,6 +162,60 @@ WHERE n.nspname = 'public' AND c.relkind = 'r';
     return d
 
 
+def load_index_stats() -> Dict[str, Tuple[float, float]]:
+    """Index relname lower -> (reltuples, relpages) in public schema."""
+    sql = """
+SELECT c.relname, COALESCE(reltuples, 0)::float, COALESCE(relpages, 0)::float
+FROM pg_class c
+JOIN pg_namespace n ON n.oid = c.relnamespace
+WHERE n.nspname = 'public' AND c.relkind IN ('i', 'I');
+"""
+    out = psql_sql(sql.strip())
+    d: Dict[str, Tuple[float, float]] = {}
+    for line in out.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split("|")
+        if len(parts) != 3:
+            continue
+        name, tup, pg = parts[0].lower(), float(parts[1]), float(parts[2])
+        d[name] = (tup, pg)
+    return d
+
+
+def and_clause_count_from_explain_field(val: Any) -> float:
+    """Rough AND-conjunct count within a single EXPLAIN text field; 0 if absent."""
+    if not val:
+        return 0.0
+    return float(str(val).count(" AND ") + 1)
+
+
+def explain_qual_conjuncts(val: Any) -> float:
+    """
+    Sum of AND-clause weights for Index Cond / Filter-style fields.
+    JSON may use a string or a list of strings.
+    """
+    if not val:
+        return 0.0
+    if isinstance(val, list):
+        return float(sum(and_clause_count_from_explain_field(x) for x in val))
+    return and_clause_count_from_explain_field(val)
+
+
+def join_qual_clause_count(node: Dict[str, Any], key: str) -> float:
+    """
+    Number of join key clauses (Hash Cond / Merge Cond). JSON list length if array,
+    else AND-count on string. At least 1 when the field exists.
+    """
+    v = node.get(key)
+    if v is None:
+        return 1.0
+    if isinstance(v, list):
+        return float(max(1, len([x for x in v if x is not None])))
+    return float(max(1.0, and_clause_count_from_explain_field(v)))
+
+
 def relation_name(plan: Dict[str, Any]) -> Optional[str]:
     rel = plan.get("Relation Name") or plan.get("Alias")
     if rel:

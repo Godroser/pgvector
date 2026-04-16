@@ -23,6 +23,8 @@ def main() -> None:
     for name in (
         "scan_coef.json",
         "index_scan_coef.json",
+        "hnsw_partition_scan_coef.json",
+        "ivf_scan_coef.json",
         "sort_coef.json",
         "hashjoin_coef.json",
         "mergejoin_coef.json",

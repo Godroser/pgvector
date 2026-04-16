@@ -122,6 +122,207 @@ def index_scan_workloads(target: int = 55) -> list:
     return ws[:target]
 
 
+# pgvector has no separate "ANN" keyword: approximate search is ORDER BY <-> query_vector LIMIT k
+# with an IVFFlat or HNSW index chosen by the planner (session scripts often disable seqscan).
+_PGVECTOR_ANN_SQL_LEAD = "-- pgvector ANN: L2 ORDER BY column <-> query_vector LIMIT k\n"
+
+
+def _pgvector_ann_sql_part(limit: int, anchor_off: int) -> str:
+    """ANN search on part.text_embedding (L2 <->); query vector from one row picked by OFFSET."""
+    return _PGVECTOR_ANN_SQL_LEAD + (
+        f"SELECT p_partkey FROM part\n"
+        f"WHERE text_embedding IS NOT NULL\n"
+        f"ORDER BY text_embedding <-> "
+        f"(SELECT text_embedding FROM part WHERE text_embedding IS NOT NULL "
+        f"ORDER BY p_partkey OFFSET {anchor_off} LIMIT 1)\n"
+        f"LIMIT {limit};"
+    )
+
+
+def _pgvector_ann_sql_partsupp(limit: int, anchor_off: int) -> str:
+    """ANN search on partsupp.ps_text_embedding (L2 <->); query vector from one row picked by OFFSET."""
+    return _PGVECTOR_ANN_SQL_LEAD + (
+        f"SELECT ps_partkey, ps_suppkey FROM partsupp\n"
+        f"WHERE ps_text_embedding IS NOT NULL\n"
+        f"ORDER BY ps_text_embedding <-> "
+        f"(SELECT ps_text_embedding FROM partsupp WHERE ps_text_embedding IS NOT NULL "
+        f"ORDER BY ps_partkey, ps_suppkey OFFSET {anchor_off} LIMIT 1)\n"
+        f"LIMIT {limit};"
+    )
+
+
+def _uniq_pgvector_ann_workloads(ws: list) -> list:
+    """Deduplicate (sql, knobs); keep first tag. Items are (tag, sql, knobs_dict)."""
+    seen: set = set()
+    out: list = []
+    for tag, sql, knobs in ws:
+        key = (sql, tuple(sorted(knobs.items())))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append((tag, sql, knobs))
+    return out
+
+
+def _pgvector_ann_sql_part_vec_partitioned(lo: int, hi: int, limit: int, anchor_off: int) -> str:
+    """ANN search on part_vec_p within one key range (single partition when aligned)."""
+    return _PGVECTOR_ANN_SQL_LEAD + (
+        f"SELECT p_partkey FROM part_vec_p\n"
+        f"WHERE text_embedding IS NOT NULL\n"
+        f"  AND p_partkey BETWEEN {lo} AND {hi}\n"
+        f"ORDER BY text_embedding <-> "
+        f"(SELECT text_embedding FROM part_vec_p WHERE text_embedding IS NOT NULL\n"
+        f"   AND p_partkey BETWEEN {lo} AND {hi}\n"
+        f" ORDER BY p_partkey OFFSET {anchor_off} LIMIT 1)\n"
+        f"LIMIT {limit};"
+    )
+
+
+def _pgvector_ann_sql_partsupp_vec_partitioned(lo: int, hi: int, limit: int, anchor_off: int) -> str:
+    """ANN search on partsupp_vec_p within one ps_partkey range."""
+    return _PGVECTOR_ANN_SQL_LEAD + (
+        f"SELECT ps_partkey, ps_suppkey FROM partsupp_vec_p\n"
+        f"WHERE ps_text_embedding IS NOT NULL\n"
+        f"  AND ps_partkey BETWEEN {lo} AND {hi}\n"
+        f"ORDER BY ps_text_embedding <-> "
+        f"(SELECT ps_text_embedding FROM partsupp_vec_p WHERE ps_text_embedding IS NOT NULL\n"
+        f"   AND ps_partkey BETWEEN {lo} AND {hi}\n"
+        f" ORDER BY ps_partkey, ps_suppkey OFFSET {anchor_off} LIMIT 1)\n"
+        f"LIMIT {limit};"
+    )
+
+
+def hnsw_partition_scan_workloads(
+    part_ranges: list[tuple[int, int]],
+    ps_ranges: list[tuple[int, int]],
+    target: int = 55,
+) -> list:
+    """
+    pgvector ANN workloads inside partition-pruned ranges on part_vec_p / partsupp_vec_p.
+    part_ranges / ps_ranges: e.g. three (lo, hi) from _cost_fit_hnsw_*_bounds.
+    """
+    limits = [5, 10, 20, 40, 80, 100, 200, 400]
+    anchors_part = [0, 2, 5, 13, 29, 67, 131, 307, 701, 997]
+    anchors_ps = [0, 3, 11, 41, 127, 401, 997, 2003, 4501]
+    ef_vals = [16, 24, 32, 40, 56, 80, 96, 128, 200]
+    ws: list = []
+    for lo, hi in part_ranges:
+        for ef in ef_vals:
+            for lim in limits:
+                for off in anchors_part:
+                    safe = str(ef).replace(".", "_")
+                    ws.append(
+                        (
+                            f"hnswp_part_{lo}_{hi}_ef{safe}_lim{lim}_o{off}",
+                            _pgvector_ann_sql_part_vec_partitioned(lo, hi, lim, off),
+                            {"hnsw.ef_search": ef},
+                        )
+                    )
+    for lo, hi in ps_ranges:
+        for ef in ef_vals:
+            for lim in limits:
+                for off in anchors_ps:
+                    safe = str(ef).replace(".", "_")
+                    ws.append(
+                        (
+                            f"hnswp_ps_{lo}_{hi}_ef{safe}_lim{lim}_o{off}",
+                            _pgvector_ann_sql_partsupp_vec_partitioned(lo, hi, lim, off),
+                            {"hnsw.ef_search": ef},
+                        )
+                    )
+    ws = _uniq_pgvector_ann_workloads(ws)
+    if len(ws) <= target:
+        return ws
+    import random
+
+    rng = random.Random(42)
+    rng.shuffle(ws)
+    return ws[:target]
+
+
+def _sample_pgvector_ann_workloads(knob_key: str, knob_values: list, target: int) -> list:
+    limits = [5, 10, 20, 40, 80, 100, 200, 400]
+    anchors_part = [0, 2, 5, 13, 29, 67, 131, 307, 701, 1297, 1999]
+    anchors_ps = [0, 3, 11, 41, 127, 401, 997, 2003, 4501, 9001, 15001]
+    ws: list = []
+    for kv in knob_values:
+        for lim in limits:
+            for off in anchors_part:
+                safe = str(kv).replace(".", "_")
+                ws.append(
+                    (
+                        f"vec_part_{knob_key[:3]}_{safe}_lim{lim}_o{off}",
+                        _pgvector_ann_sql_part(lim, off),
+                        {knob_key: kv},
+                    )
+                )
+            for off in anchors_ps:
+                safe = str(kv).replace(".", "_")
+                ws.append(
+                    (
+                        f"vec_ps_{knob_key[:3]}_{safe}_lim{lim}_o{off}",
+                        _pgvector_ann_sql_partsupp(lim, off),
+                        {knob_key: kv},
+                    )
+                )
+    ws = _uniq_pgvector_ann_workloads(ws)
+    if len(ws) <= target:
+        return ws
+    import random
+
+    rng = random.Random(42)
+    rng.shuffle(ws)
+    return ws[:target]
+
+
+def ivf_scan_workloads(target: int = 200) -> list:
+    """pgvector ANN workloads for IVFFlat (session should set ivfflat.probes)."""
+    probe_vals = [1, 2, 3, 5, 8, 12, 18, 24, 32, 48, 64]
+    limits = [5, 10, 20, 40, 80, 100, 200, 400]
+    anchors_part = [0, 2, 5, 13, 29, 67, 131, 307, 701, 1297, 1999]
+    anchors_ps = [0, 3, 11, 41, 127, 401, 997, 2003, 4501, 9001, 15001]
+    ws_part: list = []
+    ws_ps: list = []
+    for probes in probe_vals:
+        safe = str(probes).replace(".", "_")
+        for lim in limits:
+            for off in anchors_part:
+                ws_part.append(
+                    (
+                        f"vec_part_ivf_{safe}_lim{lim}_o{off}",
+                        _pgvector_ann_sql_part(lim, off),
+                        {"ivfflat.probes": probes},
+                    )
+                )
+            for off in anchors_ps:
+                ws_ps.append(
+                    (
+                        f"vec_ps_ivf_{safe}_lim{lim}_o{off}",
+                        _pgvector_ann_sql_partsupp(lim, off),
+                        {"ivfflat.probes": probes},
+                    )
+                )
+    ws_part = _uniq_pgvector_ann_workloads(ws_part)
+    ws_ps = _uniq_pgvector_ann_workloads(ws_ps)
+    if len(ws_part) + len(ws_ps) <= target:
+        return ws_part + ws_ps
+
+    import random
+
+    rng = random.Random(42)
+    rng.shuffle(ws_part)
+    rng.shuffle(ws_ps)
+    part_target = min(len(ws_part), target // 2)
+    ps_target = min(len(ws_ps), target - part_target)
+    if part_target + ps_target < target:
+        remain = target - (part_target + ps_target)
+        extra_part = min(remain, len(ws_part) - part_target)
+        part_target += extra_part
+        remain -= extra_part
+        ps_target += min(remain, len(ws_ps) - ps_target)
+    return ws_part[:part_target] + ws_ps[:ps_target]
+
+
 def sort_workloads(target: int = 55) -> list:
     # ORDER BY on indexed columns (e.g. orders.o_orderdate vs idx_orders_orderdate) must be
     # collected with index scans disabled (see 05_collect_sort.sort_explain_prefix) or the

@@ -1,16 +1,24 @@
 {
   "coef": {
-    "actual_rows": 2.9634631367524147,
-    "plan_width": -90.67401061098762,
-    "sort_external": -31135.40641722504
+    "actual_rows": 0.05511586220015979,
+    "plan_width": -702.8426739750955,
+    "sort_external": 29358.3148015119
   },
   "features": [
     "actual_rows",
     "plan_width",
     "sort_external"
   ],
-  "intercept_ms": -16578.92526962752,
-  "n": 5,
+  "intercept_ms": 11718.541462245068,
   "operator": "Sort",
-  "rmse_ms": 9966.081551901321
+  "test_mae_ms": 10603.284097994174,
+  "test_mape_pct": 2002.7804664418134,
+  "test_n": 10,
+  "test_r2": 0.6654128815706086,
+  "test_rmse_ms": 12394.217012514335,
+  "total_samples": 55,
+  "train_mae_ms": 26535.342187442082,
+  "train_n": 40,
+  "train_r2": 0.11059955281474865,
+  "train_rmse_ms": 47081.76461437459
 }

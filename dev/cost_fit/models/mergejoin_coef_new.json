@@ -1,0 +1,34 @@
+{
+  "coef": {
+    "J_plan": 0.0004119424171908557,
+    "R_inner_plan": -0.0014730178712880934,
+    "R_outer_times_k": 1.88300407992146e-05,
+    "proj_proxy_join_bytes": 0.0
+  },
+  "cost_ascii_section": "\u00a75 Merge Join",
+  "feature_notes": {
+    "J_plan": "join output J (Plan Rows)",
+    "R_inner_plan": "inner plan rows",
+    "R_outer_times_k": "outer plan rows * merge_k (Merge Cond count)",
+    "intercept": "rescanratio / mat_inner vs bare_inner + mergequals detail omitted",
+    "proj_proxy_join_bytes": "T_pt * R_out proxy"
+  },
+  "features": [
+    "R_outer_times_k",
+    "R_inner_plan",
+    "J_plan",
+    "proj_proxy_join_bytes"
+  ],
+  "intercept_ms": 35.921770950413524,
+  "operator": "Merge Join",
+  "test_mae_ms": 210.52464644828183,
+  "test_mape_pct": 11371.317736930716,
+  "test_n": 10,
+  "test_r2": -7.196634926754497,
+  "test_rmse_ms": 280.84243046733064,
+  "total_samples": 55,
+  "train_mae_ms": 122.60471033877884,
+  "train_n": 40,
+  "train_r2": 0.42669684530030083,
+  "train_rmse_ms": 198.21582358985836
+}

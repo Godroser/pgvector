@@ -1,0 +1,34 @@
+{
+  "coef": {
+    "N_sort_logn": -0.0002586212402741555,
+    "N_sort_plan": 0.0027457657884984426,
+    "N_sort_spill_proxy_rows": 0.0012601342115595542,
+    "sort_tuple_bytes_proxy": 0.0004344289132841584
+  },
+  "cost_ascii_section": "\u00a75 Sort / cost_tuplesort",
+  "feature_notes": {
+    "N_sort_logn": "C_cmp * N * log2(N) scale; N from Plan Rows",
+    "N_sort_plan": "C_op * N run term scale",
+    "N_sort_spill_proxy_rows": "external sort I/O proxy (N * external flag)",
+    "intercept": "input path + omitted sort constants",
+    "sort_tuple_bytes_proxy": "width * rows for memory / byte workload"
+  },
+  "features": [
+    "N_sort_logn",
+    "N_sort_plan",
+    "N_sort_spill_proxy_rows",
+    "sort_tuple_bytes_proxy"
+  ],
+  "intercept_ms": -10575.671701454143,
+  "operator": "Sort",
+  "test_mae_ms": 20543.268800587422,
+  "test_mape_pct": 3202.1989792933823,
+  "test_n": 10,
+  "test_r2": -0.4559910652365682,
+  "test_rmse_ms": 25371.612297742533,
+  "total_samples": 55,
+  "train_mae_ms": 19892.491169568137,
+  "train_n": 40,
+  "train_r2": 0.7449690011416323,
+  "train_rmse_ms": 25133.446339033188
+}

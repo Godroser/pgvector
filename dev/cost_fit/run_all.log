@@ -495,3 +495,716 @@ Traceback (most recent call last):
   File "/data/dzh/pgvector/dev/cost_fit/99_print_test_metrics.py", line 32, in main
     f"  train RMSE (ms): {d.get('train_rmse_ms'):.6g}  R²: {d.get('train_r2'):.6f}"
 TypeError: unsupported format string passed to NoneType.__format__
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+CREATE INDEX
+ANALYZE
+=== Python deps ===
+ANALYZE
+ANALYZE
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_hnsw.sql:15: ERROR:  syntax error at or near "text_embedding_ivf"
+LINE 1: text_embedding_ivf;
+        ^
+=== Collect + fit ===
+=== Vector: IVFFlat on base part/partsupp (optional; drops HNSW on those cols if present) ===
+SET
+DROP INDEX
+DROP INDEX
+CREATE INDEX
+CREATE INDEX
+ANALYZE
+ANALYZE
+vec_part_ivf_48_lim200_o0 536.883 ms
+vec_part_ivf_12_lim20_o13 105.797 ms
+vec_ps_ivf_64_lim40_o127 894.641 ms
+vec_ps_ivf_48_lim80_o11 1325.45 ms
+vec_part_ivf_64_lim40_o131 738.151 ms
+vec_part_ivf_3_lim100_o2 24.158 ms
+vec_part_ivf_3_lim5_o13 20.439 ms
+vec_part_ivf_24_lim10_o2 217.9 ms
+vec_part_ivf_5_lim400_o13 37.709 ms
+vec_ps_ivf_8_lim400_o9001 251.784 ms
+vec_part_ivf_18_lim40_o5 174.082 ms
+vec_ps_ivf_3_lim5_o41 45.119 ms
+vec_ps_ivf_18_lim20_o11 692.674 ms
+vec_ps_ivf_32_lim200_o0 1075.549 ms
+vec_part_ivf_3_lim40_o1297 27.366 ms
+vec_ps_ivf_32_lim100_o15001 419.286 ms
+vec_part_ivf_64_lim400_o131 719.071 ms
+vec_part_ivf_1_lim200_o0 12.161 ms
+vec_part_ivf_24_lim10_o67 402.84 ms
+vec_part_ivf_24_lim100_o1999 320.12 ms
+vec_ps_ivf_32_lim20_o3 1210.298 ms
+vec_ps_ivf_8_lim200_o0 217.459 ms
+vec_part_ivf_48_lim10_o1297 304.152 ms
+vec_ps_ivf_12_lim10_o2003 542.37 ms
+vec_ps_ivf_18_lim5_o997 673.875 ms
+vec_ps_ivf_48_lim200_o15001 682.042 ms
+vec_part_ivf_3_lim200_o2 25.121 ms
+vec_part_ivf_1_lim5_o67 55.494 ms
+vec_part_ivf_18_lim400_o13 161.89 ms
+vec_part_ivf_1_lim40_o13 7.546 ms
+vec_part_ivf_64_lim100_o67 827.117 ms
+vec_ps_ivf_64_lim100_o997 1581.708 ms
+vec_ps_ivf_12_lim5_o15001 207.701 ms
+vec_part_ivf_48_lim400_o29 297.527 ms
+vec_part_ivf_1_lim200_o67 52.744 ms
+vec_ps_ivf_64_lim80_o3 1912.909 ms
+vec_part_ivf_1_lim40_o5 10.345 ms
+vec_ps_ivf_12_lim80_o41 320.239 ms
+vec_ps_ivf_64_lim5_o0 1892.107 ms
+vec_part_ivf_3_lim20_o13 20.968 ms
+vec_part_ivf_3_lim20_o131 26.926 ms
+vec_ps_ivf_12_lim20_o0 461.966 ms
+vec_ps_ivf_3_lim20_o4501 29.183 ms
+vec_part_ivf_2_lim100_o5 16.964 ms
+vec_part_ivf_2_lim40_o1999 10.342 ms
+vec_ps_ivf_18_lim10_o0 775.921 ms
+vec_ps_ivf_2_lim400_o41 31.829 ms
+vec_part_ivf_64_lim200_o1297 432.48 ms
+vec_ps_ivf_12_lim200_o9001 401.049 ms
+vec_part_ivf_8_lim200_o5 59.632 ms
+vec_part_ivf_3_lim10_o1999 21.761 ms
+vec_ps_ivf_32_lim5_o4501 524.006 ms
+vec_ps_ivf_64_lim40_o15001 959.311 ms
+vec_ps_ivf_2_lim5_o0 89.416 ms
+vec_ps_ivf_64_lim80_o11 1601.51 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/ivf_scan_samples.jsonl count 55
+{
+  "operator": "Index Scan (ivfflat)",
+  "features": [
+    "relpages",
+    "reltuples",
+    "actual_rows",
+    "plan_width",
+    "limit_k",
+    "probes"
+  ],
+  "total_samples": 55,
+  "intercept_ms": -3.5511388716147247e-06,
+  "coef": {
+    "relpages": 0.030402852171480917,
+    "reltuples": -0.000693401099514429,
+    "actual_rows": -0.2661929609599747,
+    "plan_width": -3.787971638157097e-05,
+    "limit_k": -0.26619296095998607,
+    "probes": 17.88784014221285
+  },
+  "train_rmse_ms": 234.11971262560752,
+  "train_mae_ms": 192.22476805835564,
+  "train_r2": 0.8068404575443245,
+  "test_rmse_ms": 264.50447483607616,
+  "test_mae_ms": 228.62481823239577,
+  "test_r2": 0.052929693686102675,
+  "test_mape_pct": 411.3148722681496,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_test_predictions.jsonl
+=== Test metrics (40 train / 10 test by default) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+hnsw_partition_scan_coef.json — missing
+=== Index Scan (ivfflat) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 234.12  R²: 0.806840
+  test  RMSE (ms): 264.504  MAE: 228.625  R²: 0.052930  MAPE: 411.3149%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Python deps ===
+=== Collect + fit ===
+=== Vector: IVFFlat on base part/partsupp (optional; drops HNSW on those cols if present) ===
+SET
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:6: NOTICE:  index "idx_part_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:7: NOTICE:  index "idx_ps_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:10: NOTICE:  relation "idx_part_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:13: NOTICE:  relation "idx_ps_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+ANALYZE
+ANALYZE
+vec_part_ivf_48_lim200_o0 3534.914 ms
+vec_part_ivf_12_lim20_o13 151.81 ms
+vec_ps_ivf_64_lim40_o127 13878.27 ms
+vec_ps_ivf_48_lim80_o11 4249.284 ms
+vec_part_ivf_64_lim40_o131 5856.295 ms
+vec_part_ivf_3_lim100_o2 301.907 ms
+vec_part_ivf_3_lim5_o13 23.079 ms
+vec_part_ivf_24_lim10_o2 294.578 ms
+vec_part_ivf_5_lim400_o13 2565.137 ms
+vec_ps_ivf_8_lim400_o9001 6089.922 ms
+vec_part_ivf_18_lim40_o5 168.032 ms
+vec_ps_ivf_3_lim5_o41 341.83 ms
+vec_ps_ivf_18_lim20_o11 614.305 ms
+vec_ps_ivf_32_lim200_o0 2445.198 ms
+vec_part_ivf_3_lim40_o1297 310.175 ms
+vec_ps_ivf_32_lim100_o15001 2345.412 ms
+vec_part_ivf_64_lim400_o131 3541.887 ms
+vec_part_ivf_1_lim200_o0 408.184 ms
+vec_part_ivf_24_lim10_o67 2169.726 ms
+vec_part_ivf_24_lim100_o1999 1955.373 ms
+vec_ps_ivf_32_lim20_o3 1528.364 ms
+vec_ps_ivf_8_lim200_o0 308.915 ms
+vec_part_ivf_48_lim10_o1297 1708.963 ms
+vec_ps_ivf_12_lim10_o2003 2126.64 ms
+vec_ps_ivf_18_lim5_o997 1298.439 ms
+vec_ps_ivf_48_lim200_o15001 3518.123 ms
+vec_part_ivf_3_lim200_o2 261.227 ms
+vec_part_ivf_1_lim5_o67 57.363 ms
+vec_part_ivf_18_lim400_o13 781.416 ms
+vec_part_ivf_1_lim40_o13 9.68 ms
+vec_part_ivf_64_lim100_o67 4100.078 ms
+vec_ps_ivf_64_lim100_o997 6716.099 ms
+vec_ps_ivf_12_lim5_o15001 250.925 ms
+vec_part_ivf_48_lim400_o29 4027.931 ms
+vec_part_ivf_1_lim200_o67 1144.693 ms
+vec_ps_ivf_64_lim80_o3 5262.281 ms
+vec_part_ivf_1_lim40_o5 73.154 ms
+vec_ps_ivf_12_lim80_o41 2221.752 ms
+vec_ps_ivf_64_lim5_o0 3840.284 ms
+vec_part_ivf_3_lim20_o13 21.851 ms
+vec_part_ivf_3_lim20_o131 26.363 ms
+vec_ps_ivf_12_lim20_o0 393.521 ms
+vec_ps_ivf_3_lim20_o4501 603.088 ms
+vec_part_ivf_2_lim100_o5 358.544 ms
+vec_part_ivf_2_lim40_o1999 76.836 ms
+vec_ps_ivf_18_lim10_o0 794.896 ms
+vec_ps_ivf_2_lim400_o41 4434.336 ms
+vec_part_ivf_64_lim200_o1297 2299.991 ms
+vec_ps_ivf_12_lim200_o9001 759.66 ms
+vec_part_ivf_8_lim200_o5 333.818 ms
+vec_part_ivf_3_lim10_o1999 23.15 ms
+vec_ps_ivf_32_lim5_o4501 2978.234 ms
+vec_ps_ivf_64_lim40_o15001 5034.31 ms
+vec_ps_ivf_2_lim5_o0 69.63 ms
+vec_ps_ivf_64_lim80_o11 1774.043 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/ivf_scan_samples.jsonl count 55
+{
+  "operator": "Index Scan (ivfflat)",
+  "features": [
+    "ivf_startup_cost_est",
+    "ivf_total_cost_est",
+    "generic_total_cost_est",
+    "num_index_pages_est",
+    "plan_rows",
+    "actual_rows",
+    "limit_k",
+    "probes",
+    "lists"
+  ],
+  "total_samples": 55,
+  "intercept_ms": -0.007073210340204012,
+  "coef": {
+    "ivf_startup_cost_est": -0.001937353205646883,
+    "ivf_total_cost_est": 0.17071406634437988,
+    "generic_total_cost_est": 0.2767677210394533,
+    "num_index_pages_est": 0.07070243797780168,
+    "plan_rows": -0.8056037616454487,
+    "actual_rows": 2.405227226230769,
+    "limit_k": 2.4052272262308114,
+    "probes": 63.70263795425243,
+    "lists": -2.3574354266354804
+  },
+  "train_rmse_ms": 1145.7929065038104,
+  "train_mae_ms": 869.5981494858543,
+  "train_r2": 0.6653719227627035,
+  "test_rmse_ms": 3028.049828123938,
+  "test_mae_ms": 1372.2319295939885,
+  "test_r2": 0.41746639226509774,
+  "test_mape_pct": 299.6908652016862,
+  "train_n": 40,
+  "test_n": 10
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_test_predictions.jsonl
+=== Test metrics (40 train / 10 test by default) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 38.9379  R²: 0.259417
+  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
+
+=== Index Scan (ivfflat) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 1145.79  R²: 0.665372
+  test  RMSE (ms): 3028.05  MAE: 1372.23  R²: 0.417466  MAPE: 299.6909%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Python deps ===
+=== Collect + fit ===
+=== Vector: IVFFlat on base part/partsupp (optional; drops HNSW on those cols if present) ===
+SET
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:6: NOTICE:  index "idx_part_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:7: NOTICE:  index "idx_ps_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:10: NOTICE:  relation "idx_part_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:13: NOTICE:  relation "idx_ps_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+ANALYZE
+ANALYZE
+vec_part_ivf_12_lim40_o1297 129.328 ms
+vec_part_ivf_1_lim80_o1297 16.752 ms
+vec_part_ivf_32_lim400_o13 836.455 ms
+vec_part_ivf_3_lim20_o29 22.174 ms
+vec_part_ivf_3_lim100_o0 33.88 ms
+vec_part_ivf_3_lim400_o13 201.072 ms
+vec_part_ivf_2_lim100_o307 1344.231 ms
+vec_part_ivf_5_lim80_o701 759.842 ms
+vec_part_ivf_12_lim80_o2 154.446 ms
+vec_part_ivf_48_lim200_o29 467.35 ms
+vec_part_ivf_1_lim80_o67 85.861 ms
+vec_part_ivf_8_lim80_o2 76.11 ms
+vec_part_ivf_3_lim100_o2 30.447 ms
+vec_part_ivf_8_lim10_o131 90.248 ms
+vec_part_ivf_24_lim80_o0 268.785 ms
+vec_part_ivf_5_lim5_o0 39.848 ms
+vec_part_ivf_32_lim200_o67 692.519 ms
+vec_part_ivf_1_lim400_o701 3069.779 ms
+vec_part_ivf_64_lim20_o1999 2581.051 ms
+vec_part_ivf_8_lim200_o701 473.844 ms
+vec_part_ivf_48_lim10_o1999 886.34 ms
+vec_part_ivf_32_lim200_o5 495.575 ms
+vec_part_ivf_48_lim400_o1999 3652.575 ms
+vec_part_ivf_48_lim20_o13 604.667 ms
+vec_part_ivf_24_lim10_o1999 324.245 ms
+vec_part_ivf_8_lim40_o131 69.677 ms
+vec_part_ivf_18_lim5_o1297 117.601 ms
+vec_part_ivf_24_lim10_o701 370.163 ms
+vec_part_ivf_2_lim400_o1297 1874.655 ms
+vec_part_ivf_1_lim100_o2 14.787 ms
+vec_part_ivf_1_lim40_o0 14.404 ms
+vec_part_ivf_18_lim5_o131 236.526 ms
+vec_part_ivf_12_lim5_o307 690.475 ms
+vec_part_ivf_3_lim5_o701 36.143 ms
+vec_part_ivf_32_lim200_o2 445.683 ms
+vec_part_ivf_32_lim80_o307 1533.214 ms
+vec_part_ivf_8_lim40_o307 109.325 ms
+vec_part_ivf_12_lim10_o307 172.721 ms
+vec_part_ivf_24_lim400_o1999 419.938 ms
+vec_part_ivf_1_lim10_o67 58.825 ms
+vec_part_ivf_32_lim100_o1999 302.52 ms
+vec_part_ivf_64_lim400_o131 618.727 ms
+vec_part_ivf_24_lim80_o307 225.789 ms
+vec_part_ivf_64_lim5_o2 720.83 ms
+vec_part_ivf_12_lim40_o1999 120.352 ms
+vec_part_ivf_12_lim40_o5 80.817 ms
+vec_part_ivf_12_lim100_o131 84.965 ms
+vec_part_ivf_8_lim10_o1297 51.659 ms
+vec_part_ivf_64_lim20_o0 612.131 ms
+vec_part_ivf_3_lim10_o2 18.467 ms
+vec_part_ivf_8_lim200_o13 57.587 ms
+vec_part_ivf_48_lim10_o29 294.032 ms
+vec_part_ivf_32_lim40_o701 322.181 ms
+vec_part_ivf_24_lim40_o0 161.733 ms
+vec_part_ivf_2_lim100_o131 15.207 ms
+vec_part_ivf_1_lim10_o307 12.693 ms
+vec_part_ivf_48_lim200_o307 1304.481 ms
+vec_part_ivf_5_lim40_o2 32.466 ms
+vec_part_ivf_18_lim40_o0 161.608 ms
+vec_part_ivf_24_lim400_o0 868.874 ms
+vec_part_ivf_32_lim100_o307 361.834 ms
+vec_part_ivf_5_lim100_o2 31.344 ms
+vec_part_ivf_32_lim5_o67 486.673 ms
+vec_part_ivf_18_lim40_o307 199.008 ms
+vec_part_ivf_1_lim40_o67 52.674 ms
+vec_part_ivf_3_lim400_o1297 117.654 ms
+vec_part_ivf_18_lim100_o67 271.854 ms
+vec_part_ivf_12_lim5_o1999 140.502 ms
+vec_part_ivf_64_lim40_o29 614.315 ms
+vec_part_ivf_1_lim200_o1999 1265.679 ms
+vec_part_ivf_3_lim200_o67 79.025 ms
+vec_part_ivf_18_lim5_o5 142.164 ms
+vec_part_ivf_48_lim10_o131 388.749 ms
+vec_part_ivf_48_lim400_o2 990.466 ms
+vec_part_ivf_12_lim100_o701 81.443 ms
+vec_part_ivf_3_lim5_o5 21.747 ms
+vec_part_ivf_32_lim80_o5 325.959 ms
+vec_part_ivf_8_lim5_o5 64.316 ms
+vec_part_ivf_48_lim5_o13 442.703 ms
+vec_part_ivf_3_lim10_o5 21.99 ms
+vec_part_ivf_12_lim400_o67 1975.213 ms
+vec_part_ivf_32_lim200_o29 225.876 ms
+vec_part_ivf_48_lim200_o67 621.933 ms
+vec_part_ivf_5_lim200_o131 57.334 ms
+vec_part_ivf_8_lim80_o1999 104.785 ms
+vec_part_ivf_8_lim20_o2 59.565 ms
+vec_part_ivf_3_lim200_o1297 31.84 ms
+vec_part_ivf_18_lim400_o1297 405.889 ms
+vec_part_ivf_48_lim5_o67 529.148 ms
+vec_part_ivf_3_lim20_o0 16.487 ms
+vec_part_ivf_18_lim100_o131 175.667 ms
+vec_part_ivf_5_lim80_o13 32.353 ms
+vec_part_ivf_64_lim20_o67 815.442 ms
+vec_part_ivf_48_lim80_o5 451.861 ms
+vec_part_ivf_5_lim100_o1999 45.112 ms
+vec_part_ivf_18_lim5_o1999 263.928 ms
+vec_part_ivf_24_lim100_o5 221.278 ms
+vec_part_ivf_24_lim200_o701 263.469 ms
+vec_part_ivf_32_lim10_o29 212.244 ms
+vec_part_ivf_12_lim40_o307 124.601 ms
+vec_ps_ivf_12_lim10_o401 348.991 ms
+vec_ps_ivf_8_lim10_o11 521.145 ms
+vec_ps_ivf_5_lim100_o3 443.224 ms
+vec_ps_ivf_64_lim80_o9001 4539.104 ms
+vec_ps_ivf_8_lim400_o41 3959.825 ms
+vec_ps_ivf_5_lim80_o0 184.505 ms
+vec_ps_ivf_1_lim5_o0 41.526 ms
+vec_ps_ivf_1_lim200_o41 15.177 ms
+vec_ps_ivf_64_lim5_o127 980.014 ms
+vec_ps_ivf_64_lim100_o11 1995.319 ms
+vec_ps_ivf_18_lim100_o9001 783.445 ms
+vec_ps_ivf_24_lim100_o9001 889.378 ms
+vec_ps_ivf_3_lim100_o401 1520.338 ms
+vec_ps_ivf_32_lim100_o0 1004.848 ms
+vec_ps_ivf_2_lim5_o0 63.784 ms
+vec_ps_ivf_48_lim80_o11 1075.521 ms
+vec_ps_ivf_24_lim200_o11 1727.462 ms
+vec_ps_ivf_12_lim80_o4501 827.111 ms
+vec_ps_ivf_2_lim40_o3 58.523 ms
+vec_ps_ivf_3_lim400_o0 2781.052 ms
+vec_ps_ivf_5_lim400_o41 1952.422 ms
+vec_ps_ivf_18_lim5_o4501 236.635 ms
+vec_ps_ivf_3_lim80_o401 98.691 ms
+vec_ps_ivf_8_lim400_o2003 3958.297 ms
+vec_ps_ivf_12_lim400_o401 4164.567 ms
+vec_ps_ivf_1_lim400_o127 6166.796 ms
+vec_ps_ivf_8_lim200_o127 2084.119 ms
+vec_ps_ivf_8_lim200_o9001 351.215 ms
+vec_ps_ivf_64_lim80_o401 3422.216 ms
+vec_ps_ivf_2_lim80_o0 86.285 ms
+vec_ps_ivf_5_lim10_o11 190.266 ms
+vec_ps_ivf_2_lim400_o15001 3972.016 ms
+vec_ps_ivf_64_lim400_o4501 7136.046 ms
+vec_ps_ivf_8_lim20_o15001 192.987 ms
+vec_ps_ivf_1_lim200_o11 1949.882 ms
+vec_ps_ivf_24_lim40_o0 1121.62 ms
+vec_ps_ivf_32_lim40_o11 1049.637 ms
+vec_ps_ivf_2_lim200_o9001 103.13 ms
+vec_ps_ivf_48_lim40_o401 1082.292 ms
+vec_ps_ivf_32_lim40_o3 1270.822 ms
+vec_ps_ivf_5_lim40_o2003 118.006 ms
+vec_ps_ivf_32_lim40_o15001 484.741 ms
+vec_ps_ivf_18_lim40_o0 797.078 ms
+vec_ps_ivf_64_lim10_o15001 1131.944 ms
+vec_ps_ivf_3_lim200_o15001 968.002 ms
+vec_ps_ivf_32_lim80_o4501 624.185 ms
+vec_ps_ivf_5_lim400_o3 2314.428 ms
+vec_ps_ivf_48_lim200_o11 1276.124 ms
+vec_ps_ivf_18_lim5_o127 257.791 ms
+vec_ps_ivf_3_lim400_o11 2411.555 ms
+vec_ps_ivf_1_lim100_o127 24.164 ms
+vec_ps_ivf_24_lim400_o0 1082.875 ms
+vec_ps_ivf_32_lim20_o15001 431.807 ms
+vec_ps_ivf_2_lim5_o41 20.041 ms
+vec_ps_ivf_2_lim5_o4501 23.92 ms
+vec_ps_ivf_2_lim5_o9001 107.43 ms
+vec_ps_ivf_3_lim10_o0 84.345 ms
+vec_ps_ivf_8_lim5_o9001 178.112 ms
+vec_ps_ivf_2_lim40_o15001 30.189 ms
+vec_ps_ivf_2_lim80_o3 41.483 ms
+vec_ps_ivf_18_lim400_o997 4119.379 ms
+vec_ps_ivf_24_lim100_o15001 303.097 ms
+vec_ps_ivf_32_lim80_o3 1027.147 ms
+vec_ps_ivf_1_lim5_o127 21.266 ms
+vec_ps_ivf_12_lim5_o0 331.697 ms
+vec_ps_ivf_8_lim5_o11 530.617 ms
+vec_ps_ivf_5_lim20_o997 368.896 ms
+vec_ps_ivf_18_lim5_o9001 759.971 ms
+vec_ps_ivf_2_lim10_o2003 58.536 ms
+vec_ps_ivf_3_lim5_o11 119.969 ms
+vec_ps_ivf_18_lim10_o41 641.265 ms
+vec_ps_ivf_1_lim20_o11 21.617 ms
+vec_ps_ivf_48_lim5_o401 1222.442 ms
+vec_ps_ivf_12_lim400_o15001 1627.64 ms
+vec_ps_ivf_32_lim20_o997 1144.531 ms
+vec_ps_ivf_24_lim100_o41 1892.939 ms
+vec_ps_ivf_48_lim40_o3 1658.779 ms
+vec_ps_ivf_3_lim10_o15001 57.748 ms
+vec_ps_ivf_12_lim200_o401 291.584 ms
+vec_ps_ivf_32_lim100_o9001 910.908 ms
+vec_ps_ivf_12_lim100_o2003 491.854 ms
+vec_ps_ivf_1_lim80_o15001 15.25 ms
+vec_ps_ivf_24_lim80_o997 711.337 ms
+vec_ps_ivf_1_lim10_o0 30.305 ms
+vec_ps_ivf_48_lim20_o3 1344.793 ms
+vec_ps_ivf_12_lim40_o3 424.997 ms
+vec_ps_ivf_2_lim10_o997 184.369 ms
+vec_ps_ivf_48_lim20_o997 1158.585 ms
+vec_ps_ivf_2_lim100_o15001 33.008 ms
+vec_ps_ivf_5_lim80_o9001 122.813 ms
+vec_ps_ivf_32_lim80_o41 965.186 ms
+vec_ps_ivf_64_lim40_o11 1564.994 ms
+vec_ps_ivf_24_lim200_o2003 1438.838 ms
+vec_ps_ivf_2_lim40_o11 88.603 ms
+vec_ps_ivf_1_lim10_o401 50.648 ms
+vec_ps_ivf_64_lim400_o11 2953.773 ms
+vec_ps_ivf_12_lim10_o4501 160.159 ms
+vec_ps_ivf_12_lim20_o2003 523.247 ms
+vec_ps_ivf_64_lim40_o41 4624.697 ms
+vec_ps_ivf_3_lim20_o11 104.293 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/ivf_scan_samples.jsonl count 200
+{
+  "operator": "Index Scan (ivfflat)",
+  "modeling_strategy": "separate linear model per index_name with log1p target and interaction terms",
+  "target_transform": "log1p(exclusive_ms)",
+  "features": [
+    "log_planner_startup_cost",
+    "log_ivf_startup_cost_est",
+    "log_estimated_candidates",
+    "log_estimated_startup_pages",
+    "log_limit_k",
+    "probes_over_lists",
+    "log_query_l2_norm",
+    "query_ref_dist_min",
+    "query_ref_dist_avg",
+    "query_ref_dist_std",
+    "anchor_offset_log",
+    "plan_width",
+    "probes_x_log_candidates",
+    "probes_x_log_limit",
+    "query_min_x_probes",
+    "query_std_x_log_limit",
+    "log_candidates_x_log_limit",
+    "query_avg_x_probes"
+  ],
+  "total_samples": 200,
+  "train_n": 160,
+  "test_n": 40,
+  "train_rmse_ms": 812.0109931366628,
+  "train_mae_ms": 346.58818498875587,
+  "train_r2": 0.5287710981560343,
+  "test_rmse_ms": 787.9637352185241,
+  "test_mae_ms": 369.90242537100664,
+  "test_r2": 0.17670984261709966,
+  "test_mape_pct": 110.64008505873156,
+  "models_by_index": {
+    "idx_part_text_embedding_ivf": {
+      "index_name": "idx_part_text_embedding_ivf",
+      "target_transform": "log1p(exclusive_ms)",
+      "feature_names": [
+        "log_planner_startup_cost",
+        "log_ivf_startup_cost_est",
+        "log_estimated_candidates",
+        "log_estimated_startup_pages",
+        "log_limit_k",
+        "probes_over_lists",
+        "log_query_l2_norm",
+        "query_ref_dist_min",
+        "query_ref_dist_avg",
+        "query_ref_dist_std",
+        "anchor_offset_log",
+        "plan_width",
+        "probes_x_log_candidates",
+        "probes_x_log_limit",
+        "query_min_x_probes",
+        "query_std_x_log_limit",
+        "log_candidates_x_log_limit",
+        "query_avg_x_probes"
+      ],
+      "intercept_log_ms": -8.187052187354103,
+      "coef": {
+        "log_planner_startup_cost": -3099123.9774226206,
+        "log_ivf_startup_cost_est": 3099124.692997812,
+        "log_estimated_candidates": 1749.556687523448,
+        "log_estimated_startup_pages": -1752.5712490393269,
+        "log_limit_k": 0.8831285000074597,
+        "probes_over_lists": 1027.7595392117444,
+        "log_query_l2_norm": -8.783999023254058,
+        "query_ref_dist_min": 0.7128629047829923,
+        "query_ref_dist_avg": 1.711187649206888,
+        "query_ref_dist_std": 2.7666551946815057,
+        "anchor_offset_log": 0.01330733582193289,
+        "plan_width": -98.32175173821582,
+        "probes_x_log_candidates": -70.76040126302225,
+        "probes_x_log_limit": -0.14708758907527755,
+        "query_min_x_probes": 1.2694680739106188,
+        "query_std_x_log_limit": -0.0159933706575565,
+        "log_candidates_x_log_limit": -0.057536732811778665,
+        "query_avg_x_probes": -16.515522122463086
+      },
+      "total_samples": 100,
+      "train_rmse_ms": 397.0436318322808,
+      "train_mae_ms": 182.46879750768977,
+      "train_r2": 0.5069955006490167,
+      "test_rmse_ms": 826.514324046786,
+      "test_mae_ms": 395.25897529502015,
+      "test_r2": -0.08974333239732779,
+      "test_mape_pct": 154.24466303262795,
+      "train_n": 80,
+      "test_n": 20
+    },
+    "idx_ps_text_embedding_ivf": {
+      "index_name": "idx_ps_text_embedding_ivf",
+      "target_transform": "log1p(exclusive_ms)",
+      "feature_names": [
+        "log_planner_startup_cost",
+        "log_ivf_startup_cost_est",
+        "log_estimated_candidates",
+        "log_estimated_startup_pages",
+        "log_limit_k",
+        "probes_over_lists",
+        "log_query_l2_norm",
+        "query_ref_dist_min",
+        "query_ref_dist_avg",
+        "query_ref_dist_std",
+        "anchor_offset_log",
+        "plan_width",
+        "probes_x_log_candidates",
+        "probes_x_log_limit",
+        "query_min_x_probes",
+        "query_std_x_log_limit",
+        "log_candidates_x_log_limit",
+        "query_avg_x_probes"
+      ],
+      "intercept_log_ms": 1.271196554528229,
+      "coef": {
+        "log_planner_startup_cost": 545982.8900318783,
+        "log_ivf_startup_cost_est": -545983.1174183887,
+        "log_estimated_candidates": -505.0478163139199,
+        "log_estimated_startup_pages": 507.91798963749125,
+        "log_limit_k": 1.911924016059614,
+        "probes_over_lists": -1408.45577100472,
+        "log_query_l2_norm": 8.736584005873842,
+        "query_ref_dist_min": -1.0775798685531763,
+        "query_ref_dist_avg": -1.4815558964423106,
+        "query_ref_dist_std": -4.029433380028587,
+        "anchor_offset_log": 0.03200695168631381,
+        "plan_width": 20.343252404878125,
+        "probes_x_log_candidates": 99.20429212702426,
+        "probes_x_log_limit": -2.939928801019955,
+        "query_min_x_probes": 10.194716513128899,
+        "query_std_x_log_limit": 0.2899974821332495,
+        "log_candidates_x_log_limit": -0.1396329257988776,
+        "query_avg_x_probes": 8.586783521188208
+      },
+      "total_samples": 100,
+      "train_rmse_ms": 1077.5342502078581,
+      "train_mae_ms": 510.7075724698219,
+      "train_r2": 0.46327858515973397,
+      "test_rmse_ms": 747.427433390387,
+      "test_mae_ms": 344.54587544699314,
+      "test_r2": 0.3427611114166793,
+      "test_mape_pct": 67.03550708483512,
+      "train_n": 80,
+      "test_n": 20
+    }
+  }
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_test_predictions.jsonl
+=== Test metrics (160 train / 40 test by default for IVFFlat) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 38.9379  R²: 0.259417
+  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
+
+=== Index Scan (ivfflat) ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 812.011  R²: 0.528771
+  test  RMSE (ms): 787.964  MAE: 369.902  R²: 0.176710  MAPE: 110.6401%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
