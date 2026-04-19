@@ -1,11 +1,11 @@
 {
   "coef": {
-    "actual_rows": -0.11847872045965913,
-    "ef_search": 0.3736199477809281,
-    "limit_k": -0.0018158751832371635,
-    "plan_width": 35.761603613192705,
-    "relpages": 4.606286173961162,
-    "reltuples": -0.11768965555669086
+    "actual_rows": 0.006993816623086991,
+    "ef_search": 0.06722477198630789,
+    "limit_k": 0.002655888283056466,
+    "plan_width": -2.452529011754157,
+    "relpages": -0.292387574741346,
+    "reltuples": 0.007892352296494877
   },
   "features": [
     "relpages",
@@ -15,16 +15,16 @@
     "limit_k",
     "ef_search"
   ],
-  "intercept_ms": 3.352651074297314,
+  "intercept_ms": -0.22992464417915287,
   "operator": "Index Scan (hnsw, partition)",
-  "test_mae_ms": 15.342104055698309,
-  "test_mape_pct": 74.78081416625574,
-  "test_n": 10,
-  "test_r2": -1.0399599626004328,
-  "test_rmse_ms": 19.677340553142166,
-  "total_samples": 55,
-  "train_mae_ms": 19.460082528022895,
-  "train_n": 40,
-  "train_r2": 0.2594173743442574,
-  "train_rmse_ms": 38.93786388638345
+  "test_mae_ms": 2.4440863983111334,
+  "test_mape_pct": 14.37860394539391,
+  "test_n": 40,
+  "test_r2": 0.9340483860012336,
+  "test_rmse_ms": 3.5516864130546604,
+  "total_samples": 200,
+  "train_mae_ms": 2.4066290835185713,
+  "train_n": 160,
+  "train_r2": 0.9284217191117898,
+  "train_rmse_ms": 3.272974987145083
 }

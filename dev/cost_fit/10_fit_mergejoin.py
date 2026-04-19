@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge Join fit: train 40 / test 10."""
+"""Merge Join fit: train 160 / test 40."""
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=os.path.join(os.path.dirname(__file__), "data", "mergejoin_samples.jsonl"))
     ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "models", "mergejoin_coef.json"))
-    ap.add_argument("--train-n", type=int, default=40)
-    ap.add_argument("--test-n", type=int, default=10)
+    ap.add_argument("--train-n", type=int, default=160)
+    ap.add_argument("--test-n", type=int, default=40)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 

@@ -21,14 +21,14 @@ def _fmt(x: Any, spec: str) -> str:
 def main() -> None:
     base = os.path.join(os.path.dirname(__file__), "models")
     for name in (
-        "scan_coef.json",
+        "scan_coef_new.json",
         "index_scan_coef.json",
         "hnsw_partition_scan_coef.json",
         "ivf_scan_coef.json",
-        "sort_coef.json",
-        "hashjoin_coef.json",
-        "mergejoin_coef.json",
-        "agg_coef.json",
+        "sort_coef_new.json",
+        "hashjoin_coef_new.json",
+        "mergejoin_coef_new.json",
+        "agg_coef_new.json",
     ):
         path = os.path.join(base, name)
         if not os.path.isfile(path):

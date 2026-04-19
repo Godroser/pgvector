@@ -76,7 +76,7 @@ def main() -> None:
         default=os.path.join(os.path.dirname(__file__), "data", "mergejoin_samples_new.jsonl"),
     )
     ap.add_argument("--repeats", type=int, default=1)
-    ap.add_argument("--target", type=int, default=55)
+    ap.add_argument("--target", type=int, default=200)
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
@@ -119,8 +119,8 @@ def main() -> None:
             print(tag, out["exclusive_ms"], "ms")
 
     print("wrote", args.out, "count", n_ok)
-    if n_ok < 50:
-        print(f"[warn] only {n_ok} merge-join samples (<50).", file=sys.stderr)
+    if n_ok < 200:
+        print(f"[warn] only {n_ok} merge-join samples (<200).", file=sys.stderr)
 
 
 if __name__ == "__main__":

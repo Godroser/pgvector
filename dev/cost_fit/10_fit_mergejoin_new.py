@@ -27,8 +27,8 @@ def main() -> None:
         "--out",
         default=os.path.join(os.path.dirname(__file__), "models", "mergejoin_coef_new.json"),
     )
-    ap.add_argument("--train-n", type=int, default=40)
-    ap.add_argument("--test-n", type=int, default=10)
+    ap.add_argument("--train-n", type=int, default=160)
+    ap.add_argument("--test-n", type=int, default=40)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 

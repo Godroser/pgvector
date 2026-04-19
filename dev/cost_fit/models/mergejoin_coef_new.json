@@ -1,8 +1,8 @@
 {
   "coef": {
-    "J_plan": 0.0004119424171908557,
-    "R_inner_plan": -0.0014730178712880934,
-    "R_outer_times_k": 1.88300407992146e-05,
+    "J_plan": 0.0004751654827176256,
+    "R_inner_plan": -0.0018040895061939798,
+    "R_outer_times_k": 2.239278288382152e-05,
     "proj_proxy_join_bytes": 0.0
   },
   "cost_ascii_section": "\u00a75 Merge Join",
@@ -19,16 +19,16 @@
     "J_plan",
     "proj_proxy_join_bytes"
   ],
-  "intercept_ms": 35.921770950413524,
+  "intercept_ms": 22.87327868265466,
   "operator": "Merge Join",
-  "test_mae_ms": 210.52464644828183,
-  "test_mape_pct": 11371.317736930716,
-  "test_n": 10,
-  "test_r2": -7.196634926754497,
-  "test_rmse_ms": 280.84243046733064,
-  "total_samples": 55,
-  "train_mae_ms": 122.60471033877884,
-  "train_n": 40,
-  "train_r2": 0.42669684530030083,
-  "train_rmse_ms": 198.21582358985836
+  "test_mae_ms": 155.9961604024724,
+  "test_mape_pct": 11839.48708641769,
+  "test_n": 40,
+  "test_r2": 0.5035332246980542,
+  "test_rmse_ms": 262.83821776062365,
+  "total_samples": 200,
+  "train_mae_ms": 115.11503448214678,
+  "train_n": 160,
+  "train_r2": 0.4803251728733733,
+  "train_rmse_ms": 192.65256705400944
 }

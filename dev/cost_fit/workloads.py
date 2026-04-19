@@ -323,21 +323,36 @@ def ivf_scan_workloads(target: int = 200) -> list:
     return ws_part[:part_target] + ws_ps[:ps_target]
 
 
-def sort_workloads(target: int = 55) -> list:
+def sort_workloads(target: int = 200) -> list:
     # ORDER BY on indexed columns (e.g. orders.o_orderdate vs idx_orders_orderdate) must be
     # collected with index scans disabled (see 05_collect_sort.sort_explain_prefix) or the
     # plan has no Sort node.
     ws = []
-    limits = [4000, 12000, 25000, 45000, 70000, 95000, 140000, 220000]
+    limits = [1000, 2500, 4000, 8000, 12000, 25000, 45000, 70000, 95000, 140000, 220000, 350000]
     specs = [
         ("lineitem", "l_extendedprice DESC", "l_orderkey", "lip"),
         ("lineitem", "l_quantity NULLS LAST", "l_partkey", "liq"),
         ("lineitem", "l_discount", "l_orderkey", "lid"),
+        ("lineitem", "l_shipdate DESC", "l_orderkey", "lisd"),
+        ("lineitem", "l_commitdate DESC", "l_orderkey", "licd"),
+        ("lineitem", "l_tax DESC", "l_orderkey", "litx"),
         ("orders", "o_totalprice DESC", "o_orderkey", "ot"),
         ("orders", "o_orderdate", "o_orderkey", "od"),
+        ("orders", "o_custkey", "o_orderkey", "ock"),
+        ("orders", "o_shippriority DESC", "o_orderkey", "osp"),
+        ("orders", "o_orderpriority", "o_orderkey", "oop"),
         ("part", "p_name", "p_partkey", "pn"),
+        ("part", "p_retailprice DESC", "p_partkey", "prp"),
+        ("part", "p_size DESC", "p_partkey", "psz"),
+        ("part", "p_brand", "p_partkey", "pbr"),
         ("customer", "c_acctbal DESC", "c_custkey", "ca"),
+        ("customer", "c_nationkey", "c_custkey", "cnk"),
+        ("customer", "c_name", "c_custkey", "cnm"),
         ("supplier", "s_acctbal", "s_suppkey", "sa"),
+        ("supplier", "s_nationkey DESC", "s_suppkey", "snk"),
+        ("supplier", "s_name", "s_suppkey", "snm"),
+        ("partsupp", "ps_supplycost DESC", "ps_partkey", "psc"),
+        ("partsupp", "ps_availqty DESC", "ps_partkey", "psa"),
     ]
     for lim in limits:
         for table, ob, extra, pfx in specs:
@@ -412,18 +427,24 @@ def hashjoin_workloads(target: int = 55) -> list:
     return ws[:target] if len(ws) >= target else ws
 
 
-def mergejoin_workloads(target: int = 55) -> list:
+def mergejoin_workloads(target: int = 200) -> list:
     ws = []
     for hi in (
         3000,
         6000,
         12000,
         15000,
+        25000,
         40000,
+        65000,
         90000,
+        140000,
         200000,
+        300000,
         450000,
+        650000,
         900000,
+        1250000,
         1600000,
         2100000,
     ):
@@ -434,22 +455,57 @@ def mergejoin_workloads(target: int = 55) -> list:
                 f"WHERE o.o_orderkey BETWEEN 1 AND {hi}",
             )
         )
-    for m in (2, 3, 4, 5, 7, 9, 11, 13, 16, 17, 19, 23, 29):
+    for hi in (12000, 25000, 40000, 90000, 200000, 450000, 900000, 1600000):
+        for m in (2, 3, 5, 7, 11, 13, 17, 23):
+            ws.append(
+                (
+                    f"mj_ol_band_m{m}_{hi}",
+                    f"SELECT COUNT(*) FROM orders o JOIN lineitem l ON o.o_orderkey = l.l_orderkey "
+                    f"WHERE o.o_orderkey BETWEEN 1 AND {hi} AND o.o_orderkey % {m} = 0 AND l.l_orderkey % {m} = 0",
+                )
+            )
+    for m in (2, 3, 4, 5, 7, 9, 11, 13, 16, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59):
         ws.append(
             (
                 f"mj_co_{m}",
                 f"SELECT COUNT(*) FROM customer c JOIN orders o ON c.c_custkey = o.o_custkey WHERE c.c_custkey % {m} = 0",
             )
         )
+    for hi in (
+        5000,
+        12000,
+        25000,
+        50000,
+        80000,
+        120000,
+        180000,
+        250000,
+        400000,
+        700000,
+        1100000,
+        1500000,
+    ):
+        ws.append(
+            (
+                f"mj_co_band_{hi}",
+                f"SELECT COUNT(*) FROM customer c JOIN orders o ON c.c_custkey = o.o_custkey "
+                f"WHERE c.c_custkey BETWEEN 1 AND {hi}",
+            )
+        )
     for lo, hi in (
         (1, 50000),
         (1, 150000),
+        (1, 30000),
+        (1, 100000),
         (5000, 90000),
         (1, 200000),
         (2000, 60000),
         (1, 80000),
         (10000, 120000),
         (30000, 180000),
+        (50000, 250000),
+        (100000, 350000),
+        (200000, 500000),
     ):
         ws.append(
             (
@@ -458,7 +514,16 @@ def mergejoin_workloads(target: int = 55) -> list:
                 f"WHERE p.p_partkey BETWEEN {lo} AND {hi}",
             )
         )
-    for m in list(range(1, 30, 2)) + [31, 37, 41]:
+    for mod in (5, 7, 11, 13, 17, 19):
+        for residue in (0, 1, 2, 3):
+            ws.append(
+                (
+                    f"mj_ps_mod{mod}_{residue}",
+                    f"SELECT COUNT(*) FROM part p JOIN partsupp ps ON p.p_partkey = ps.ps_partkey "
+                    f"WHERE p.p_partkey % {mod} = {residue}",
+                )
+            )
+    for m in list(range(1, 40, 2)) + [41, 43, 47, 53]:
         ws.append(
             (
                 f"mj_sn_{m}",
@@ -468,14 +533,23 @@ def mergejoin_workloads(target: int = 55) -> list:
         )
     ws.append(("mj_nr", "SELECT COUNT(*) FROM nation n JOIN region r ON n.n_regionkey = r.r_regionkey"))
     ws.append(("mj_cn", "SELECT COUNT(*) FROM customer c JOIN nation n ON c.c_nationkey = n.n_nationkey"))
-    for k in (1, 4, 9, 16):
+    for upper in (1, 2, 3, 5, 8, 12, 15, 20, 25):
         ws.append(
             (
-                f"mj_lip_{k}",
-                "SELECT COUNT(*) FROM lineitem l JOIN part p ON l.l_partkey = p.p_partkey "
-                f"WHERE p.p_partkey % 13 = {k % 13} AND l.l_quantity > 0",
+                f"mj_cn_lt_{upper}",
+                "SELECT COUNT(*) FROM customer c JOIN nation n ON c.c_nationkey = n.n_nationkey "
+                f"WHERE n.n_nationkey < {upper}",
             )
         )
+    for mod in (5, 7, 9, 11, 13):
+        for residue in (0, 1, 2, 3):
+            ws.append(
+                (
+                    f"mj_lip_m{mod}_{residue}",
+                    "SELECT COUNT(*) FROM lineitem l JOIN part p ON l.l_partkey = p.p_partkey "
+                    f"WHERE p.p_partkey % {mod} = {residue} AND l.l_quantity > 0",
+                )
+            )
     for lo, hi in ((1, 400000), (50000, 500000), (1, 1000000)):
         ws.append(
             (

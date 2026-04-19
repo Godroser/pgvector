@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect Sort node samples (>=55 workloads by default)."""
+"""Collect Sort node samples (>=200 workloads by default)."""
 
 from __future__ import annotations
 
@@ -59,7 +59,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "data", "sort_samples.jsonl"))
     ap.add_argument("--repeats", type=int, default=1)
-    ap.add_argument("--target", type=int, default=55)
+    ap.add_argument("--target", type=int, default=200)
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
@@ -101,8 +101,8 @@ def main() -> None:
             print(tag, row["exclusive_ms"], "ms")
 
     print("wrote", args.out, "count", n_ok)
-    if n_ok < 50:
-        print(f"[warn] only {n_ok} sort samples (<50).", file=sys.stderr)
+    if n_ok < 200:
+        print(f"[warn] only {n_ok} sort samples (<200).", file=sys.stderr)
 
 
 if __name__ == "__main__":

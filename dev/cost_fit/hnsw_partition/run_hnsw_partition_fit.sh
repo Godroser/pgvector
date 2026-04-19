@@ -25,7 +25,7 @@ pip install -q -r "${ROOT}/requirements.txt"
 echo "=== [hnsw_partition] collect + fit ==="
 cd "$ROOT"
 python3 hnsw_partition/collect_hnsw_partition.py
-python3 hnsw_partition/fit_hnsw_partition.py || echo "skip if <50 samples"
+python3 hnsw_partition/fit_hnsw_partition.py || echo "skip if <200 samples"
 
 echo "=== [hnsw_partition] metrics (full cost_fit model list) ==="
 python3 99_print_test_metrics.py

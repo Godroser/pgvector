@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Linear fit for partition-local HNSW Index Scan (40 train / 10 test)."""
+"""Linear fit for partition-local HNSW Index Scan (160 train / 40 test)."""
 
 from __future__ import annotations
 
@@ -25,8 +25,8 @@ def main() -> None:
         "--out",
         default=os.path.join(_COST_FIT_ROOT, "models", "hnsw_partition_scan_coef.json"),
     )
-    ap.add_argument("--train-n", type=int, default=40)
-    ap.add_argument("--test-n", type=int, default=10)
+    ap.add_argument("--train-n", type=int, default=160)
+    ap.add_argument("--test-n", type=int, default=40)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 

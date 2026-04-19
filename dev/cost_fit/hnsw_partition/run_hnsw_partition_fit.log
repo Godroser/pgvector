@@ -1,13 +1,9 @@
 nohup: ignoring input
 === [hnsw_partition] create 100 partitions + load from part/partsupp (long) ===
 SET
-psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:12: NOTICE:  table "partsupp_vec_p" does not exist, skipping
 DROP TABLE
-psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:13: NOTICE:  table "part_vec_p" does not exist, skipping
 DROP TABLE
-psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:14: NOTICE:  table "_cost_fit_hnsw_ps_bounds" does not exist, skipping
 DROP TABLE
-psql:/data/dzh/pgvector/dev/cost_fit/hnsw_partition/00_create_partitioned_tables.sql:15: NOTICE:  table "_cost_fit_hnsw_part_bounds" does not exist, skipping
 DROP TABLE
 CREATE TABLE
 CREATE TABLE
@@ -53,62 +49,207 @@ ANALYZE
 ANALYZE
 === [hnsw_partition] Python deps ===
 === [hnsw_partition] collect + fit ===
-hnswp_ps_320001_340000_ef56_lim20_o4501 41.981 ms
-hnswp_ps_320001_340000_ef200_lim10_o401 46.241 ms
-hnswp_part_980001_1000000_ef128_lim80_o67 16.11 ms
-hnswp_part_320001_340000_ef40_lim20_o131 14.408 ms
-hnswp_ps_980001_1000000_ef56_lim5_o4501 42.132 ms
-hnswp_part_1640001_1660000_ef200_lim40_o5 23.912 ms
-hnswp_part_980001_1000000_ef96_lim400_o67 8.39 ms
-hnswp_part_320001_340000_ef128_lim100_o131 16.958 ms
-hnswp_ps_320001_340000_ef200_lim200_o2003 52.491 ms
-hnswp_part_320001_340000_ef16_lim80_o997 8.371 ms
-hnswp_part_320001_340000_ef80_lim5_o29 10.068 ms
-hnswp_part_320001_340000_ef56_lim80_o131 7.676 ms
-hnswp_part_980001_1000000_ef24_lim20_o997 8.471 ms
-hnswp_ps_980001_1000000_ef56_lim5_o127 25.941 ms
-hnswp_part_1640001_1660000_ef32_lim10_o307 9.432 ms
-hnswp_ps_320001_340000_ef80_lim80_o11 35.721 ms
-hnswp_ps_320001_340000_ef128_lim20_o997 36.717 ms
-hnswp_ps_980001_1000000_ef32_lim40_o4501 29.554 ms
-hnswp_ps_980001_1000000_ef200_lim200_o4501 37.557 ms
-hnswp_ps_320001_340000_ef96_lim40_o3 31.145 ms
-hnswp_part_1640001_1660000_ef96_lim200_o2 16.573 ms
-hnswp_ps_320001_340000_ef128_lim20_o3 28.495 ms
-hnswp_part_980001_1000000_ef96_lim80_o307 10.596 ms
-hnswp_part_1640001_1660000_ef56_lim10_o5 9.456 ms
-hnswp_part_320001_340000_ef24_lim200_o701 7.498 ms
-hnswp_part_320001_340000_ef32_lim40_o29 7.622 ms
-hnswp_part_980001_1000000_ef16_lim400_o701 8.479 ms
-hnswp_part_320001_340000_ef80_lim40_o307 12.797 ms
-hnswp_ps_980001_1000000_ef16_lim400_o997 29.49 ms
-hnswp_part_320001_340000_ef128_lim5_o997 14.207 ms
-hnswp_ps_980001_1000000_ef56_lim80_o0 36.295 ms
-hnswp_part_980001_1000000_ef24_lim40_o67 7.405 ms
-hnswp_ps_1640001_1660000_ef96_lim100_o4501 50.564 ms
-hnswp_part_1640001_1660000_ef40_lim5_o0 150.608 ms
-hnswp_ps_1640001_1660000_ef40_lim5_o11 32.434 ms
-hnswp_part_980001_1000000_ef56_lim5_o307 9.064 ms
-hnswp_ps_320001_340000_ef24_lim20_o11 30.817 ms
-hnswp_ps_1640001_1660000_ef32_lim40_o997 32.392 ms
-hnswp_part_320001_340000_ef24_lim400_o67 9.279 ms
-hnswp_part_320001_340000_ef80_lim20_o131 12.554 ms
-hnswp_ps_320001_340000_ef200_lim5_o3 36.122 ms
-hnswp_ps_1640001_1660000_ef56_lim200_o0 37.378 ms
-hnswp_ps_1640001_1660000_ef16_lim10_o4501 33.591 ms
-hnswp_ps_980001_1000000_ef40_lim20_o11 38.608 ms
-hnswp_ps_320001_340000_ef32_lim5_o401 31.081 ms
-hnswp_ps_1640001_1660000_ef96_lim40_o4501 38.896 ms
-hnswp_part_980001_1000000_ef24_lim40_o29 8.915 ms
-hnswp_ps_1640001_1660000_ef40_lim40_o127 34.105 ms
-hnswp_part_1640001_1660000_ef32_lim5_o307 11.603 ms
-hnswp_part_980001_1000000_ef40_lim80_o131 8.744 ms
-hnswp_ps_980001_1000000_ef200_lim100_o401 270.773 ms
-hnswp_ps_320001_340000_ef24_lim400_o3 28.671 ms
-hnswp_part_1640001_1660000_ef96_lim200_o131 16.862 ms
-hnswp_part_980001_1000000_ef80_lim40_o131 8.631 ms
-hnswp_part_1640001_1660000_ef200_lim400_o997 23.436 ms
-wrote /data/dzh/pgvector/dev/cost_fit/data/hnsw_partition_scan_samples.jsonl count 55
+hnswp_ps_320001_340000_ef56_lim20_o4501 42.336 ms
+hnswp_ps_320001_340000_ef200_lim10_o401 49.725 ms
+hnswp_part_980001_1000000_ef128_lim80_o67 16.668 ms
+hnswp_part_320001_340000_ef40_lim20_o131 13.38 ms
+hnswp_ps_980001_1000000_ef56_lim5_o4501 36.596 ms
+hnswp_part_1640001_1660000_ef200_lim40_o5 26.146 ms
+hnswp_part_980001_1000000_ef96_lim400_o67 8.765 ms
+hnswp_part_320001_340000_ef128_lim100_o131 17.644 ms
+hnswp_ps_320001_340000_ef200_lim200_o2003 54.498 ms
+hnswp_part_320001_340000_ef16_lim80_o997 8.75 ms
+hnswp_part_320001_340000_ef80_lim5_o29 10.797 ms
+hnswp_part_320001_340000_ef56_lim80_o131 8.286 ms
+hnswp_part_980001_1000000_ef24_lim20_o997 8.99 ms
+hnswp_ps_980001_1000000_ef56_lim5_o127 27.834 ms
+hnswp_part_1640001_1660000_ef32_lim10_o307 10.564 ms
+hnswp_ps_320001_340000_ef80_lim80_o11 37.133 ms
+hnswp_ps_320001_340000_ef128_lim20_o997 39.666 ms
+hnswp_ps_980001_1000000_ef32_lim40_o4501 32.497 ms
+hnswp_ps_980001_1000000_ef200_lim200_o4501 40.857 ms
+hnswp_ps_320001_340000_ef96_lim40_o3 33.339 ms
+hnswp_part_1640001_1660000_ef96_lim200_o2 18.715 ms
+hnswp_ps_320001_340000_ef128_lim20_o3 31.109 ms
+hnswp_part_980001_1000000_ef96_lim80_o307 11.132 ms
+hnswp_part_1640001_1660000_ef56_lim10_o5 10.217 ms
+hnswp_part_320001_340000_ef24_lim200_o701 8.069 ms
+hnswp_part_320001_340000_ef32_lim40_o29 8.784 ms
+hnswp_part_980001_1000000_ef16_lim400_o701 7.787 ms
+hnswp_part_320001_340000_ef80_lim40_o307 12.139 ms
+hnswp_ps_980001_1000000_ef16_lim400_o997 29.714 ms
+hnswp_part_320001_340000_ef128_lim5_o997 14.239 ms
+hnswp_ps_980001_1000000_ef56_lim80_o0 29.512 ms
+hnswp_part_980001_1000000_ef24_lim40_o67 8.05 ms
+hnswp_ps_1640001_1660000_ef96_lim100_o4501 48.137 ms
+hnswp_part_1640001_1660000_ef40_lim5_o0 12.072 ms
+hnswp_ps_1640001_1660000_ef40_lim5_o11 31.524 ms
+hnswp_part_980001_1000000_ef56_lim5_o307 8.237 ms
+hnswp_ps_320001_340000_ef24_lim20_o11 29.49 ms
+hnswp_ps_1640001_1660000_ef32_lim40_o997 28.536 ms
+hnswp_part_320001_340000_ef24_lim400_o67 8.82 ms
+hnswp_part_320001_340000_ef80_lim20_o131 12.417 ms
+hnswp_ps_320001_340000_ef200_lim5_o3 33.631 ms
+hnswp_ps_1640001_1660000_ef56_lim200_o0 34.593 ms
+hnswp_ps_1640001_1660000_ef16_lim10_o4501 29.482 ms
+hnswp_ps_980001_1000000_ef40_lim20_o11 30.549 ms
+hnswp_ps_320001_340000_ef32_lim5_o401 23.195 ms
+hnswp_ps_1640001_1660000_ef96_lim40_o4501 35.895 ms
+hnswp_part_980001_1000000_ef24_lim40_o29 6.977 ms
+hnswp_ps_1640001_1660000_ef40_lim40_o127 26.572 ms
+hnswp_part_1640001_1660000_ef32_lim5_o307 11.252 ms
+hnswp_part_980001_1000000_ef40_lim80_o131 9.3 ms
+hnswp_ps_980001_1000000_ef200_lim100_o401 45.522 ms
+hnswp_ps_320001_340000_ef24_lim400_o3 22.916 ms
+hnswp_part_1640001_1660000_ef96_lim200_o131 17.482 ms
+hnswp_part_980001_1000000_ef80_lim40_o131 8.769 ms
+hnswp_part_1640001_1660000_ef200_lim400_o997 22.653 ms
+hnswp_part_320001_340000_ef200_lim10_o997 14.821 ms
+hnswp_ps_1640001_1660000_ef56_lim5_o0 34.685 ms
+hnswp_part_980001_1000000_ef16_lim80_o0 8.722 ms
+hnswp_part_980001_1000000_ef16_lim5_o29 7.115 ms
+hnswp_ps_320001_340000_ef40_lim80_o4501 33.106 ms
+hnswp_ps_320001_340000_ef40_lim5_o3 30.289 ms
+hnswp_part_1640001_1660000_ef56_lim200_o0 13.143 ms
+hnswp_part_980001_1000000_ef200_lim80_o13 15.13 ms
+hnswp_part_320001_340000_ef80_lim10_o67 11.637 ms
+hnswp_ps_1640001_1660000_ef32_lim100_o997 29.769 ms
+hnswp_part_980001_1000000_ef32_lim5_o67 7.796 ms
+hnswp_part_1640001_1660000_ef32_lim10_o5 9.779 ms
+hnswp_ps_1640001_1660000_ef128_lim20_o3 35.713 ms
+hnswp_ps_320001_340000_ef96_lim40_o127 29.298 ms
+hnswp_part_320001_340000_ef128_lim10_o701 12.514 ms
+hnswp_part_980001_1000000_ef32_lim200_o67 8.148 ms
+hnswp_part_320001_340000_ef96_lim200_o67 8.366 ms
+hnswp_part_320001_340000_ef32_lim200_o701 6.97 ms
+hnswp_part_1640001_1660000_ef200_lim5_o13 16.872 ms
+hnswp_ps_1640001_1660000_ef40_lim100_o11 33.293 ms
+hnswp_part_980001_1000000_ef16_lim20_o131 6.242 ms
+hnswp_ps_1640001_1660000_ef24_lim80_o127 24.989 ms
+hnswp_part_1640001_1660000_ef32_lim100_o29 10.099 ms
+hnswp_part_980001_1000000_ef80_lim80_o67 10.295 ms
+hnswp_ps_1640001_1660000_ef200_lim5_o4501 48.185 ms
+hnswp_part_1640001_1660000_ef200_lim10_o2 22.652 ms
+hnswp_ps_980001_1000000_ef32_lim400_o127 30.05 ms
+hnswp_ps_1640001_1660000_ef24_lim100_o3 26.738 ms
+hnswp_part_320001_340000_ef32_lim10_o29 9.488 ms
+hnswp_part_320001_340000_ef24_lim40_o5 9.53 ms
+hnswp_ps_320001_340000_ef24_lim80_o127 28.349 ms
+hnswp_part_1640001_1660000_ef16_lim200_o0 8.973 ms
+hnswp_part_320001_340000_ef96_lim40_o29 11.838 ms
+hnswp_ps_320001_340000_ef128_lim20_o41 40.146 ms
+hnswp_ps_320001_340000_ef80_lim400_o2003 38.026 ms
+hnswp_part_1640001_1660000_ef128_lim10_o701 12.012 ms
+hnswp_part_1640001_1660000_ef56_lim40_o307 9.906 ms
+hnswp_ps_980001_1000000_ef40_lim200_o997 26.473 ms
+hnswp_ps_1640001_1660000_ef32_lim10_o2003 34.896 ms
+hnswp_part_980001_1000000_ef32_lim200_o997 9.953 ms
+hnswp_part_980001_1000000_ef200_lim40_o701 15.482 ms
+hnswp_part_980001_1000000_ef96_lim40_o131 9.272 ms
+hnswp_ps_320001_340000_ef16_lim40_o41 28.586 ms
+hnswp_part_320001_340000_ef128_lim40_o67 13.776 ms
+hnswp_part_980001_1000000_ef24_lim200_o2 8.537 ms
+hnswp_part_1640001_1660000_ef24_lim20_o29 9.231 ms
+hnswp_part_320001_340000_ef16_lim100_o67 7.531 ms
+hnswp_ps_320001_340000_ef56_lim80_o4501 38.554 ms
+hnswp_part_980001_1000000_ef56_lim200_o5 10.207 ms
+hnswp_ps_980001_1000000_ef16_lim10_o401 35.326 ms
+hnswp_ps_320001_340000_ef56_lim100_o2003 35.206 ms
+hnswp_ps_980001_1000000_ef80_lim400_o41 39.891 ms
+hnswp_part_1640001_1660000_ef16_lim5_o5 8.517 ms
+hnswp_part_1640001_1660000_ef32_lim200_o5 8.775 ms
+hnswp_ps_1640001_1660000_ef128_lim80_o0 46.513 ms
+hnswp_ps_1640001_1660000_ef96_lim10_o0 32.344 ms
+hnswp_part_1640001_1660000_ef80_lim400_o67 16.911 ms
+hnswp_part_980001_1000000_ef32_lim10_o13 8.754 ms
+hnswp_ps_320001_340000_ef128_lim200_o127 39.928 ms
+hnswp_ps_1640001_1660000_ef128_lim100_o997 35.008 ms
+hnswp_part_980001_1000000_ef16_lim200_o2 8.32 ms
+hnswp_ps_1640001_1660000_ef56_lim5_o401 32.886 ms
+hnswp_part_320001_340000_ef96_lim200_o29 13.638 ms
+hnswp_ps_1640001_1660000_ef128_lim40_o2003 42.026 ms
+hnswp_part_1640001_1660000_ef80_lim20_o2 15.875 ms
+hnswp_part_980001_1000000_ef32_lim400_o997 9.332 ms
+hnswp_ps_320001_340000_ef32_lim100_o3 30.742 ms
+hnswp_part_320001_340000_ef24_lim40_o29 7.374 ms
+hnswp_ps_320001_340000_ef40_lim5_o0 31.906 ms
+hnswp_part_320001_340000_ef200_lim80_o29 15.561 ms
+hnswp_ps_1640001_1660000_ef56_lim100_o2003 32.075 ms
+hnswp_ps_980001_1000000_ef56_lim20_o4501 38.169 ms
+hnswp_ps_320001_340000_ef32_lim40_o997 32.782 ms
+hnswp_part_1640001_1660000_ef80_lim100_o997 13.092 ms
+hnswp_part_320001_340000_ef16_lim10_o67 12.897 ms
+hnswp_part_1640001_1660000_ef40_lim5_o67 12.345 ms
+hnswp_ps_1640001_1660000_ef56_lim10_o997 31.223 ms
+hnswp_part_320001_340000_ef96_lim80_o0 11.706 ms
+hnswp_part_980001_1000000_ef128_lim200_o701 15.77 ms
+hnswp_part_320001_340000_ef32_lim80_o997 8.962 ms
+hnswp_ps_1640001_1660000_ef32_lim100_o401 32.796 ms
+hnswp_ps_980001_1000000_ef16_lim100_o127 27.396 ms
+hnswp_ps_320001_340000_ef16_lim10_o3 28.744 ms
+hnswp_ps_980001_1000000_ef128_lim100_o4501 33.774 ms
+hnswp_ps_1640001_1660000_ef24_lim400_o2003 33.127 ms
+hnswp_part_980001_1000000_ef24_lim20_o701 8.764 ms
+hnswp_part_1640001_1660000_ef16_lim20_o29 9.156 ms
+hnswp_part_320001_340000_ef200_lim400_o131 23.729 ms
+hnswp_part_1640001_1660000_ef200_lim20_o997 21.603 ms
+hnswp_part_1640001_1660000_ef96_lim40_o2 16.737 ms
+hnswp_ps_1640001_1660000_ef16_lim80_o2003 31.346 ms
+hnswp_part_320001_340000_ef32_lim40_o13 9.594 ms
+hnswp_ps_1640001_1660000_ef32_lim200_o127 34.396 ms
+hnswp_part_980001_1000000_ef200_lim20_o2 13.738 ms
+hnswp_ps_980001_1000000_ef80_lim100_o127 33.235 ms
+hnswp_ps_980001_1000000_ef128_lim5_o0 36.333 ms
+hnswp_ps_1640001_1660000_ef16_lim40_o401 31.791 ms
+hnswp_part_980001_1000000_ef128_lim10_o131 10.657 ms
+hnswp_part_320001_340000_ef200_lim100_o5 17.475 ms
+hnswp_part_980001_1000000_ef24_lim80_o13 8.555 ms
+hnswp_part_1640001_1660000_ef32_lim10_o29 8.795 ms
+hnswp_part_980001_1000000_ef16_lim80_o5 6.421 ms
+hnswp_part_1640001_1660000_ef32_lim5_o29 7.141 ms
+hnswp_ps_980001_1000000_ef40_lim40_o11 30.16 ms
+hnswp_part_1640001_1660000_ef200_lim100_o5 20.503 ms
+hnswp_ps_1640001_1660000_ef80_lim200_o11 37.788 ms
+hnswp_ps_980001_1000000_ef32_lim20_o41 33.022 ms
+hnswp_part_980001_1000000_ef128_lim5_o2 11.689 ms
+hnswp_ps_980001_1000000_ef128_lim40_o4501 37.717 ms
+hnswp_ps_320001_340000_ef16_lim10_o0 35.032 ms
+hnswp_part_1640001_1660000_ef32_lim20_o997 7.554 ms
+hnswp_part_1640001_1660000_ef200_lim80_o307 21.444 ms
+hnswp_ps_1640001_1660000_ef40_lim100_o41 37.208 ms
+hnswp_part_320001_340000_ef16_lim10_o307 8.534 ms
+hnswp_ps_980001_1000000_ef128_lim100_o11 45.596 ms
+hnswp_part_320001_340000_ef96_lim400_o5 15.222 ms
+hnswp_part_1640001_1660000_ef32_lim400_o131 10.999 ms
+hnswp_part_1640001_1660000_ef40_lim200_o0 10.753 ms
+hnswp_ps_320001_340000_ef24_lim20_o401 34.788 ms
+hnswp_part_980001_1000000_ef128_lim10_o701 14.662 ms
+hnswp_ps_320001_340000_ef80_lim5_o127 35.569 ms
+hnswp_ps_980001_1000000_ef16_lim5_o0 29.947 ms
+hnswp_part_320001_340000_ef32_lim400_o131 11.289 ms
+hnswp_part_980001_1000000_ef128_lim40_o2 13.069 ms
+hnswp_ps_1640001_1660000_ef24_lim100_o2003 32.093 ms
+hnswp_part_1640001_1660000_ef128_lim10_o67 16.607 ms
+hnswp_ps_320001_340000_ef200_lim200_o127 41.523 ms
+hnswp_ps_320001_340000_ef128_lim5_o11 40.892 ms
+hnswp_part_320001_340000_ef24_lim20_o131 9.234 ms
+hnswp_ps_980001_1000000_ef16_lim200_o0 29.687 ms
+hnswp_ps_320001_340000_ef96_lim400_o401 38.192 ms
+hnswp_ps_1640001_1660000_ef32_lim40_o4501 36.277 ms
+hnswp_part_1640001_1660000_ef80_lim20_o701 10.712 ms
+hnswp_part_1640001_1660000_ef56_lim200_o29 11.15 ms
+hnswp_part_320001_340000_ef56_lim80_o2 10.337 ms
+hnswp_part_320001_340000_ef80_lim10_o997 11.418 ms
+hnswp_part_980001_1000000_ef200_lim80_o67 13.64 ms
+hnswp_ps_1640001_1660000_ef128_lim40_o11 41.077 ms
+hnswp_part_1640001_1660000_ef32_lim10_o2 9.073 ms
+hnswp_part_320001_340000_ef24_lim10_o701 7.77 ms
+hnswp_ps_980001_1000000_ef96_lim40_o11 47.139 ms
+hnswp_part_320001_340000_ef128_lim200_o997 12.923 ms
+hnswp_part_1640001_1660000_ef24_lim200_o5 8.803 ms
+hnswp_ps_1640001_1660000_ef200_lim100_o41 46.488 ms
+hnswp_part_320001_340000_ef16_lim5_o13 8.66 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/hnsw_partition_scan_samples.jsonl count 200
 {
   "operator": "Index Scan (hnsw, partition)",
   "features": [
@@ -119,62 +260,58 @@ wrote /data/dzh/pgvector/dev/cost_fit/data/hnsw_partition_scan_samples.jsonl cou
     "limit_k",
     "ef_search"
   ],
-  "total_samples": 55,
-  "intercept_ms": 3.352651074297314,
+  "total_samples": 200,
+  "intercept_ms": -0.22992464417915287,
   "coef": {
-    "relpages": 4.606286173961162,
-    "reltuples": -0.11768965555669086,
-    "actual_rows": -0.11847872045965913,
-    "plan_width": 35.761603613192705,
-    "limit_k": -0.0018158751832371635,
-    "ef_search": 0.3736199477809281
+    "relpages": -0.292387574741346,
+    "reltuples": 0.007892352296494877,
+    "actual_rows": 0.006993816623086991,
+    "plan_width": -2.452529011754157,
+    "limit_k": 0.002655888283056466,
+    "ef_search": 0.06722477198630789
   },
-  "train_rmse_ms": 38.93786388638345,
-  "train_mae_ms": 19.460082528022895,
-  "train_r2": 0.2594173743442574,
-  "test_rmse_ms": 19.677340553142166,
-  "test_mae_ms": 15.342104055698309,
-  "test_r2": -1.0399599626004328,
-  "test_mape_pct": 74.78081416625574,
-  "train_n": 40,
-  "test_n": 10
+  "train_rmse_ms": 3.272974987145083,
+  "train_mae_ms": 2.4066290835185713,
+  "train_r2": 0.9284217191117898,
+  "test_rmse_ms": 3.5516864130546604,
+  "test_mae_ms": 2.4440863983111334,
+  "test_r2": 0.9340483860012336,
+  "test_mape_pct": 14.37860394539391,
+  "train_n": 160,
+  "test_n": 40
 }
 wrote /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_test_predictions.jsonl
 === [hnsw_partition] metrics (full cost_fit model list) ===
 === Seq Scan ===
   samples: 55  train: 40  test: 10
-  train RMSE (ms): 2.14303  R²: 0.999767
-  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+  train RMSE (ms): 18.7074  R²: 0.981469
+  test  RMSE (ms): 5.3338  MAE: 3.39634  R²: 0.953211  MAPE: 12.4533%
 
 index_scan_coef.json — missing
-=== Index Scan (hnsw, partition) ===
-  samples: 55  train: 40  test: 10
-  train RMSE (ms): 38.9379  R²: 0.259417
-  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
-
+hnsw_partition_scan_coef_new.json — missing
 === Index Scan (ivfflat) ===
-  samples: 55  train: 40  test: 10
-  train RMSE (ms): 234.12  R²: 0.806840
-  test  RMSE (ms): 264.504  MAE: 228.625  R²: 0.052930  MAPE: 411.3149%
+  samples: 500  train: 400  test: 100
+  train RMSE (ms): 366.081  R²: 0.505101
+  test  RMSE (ms): 416.777  MAE: 137.838  R²: 0.477437  MAPE: 36.0720%
 
 === Sort ===
-  samples: 55  train: 40  test: 10
-  train RMSE (ms): 47081.8  R²: 0.110600
-  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 18243.4  R²: 0.537068
+  test  RMSE (ms): 14503  MAE: 9059.27  R²: -1.101891  MAPE: 534.9477%
 
 === Hash Join ===
   samples: 55  train: 40  test: 10
-  train RMSE (ms): 146.594  R²: 0.973473
-  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+  train RMSE (ms): 740.483  R²: 0.212787
+  test  RMSE (ms): 594.311  MAE: 403.211  R²: 0.505275  MAPE: 51.4222%
 
 === Merge Join ===
-  samples: 55  train: 40  test: 10
-  train RMSE (ms): 8.76143  R²: 0.998873
-  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 192.653  R²: 0.480325
+  test  RMSE (ms): 262.838  MAE: 155.996  R²: 0.503533  MAPE: 11839.4871%
 
 === Aggregate ===
   samples: 55  train: 40  test: 10
-  train RMSE (ms): 0.0169653  R²: 0.999966
-  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+  train RMSE (ms): 0.0133933  R²: 0.999981
+  test  RMSE (ms): 0.0155146  MAE: 0.0104286  R²: 0.602071  MAPE: 34.8593%
 
 Done. Partition HNSW coef: /data/dzh/pgvector/dev/cost_fit/models/hnsw_partition_scan_coef.json

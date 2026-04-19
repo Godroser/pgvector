@@ -1208,3 +1208,1304 @@ index_scan_coef.json — missing
   test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
 
 Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Python deps ===
+=== Collect + fit ===
+=== Vector: IVFFlat on base part/partsupp (optional; drops HNSW on those cols if present) ===
+SET
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:6: NOTICE:  index "idx_part_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:7: NOTICE:  index "idx_ps_text_embedding_hnsw" does not exist, skipping
+DROP INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:10: NOTICE:  relation "idx_part_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+psql:/data/dzh/pgvector/dev/cost_fit/prepare_vector_indexes_ivf.sql:13: NOTICE:  relation "idx_ps_text_embedding_ivf" already exists, skipping
+CREATE INDEX
+ANALYZE
+ANALYZE
+vec_part_ivf_12_lim40_o1297 77.767 ms
+vec_part_ivf_1_lim80_o1297 10.031 ms
+vec_part_ivf_32_lim400_o13 285.425 ms
+vec_part_ivf_3_lim20_o29 15.255 ms
+vec_part_ivf_3_lim100_o0 19.156 ms
+vec_part_ivf_3_lim400_o13 25.802 ms
+vec_part_ivf_2_lim100_o307 23.901 ms
+vec_part_ivf_5_lim80_o701 38.353 ms
+vec_part_ivf_12_lim80_o2 88.196 ms
+vec_part_ivf_48_lim200_o29 262.768 ms
+vec_part_ivf_1_lim80_o67 45.664 ms
+vec_part_ivf_8_lim80_o2 54.596 ms
+vec_part_ivf_3_lim100_o2 21.622 ms
+vec_part_ivf_8_lim10_o131 79.587 ms
+vec_part_ivf_24_lim80_o0 205.843 ms
+vec_part_ivf_5_lim5_o0 28.969 ms
+vec_part_ivf_32_lim200_o67 482.415 ms
+vec_part_ivf_1_lim400_o701 19.166 ms
+vec_part_ivf_64_lim20_o1999 783.475 ms
+vec_part_ivf_8_lim200_o701 54.686 ms
+vec_part_ivf_48_lim10_o1999 591.747 ms
+vec_part_ivf_32_lim200_o5 293.495 ms
+vec_part_ivf_48_lim400_o1999 563.251 ms
+vec_part_ivf_48_lim20_o13 367.848 ms
+vec_part_ivf_24_lim10_o1999 335.223 ms
+vec_part_ivf_8_lim40_o131 72.473 ms
+vec_part_ivf_18_lim5_o1297 117.481 ms
+vec_part_ivf_24_lim10_o701 167.738 ms
+vec_part_ivf_2_lim400_o1297 23.0 ms
+vec_part_ivf_1_lim100_o2 8.516 ms
+vec_part_ivf_1_lim40_o0 8.084 ms
+vec_part_ivf_18_lim5_o131 168.155 ms
+vec_part_ivf_12_lim5_o307 119.227 ms
+vec_part_ivf_3_lim5_o701 21.401 ms
+vec_part_ivf_32_lim200_o2 272.545 ms
+vec_part_ivf_32_lim80_o307 339.476 ms
+vec_part_ivf_8_lim40_o307 68.558 ms
+vec_part_ivf_12_lim10_o307 99.177 ms
+vec_part_ivf_24_lim400_o1999 337.097 ms
+vec_part_ivf_1_lim10_o67 48.443 ms
+vec_part_ivf_32_lim100_o1999 352.865 ms
+vec_part_ivf_64_lim400_o131 604.605 ms
+vec_part_ivf_24_lim80_o307 238.482 ms
+vec_part_ivf_64_lim5_o2 554.139 ms
+vec_part_ivf_12_lim40_o1999 142.181 ms
+vec_part_ivf_12_lim40_o5 86.193 ms
+vec_part_ivf_12_lim100_o131 101.89 ms
+vec_part_ivf_8_lim10_o1297 54.562 ms
+vec_part_ivf_64_lim20_o0 459.821 ms
+vec_part_ivf_3_lim10_o2 18.648 ms
+vec_part_ivf_8_lim200_o13 55.782 ms
+vec_part_ivf_48_lim10_o29 271.238 ms
+vec_part_ivf_32_lim40_o701 180.965 ms
+vec_part_ivf_24_lim40_o0 203.034 ms
+vec_part_ivf_2_lim100_o131 20.748 ms
+vec_part_ivf_1_lim10_o307 12.444 ms
+vec_part_ivf_48_lim200_o307 508.339 ms
+vec_part_ivf_5_lim40_o2 30.284 ms
+vec_part_ivf_18_lim40_o0 154.137 ms
+vec_part_ivf_24_lim400_o0 203.255 ms
+vec_part_ivf_32_lim100_o307 354.762 ms
+vec_part_ivf_5_lim100_o2 30.958 ms
+vec_part_ivf_32_lim5_o67 476.26 ms
+vec_part_ivf_18_lim40_o307 221.858 ms
+vec_part_ivf_1_lim40_o67 55.953 ms
+vec_part_ivf_3_lim400_o1297 34.271 ms
+vec_part_ivf_18_lim100_o67 337.824 ms
+vec_part_ivf_12_lim5_o1999 143.727 ms
+vec_part_ivf_64_lim40_o29 357.148 ms
+vec_part_ivf_1_lim200_o1999 8.029 ms
+vec_part_ivf_3_lim200_o67 88.728 ms
+vec_part_ivf_18_lim5_o5 150.09 ms
+vec_part_ivf_48_lim10_o131 453.795 ms
+vec_part_ivf_48_lim400_o2 371.65 ms
+vec_part_ivf_12_lim100_o701 71.944 ms
+vec_part_ivf_3_lim5_o5 21.127 ms
+vec_part_ivf_32_lim80_o5 276.643 ms
+vec_part_ivf_8_lim5_o5 55.471 ms
+vec_part_ivf_48_lim5_o13 386.471 ms
+vec_part_ivf_3_lim10_o5 24.361 ms
+vec_part_ivf_12_lim400_o67 271.685 ms
+vec_part_ivf_32_lim200_o29 219.238 ms
+vec_part_ivf_48_lim200_o67 542.912 ms
+vec_part_ivf_5_lim200_o131 51.885 ms
+vec_part_ivf_8_lim80_o1999 74.593 ms
+vec_part_ivf_8_lim20_o2 54.942 ms
+vec_part_ivf_3_lim200_o1297 29.149 ms
+vec_part_ivf_18_lim400_o1297 118.412 ms
+vec_part_ivf_48_lim5_o67 470.933 ms
+vec_part_ivf_3_lim20_o0 20.372 ms
+vec_part_ivf_18_lim100_o131 170.198 ms
+vec_part_ivf_5_lim80_o13 31.532 ms
+vec_part_ivf_64_lim20_o67 785.12 ms
+vec_part_ivf_48_lim80_o5 454.179 ms
+vec_part_ivf_5_lim100_o1999 45.175 ms
+vec_part_ivf_18_lim5_o1999 261.108 ms
+vec_part_ivf_24_lim100_o5 221.472 ms
+vec_part_ivf_24_lim200_o701 170.929 ms
+vec_part_ivf_32_lim10_o29 212.259 ms
+vec_part_ivf_12_lim40_o307 116.408 ms
+vec_part_ivf_5_lim10_o307 36.691 ms
+vec_part_ivf_32_lim40_o0 237.4 ms
+vec_part_ivf_8_lim10_o5 63.548 ms
+vec_part_ivf_1_lim20_o131 6.184 ms
+vec_part_ivf_5_lim400_o1297 46.828 ms
+vec_part_ivf_64_lim5_o131 667.577 ms
+vec_part_ivf_24_lim400_o307 1999.817 ms
+vec_part_ivf_8_lim100_o5 67.521 ms
+vec_part_ivf_5_lim80_o0 29.048 ms
+vec_part_ivf_2_lim200_o13 13.778 ms
+vec_part_ivf_18_lim5_o701 123.089 ms
+vec_part_ivf_5_lim40_o67 126.433 ms
+vec_part_ivf_24_lim20_o13 211.245 ms
+vec_part_ivf_12_lim200_o0 86.651 ms
+vec_part_ivf_3_lim80_o1297 30.146 ms
+vec_part_ivf_18_lim200_o0 133.906 ms
+vec_part_ivf_18_lim100_o5 172.76 ms
+vec_part_ivf_64_lim10_o1297 397.19 ms
+vec_part_ivf_48_lim200_o13 400.911 ms
+vec_part_ivf_12_lim80_o1297 71.547 ms
+vec_part_ivf_3_lim5_o1297 24.956 ms
+vec_part_ivf_12_lim5_o29 67.429 ms
+vec_part_ivf_1_lim20_o5 7.894 ms
+vec_part_ivf_5_lim20_o2 27.415 ms
+vec_part_ivf_8_lim400_o67 162.361 ms
+vec_part_ivf_1_lim5_o2 8.87 ms
+vec_part_ivf_32_lim40_o13 297.247 ms
+vec_part_ivf_8_lim400_o307 116.22 ms
+vec_part_ivf_24_lim80_o5 176.731 ms
+vec_part_ivf_48_lim40_o131 422.406 ms
+vec_part_ivf_64_lim20_o29 375.502 ms
+vec_part_ivf_5_lim200_o29 217.968 ms
+vec_part_ivf_24_lim10_o29 147.002 ms
+vec_part_ivf_24_lim100_o67 296.792 ms
+vec_part_ivf_5_lim200_o13 27.282 ms
+vec_part_ivf_3_lim100_o1999 20.139 ms
+vec_part_ivf_8_lim20_o307 61.103 ms
+vec_part_ivf_32_lim20_o29 196.312 ms
+vec_part_ivf_12_lim80_o13 82.013 ms
+vec_part_ivf_5_lim100_o131 39.72 ms
+vec_part_ivf_48_lim10_o67 476.778 ms
+vec_part_ivf_8_lim100_o29 38.164 ms
+vec_part_ivf_8_lim5_o131 56.816 ms
+vec_part_ivf_3_lim100_o67 72.184 ms
+vec_part_ivf_18_lim10_o67 247.197 ms
+vec_part_ivf_3_lim5_o2 18.24 ms
+vec_part_ivf_18_lim400_o307 184.781 ms
+vec_part_ivf_5_lim100_o307 40.93 ms
+vec_part_ivf_3_lim20_o5 23.868 ms
+vec_part_ivf_32_lim100_o29 221.284 ms
+vec_part_ivf_48_lim200_o1999 514.994 ms
+vec_part_ivf_18_lim20_o1999 229.423 ms
+vec_part_ivf_18_lim400_o13 139.903 ms
+vec_part_ivf_48_lim400_o307 448.504 ms
+vec_part_ivf_18_lim10_o13 139.283 ms
+vec_part_ivf_24_lim80_o701 140.557 ms
+vec_part_ivf_3_lim40_o5 19.557 ms
+vec_part_ivf_32_lim400_o307 334.227 ms
+vec_part_ivf_2_lim5_o29 11.678 ms
+vec_part_ivf_2_lim20_o0 9.502 ms
+vec_part_ivf_18_lim400_o131 138.292 ms
+vec_part_ivf_8_lim5_o2 52.289 ms
+vec_part_ivf_5_lim100_o701 38.02 ms
+vec_part_ivf_8_lim200_o1297 54.314 ms
+vec_part_ivf_32_lim40_o307 348.354 ms
+vec_part_ivf_2_lim40_o701 15.45 ms
+vec_part_ivf_18_lim40_o1999 230.323 ms
+vec_part_ivf_48_lim5_o131 454.33 ms
+vec_part_ivf_64_lim80_o1297 336.807 ms
+vec_part_ivf_12_lim100_o2 78.356 ms
+vec_part_ivf_2_lim5_o0 9.737 ms
+vec_part_ivf_8_lim10_o2 53.557 ms
+vec_part_ivf_32_lim20_o2 211.142 ms
+vec_part_ivf_64_lim200_o13 593.952 ms
+vec_part_ivf_12_lim100_o307 122.566 ms
+vec_part_ivf_12_lim20_o29 59.079 ms
+vec_part_ivf_1_lim20_o29 9.67 ms
+vec_part_ivf_12_lim20_o2 76.973 ms
+vec_part_ivf_8_lim100_o307 70.91 ms
+vec_part_ivf_32_lim200_o1297 174.192 ms
+vec_part_ivf_12_lim5_o13 81.66 ms
+vec_part_ivf_12_lim10_o13 79.809 ms
+vec_part_ivf_1_lim80_o131 5.43 ms
+vec_part_ivf_18_lim80_o2 136.648 ms
+vec_part_ivf_24_lim200_o2 164.846 ms
+vec_part_ivf_2_lim400_o701 529.293 ms
+vec_part_ivf_2_lim100_o29 112.123 ms
+vec_part_ivf_12_lim80_o307 118.162 ms
+vec_part_ivf_64_lim80_o67 642.569 ms
+vec_part_ivf_2_lim100_o67 70.626 ms
+vec_part_ivf_64_lim100_o701 982.556 ms
+vec_part_ivf_1_lim400_o5 1611.632 ms
+vec_part_ivf_32_lim10_o307 347.36 ms
+vec_part_ivf_8_lim80_o701 49.925 ms
+vec_part_ivf_3_lim5_o307 24.908 ms
+vec_part_ivf_3_lim80_o307 25.271 ms
+vec_part_ivf_18_lim200_o5 177.508 ms
+vec_part_ivf_8_lim40_o2 58.537 ms
+vec_part_ivf_12_lim400_o701 325.096 ms
+vec_part_ivf_32_lim40_o29 216.508 ms
+vec_part_ivf_24_lim10_o307 271.242 ms
+vec_part_ivf_5_lim80_o1999 44.601 ms
+vec_part_ivf_64_lim80_o29 408.426 ms
+vec_part_ivf_2_lim20_o1297 17.344 ms
+vec_part_ivf_32_lim5_o307 337.756 ms
+vec_part_ivf_2_lim100_o2 14.742 ms
+vec_part_ivf_1_lim20_o307 12.317 ms
+vec_part_ivf_5_lim40_o5 34.775 ms
+vec_part_ivf_2_lim40_o0 10.455 ms
+vec_part_ivf_5_lim20_o13 29.586 ms
+vec_part_ivf_1_lim100_o131 7.135 ms
+vec_part_ivf_24_lim10_o2 212.878 ms
+vec_part_ivf_48_lim5_o0 436.14 ms
+vec_part_ivf_1_lim5_o67 55.638 ms
+vec_part_ivf_24_lim5_o29 159.005 ms
+vec_part_ivf_8_lim200_o1999 105.281 ms
+vec_part_ivf_32_lim5_o13 329.009 ms
+vec_part_ivf_3_lim10_o131 29.793 ms
+vec_part_ivf_24_lim5_o701 153.204 ms
+vec_part_ivf_12_lim40_o29 62.272 ms
+vec_part_ivf_64_lim200_o1297 350.932 ms
+vec_part_ivf_1_lim10_o131 5.476 ms
+vec_part_ivf_12_lim200_o307 103.32 ms
+vec_part_ivf_48_lim80_o1999 583.946 ms
+vec_part_ivf_8_lim40_o701 53.955 ms
+vec_part_ivf_32_lim100_o131 263.147 ms
+vec_part_ivf_2_lim80_o131 17.188 ms
+vec_part_ivf_3_lim10_o29 16.93 ms
+vec_part_ivf_1_lim5_o29 9.325 ms
+vec_part_ivf_5_lim40_o29 28.164 ms
+vec_part_ivf_1_lim10_o1297 9.573 ms
+vec_part_ivf_3_lim40_o29 14.734 ms
+vec_part_ivf_1_lim100_o1297 9.931 ms
+vec_part_ivf_8_lim20_o1999 95.037 ms
+vec_part_ivf_8_lim80_o67 187.292 ms
+vec_part_ivf_3_lim10_o67 83.254 ms
+vec_part_ivf_64_lim80_o131 619.91 ms
+vec_part_ivf_32_lim80_o2 221.335 ms
+vec_part_ivf_12_lim10_o1297 84.257 ms
+vec_part_ivf_5_lim200_o0 25.861 ms
+vec_part_ivf_32_lim80_o13 259.304 ms
+vec_part_ivf_12_lim10_o0 67.534 ms
+vec_part_ivf_12_lim100_o1297 93.603 ms
+vec_part_ivf_48_lim20_o0 409.75 ms
+vec_part_ivf_18_lim200_o131 145.619 ms
+vec_part_ivf_8_lim400_o131 70.078 ms
+vec_part_ivf_1_lim200_o0 11.883 ms
+vec_part_ivf_8_lim5_o13 59.096 ms
+vec_part_ivf_64_lim5_o1297 379.847 ms
+vec_part_ivf_5_lim20_o307 48.312 ms
+vec_ps_ivf_12_lim10_o401 364.724 ms
+vec_ps_ivf_8_lim10_o11 483.197 ms
+vec_ps_ivf_5_lim100_o3 147.498 ms
+vec_ps_ivf_64_lim80_o9001 1942.471 ms
+vec_ps_ivf_8_lim400_o41 209.169 ms
+vec_ps_ivf_5_lim80_o0 157.711 ms
+vec_ps_ivf_1_lim5_o0 36.32 ms
+vec_ps_ivf_1_lim200_o41 13.282 ms
+vec_ps_ivf_64_lim5_o127 870.765 ms
+vec_ps_ivf_64_lim100_o11 1438.11 ms
+vec_ps_ivf_18_lim100_o9001 557.154 ms
+vec_ps_ivf_24_lim100_o9001 658.984 ms
+vec_ps_ivf_3_lim100_o401 94.199 ms
+vec_ps_ivf_32_lim100_o0 783.686 ms
+vec_ps_ivf_2_lim5_o0 64.255 ms
+vec_ps_ivf_48_lim80_o11 1034.246 ms
+vec_ps_ivf_24_lim200_o11 579.943 ms
+vec_ps_ivf_12_lim80_o4501 141.888 ms
+vec_ps_ivf_2_lim40_o3 41.453 ms
+vec_ps_ivf_3_lim400_o0 77.447 ms
+vec_ps_ivf_5_lim400_o41 68.838 ms
+vec_ps_ivf_18_lim5_o4501 282.847 ms
+vec_ps_ivf_3_lim80_o401 94.791 ms
+vec_ps_ivf_8_lim400_o2003 200.785 ms
+vec_ps_ivf_12_lim400_o401 312.881 ms
+vec_ps_ivf_1_lim400_o127 30.334 ms
+vec_ps_ivf_8_lim200_o127 108.853 ms
+vec_ps_ivf_8_lim200_o9001 178.096 ms
+vec_ps_ivf_64_lim80_o401 1356.027 ms
+vec_ps_ivf_2_lim80_o0 65.36 ms
+vec_ps_ivf_5_lim10_o11 150.08 ms
+vec_ps_ivf_2_lim400_o15001 39.031 ms
+vec_ps_ivf_64_lim400_o4501 1310.817 ms
+vec_ps_ivf_8_lim20_o15001 168.733 ms
+vec_ps_ivf_1_lim200_o11 21.723 ms
+vec_ps_ivf_24_lim40_o0 748.626 ms
+vec_ps_ivf_32_lim40_o11 869.885 ms
+vec_ps_ivf_2_lim200_o9001 101.966 ms
+vec_ps_ivf_48_lim40_o401 1060.754 ms
+vec_ps_ivf_32_lim40_o3 1187.381 ms
+vec_ps_ivf_5_lim40_o2003 101.15 ms
+vec_ps_ivf_32_lim40_o15001 409.24 ms
+vec_ps_ivf_18_lim40_o0 569.733 ms
+vec_ps_ivf_64_lim10_o15001 851.237 ms
+vec_ps_ivf_3_lim200_o15001 51.336 ms
+vec_ps_ivf_32_lim80_o4501 452.281 ms
+vec_ps_ivf_5_lim400_o3 133.871 ms
+vec_ps_ivf_48_lim200_o11 1059.295 ms
+vec_ps_ivf_18_lim5_o127 232.801 ms
+vec_ps_ivf_3_lim400_o11 107.88 ms
+vec_ps_ivf_1_lim100_o127 22.548 ms
+vec_ps_ivf_24_lim400_o0 651.792 ms
+vec_ps_ivf_32_lim20_o15001 425.906 ms
+vec_ps_ivf_2_lim5_o41 18.685 ms
+vec_ps_ivf_2_lim5_o4501 27.351 ms
+vec_ps_ivf_2_lim5_o9001 115.777 ms
+vec_ps_ivf_3_lim10_o0 98.807 ms
+vec_ps_ivf_8_lim5_o9001 239.49 ms
+vec_ps_ivf_2_lim40_o15001 41.697 ms
+vec_ps_ivf_2_lim80_o3 57.313 ms
+vec_ps_ivf_18_lim400_o997 784.301 ms
+vec_ps_ivf_24_lim100_o15001 402.607 ms
+vec_ps_ivf_32_lim80_o3 1089.884 ms
+vec_ps_ivf_1_lim5_o127 31.006 ms
+vec_ps_ivf_12_lim5_o0 460.887 ms
+vec_ps_ivf_8_lim5_o11 520.278 ms
+vec_ps_ivf_5_lim20_o997 364.755 ms
+vec_ps_ivf_18_lim5_o9001 736.435 ms
+vec_ps_ivf_2_lim10_o2003 59.616 ms
+vec_ps_ivf_3_lim5_o11 101.907 ms
+vec_ps_ivf_18_lim10_o41 354.756 ms
+vec_ps_ivf_1_lim20_o11 21.255 ms
+vec_ps_ivf_48_lim5_o401 1065.899 ms
+vec_ps_ivf_12_lim400_o15001 245.12 ms
+vec_ps_ivf_32_lim20_o997 1016.485 ms
+vec_ps_ivf_24_lim100_o41 535.337 ms
+vec_ps_ivf_48_lim40_o3 1769.573 ms
+vec_ps_ivf_3_lim10_o15001 66.413 ms
+vec_ps_ivf_12_lim200_o401 303.822 ms
+vec_ps_ivf_32_lim100_o9001 1035.503 ms
+vec_ps_ivf_12_lim100_o2003 584.938 ms
+vec_ps_ivf_1_lim80_o15001 16.765 ms
+vec_ps_ivf_24_lim80_o997 833.615 ms
+vec_ps_ivf_1_lim10_o0 36.563 ms
+vec_ps_ivf_48_lim20_o3 1552.508 ms
+vec_ps_ivf_12_lim40_o3 549.918 ms
+vec_ps_ivf_2_lim10_o997 221.165 ms
+vec_ps_ivf_48_lim20_o997 1232.669 ms
+vec_ps_ivf_2_lim100_o15001 38.425 ms
+vec_ps_ivf_5_lim80_o9001 151.903 ms
+vec_ps_ivf_32_lim80_o41 608.245 ms
+vec_ps_ivf_64_lim40_o11 1357.283 ms
+vec_ps_ivf_24_lim200_o2003 861.159 ms
+vec_ps_ivf_2_lim40_o11 63.315 ms
+vec_ps_ivf_1_lim10_o401 48.701 ms
+vec_ps_ivf_64_lim400_o11 1247.602 ms
+vec_ps_ivf_12_lim10_o4501 157.649 ms
+vec_ps_ivf_12_lim20_o2003 520.423 ms
+vec_ps_ivf_64_lim40_o41 1207.36 ms
+vec_ps_ivf_3_lim20_o11 84.571 ms
+vec_ps_ivf_2_lim80_o401 71.254 ms
+vec_ps_ivf_18_lim80_o3 696.042 ms
+vec_ps_ivf_48_lim400_o41 2268.671 ms
+vec_ps_ivf_32_lim20_o9001 1002.538 ms
+vec_ps_ivf_48_lim5_o0 1089.658 ms
+vec_ps_ivf_64_lim20_o4501 1154.59 ms
+vec_ps_ivf_3_lim5_o997 271.718 ms
+vec_ps_ivf_48_lim200_o2003 2986.107 ms
+vec_ps_ivf_1_lim400_o2003 2195.986 ms
+vec_ps_ivf_24_lim80_o11 804.983 ms
+vec_ps_ivf_12_lim40_o401 353.256 ms
+vec_ps_ivf_5_lim5_o41 78.703 ms
+vec_ps_ivf_18_lim40_o15001 300.742 ms
+vec_ps_ivf_48_lim20_o0 1373.852 ms
+vec_ps_ivf_32_lim200_o997 1233.067 ms
+vec_ps_ivf_1_lim10_o3 10.766 ms
+vec_ps_ivf_3_lim20_o41 47.36 ms
+vec_ps_ivf_12_lim80_o127 159.87 ms
+vec_ps_ivf_1_lim40_o9001 241.53 ms
+vec_ps_ivf_18_lim5_o2003 637.079 ms
+vec_ps_ivf_18_lim80_o41 409.776 ms
+vec_ps_ivf_48_lim80_o127 731.129 ms
+vec_ps_ivf_1_lim5_o997 231.265 ms
+vec_ps_ivf_64_lim200_o41 1505.471 ms
+vec_ps_ivf_12_lim5_o2003 581.474 ms
+vec_ps_ivf_5_lim5_o0 182.835 ms
+vec_ps_ivf_48_lim400_o3 1996.703 ms
+vec_ps_ivf_8_lim5_o401 240.132 ms
+vec_ps_ivf_48_lim80_o0 1212.689 ms
+vec_ps_ivf_48_lim200_o127 683.424 ms
+vec_ps_ivf_48_lim5_o15001 621.376 ms
+vec_ps_ivf_12_lim400_o4501 498.627 ms
+vec_ps_ivf_18_lim400_o15001 387.157 ms
+vec_ps_ivf_3_lim100_o11 102.169 ms
+vec_ps_ivf_32_lim40_o4501 625.609 ms
+vec_ps_ivf_1_lim100_o4501 59.917 ms
+vec_ps_ivf_2_lim400_o2003 278.44 ms
+vec_ps_ivf_5_lim400_o9001 296.305 ms
+vec_ps_ivf_2_lim200_o11 84.373 ms
+vec_ps_ivf_5_lim5_o3 149.449 ms
+vec_ps_ivf_1_lim400_o15001 3740.055 ms
+vec_ps_ivf_3_lim20_o4501 37.597 ms
+vec_ps_ivf_12_lim40_o127 188.72 ms
+vec_ps_ivf_5_lim100_o2003 137.38 ms
+vec_ps_ivf_8_lim10_o401 247.653 ms
+vec_ps_ivf_24_lim5_o9001 834.874 ms
+vec_ps_ivf_12_lim80_o2003 745.683 ms
+vec_ps_ivf_64_lim40_o0 1950.861 ms
+vec_ps_ivf_24_lim10_o127 339.728 ms
+vec_ps_ivf_24_lim80_o127 385.105 ms
+vec_ps_ivf_18_lim80_o127 235.446 ms
+vec_ps_ivf_1_lim5_o15001 15.388 ms
+vec_ps_ivf_48_lim5_o41 1035.109 ms
+vec_ps_ivf_3_lim80_o4501 29.203 ms
+vec_ps_ivf_5_lim80_o2003 132.721 ms
+vec_ps_ivf_2_lim5_o15001 39.637 ms
+vec_ps_ivf_64_lim80_o0 1740.195 ms
+vec_ps_ivf_32_lim100_o41 684.534 ms
+vec_ps_ivf_32_lim200_o41 614.224 ms
+vec_ps_ivf_48_lim80_o2003 1526.241 ms
+vec_ps_ivf_3_lim10_o9001 147.391 ms
+vec_ps_ivf_24_lim200_o41 464.901 ms
+vec_ps_ivf_2_lim5_o997 218.129 ms
+vec_ps_ivf_2_lim400_o997 1863.127 ms
+vec_ps_ivf_18_lim200_o3 714.829 ms
+vec_ps_ivf_8_lim5_o0 215.262 ms
+vec_ps_ivf_48_lim80_o9001 1121.033 ms
+vec_ps_ivf_24_lim40_o2003 1043.506 ms
+vec_ps_ivf_1_lim10_o2003 40.817 ms
+vec_ps_ivf_48_lim5_o11 1316.862 ms
+vec_ps_ivf_64_lim80_o127 823.773 ms
+vec_ps_ivf_8_lim20_o3 410.351 ms
+vec_ps_ivf_64_lim20_o997 1668.685 ms
+vec_ps_ivf_24_lim10_o41 456.372 ms
+vec_ps_ivf_64_lim5_o15001 985.964 ms
+vec_ps_ivf_24_lim80_o3 1107.096 ms
+vec_ps_ivf_12_lim20_o997 537.945 ms
+vec_ps_ivf_48_lim5_o997 1410.858 ms
+vec_ps_ivf_1_lim10_o997 200.018 ms
+vec_ps_ivf_5_lim20_o11 179.879 ms
+vec_ps_ivf_24_lim40_o401 567.852 ms
+vec_ps_ivf_8_lim200_o4501 105.613 ms
+vec_ps_ivf_48_lim40_o127 635.161 ms
+vec_ps_ivf_32_lim5_o2003 1082.155 ms
+vec_ps_ivf_18_lim400_o9001 1639.436 ms
+vec_ps_ivf_5_lim5_o15001 114.932 ms
+vec_ps_ivf_24_lim400_o3 1039.761 ms
+vec_ps_ivf_8_lim80_o41 199.957 ms
+vec_ps_ivf_8_lim400_o9001 224.616 ms
+vec_ps_ivf_24_lim5_o997 836.824 ms
+vec_ps_ivf_5_lim20_o401 181.547 ms
+vec_ps_ivf_24_lim10_o4501 380.347 ms
+vec_ps_ivf_32_lim80_o2003 965.043 ms
+vec_ps_ivf_18_lim80_o997 660.713 ms
+vec_ps_ivf_24_lim80_o0 781.208 ms
+vec_ps_ivf_1_lim80_o3 10.193 ms
+vec_ps_ivf_48_lim5_o9001 1200.214 ms
+vec_ps_ivf_64_lim20_o2003 2343.831 ms
+vec_ps_ivf_24_lim5_o15001 311.315 ms
+vec_ps_ivf_5_lim100_o4501 44.963 ms
+vec_ps_ivf_24_lim40_o9001 905.585 ms
+vec_ps_ivf_5_lim10_o4501 59.147 ms
+vec_ps_ivf_32_lim40_o2003 1115.737 ms
+vec_ps_ivf_32_lim5_o127 509.071 ms
+vec_ps_ivf_1_lim100_o15001 19.86 ms
+vec_ps_ivf_8_lim100_o127 145.671 ms
+vec_ps_ivf_32_lim400_o997 1230.866 ms
+vec_ps_ivf_1_lim100_o401 53.766 ms
+vec_ps_ivf_48_lim400_o11 1274.733 ms
+vec_ps_ivf_48_lim20_o4501 917.815 ms
+vec_ps_ivf_12_lim80_o401 306.271 ms
+vec_ps_ivf_3_lim40_o0 71.461 ms
+vec_ps_ivf_3_lim5_o15001 58.409 ms
+vec_ps_ivf_5_lim100_o11 148.607 ms
+vec_ps_ivf_32_lim200_o3 1085.512 ms
+vec_ps_ivf_3_lim20_o0 70.853 ms
+vec_ps_ivf_18_lim80_o11 502.446 ms
+vec_ps_ivf_24_lim80_o9001 668.389 ms
+vec_ps_ivf_12_lim80_o11 437.502 ms
+vec_ps_ivf_24_lim200_o401 590.752 ms
+vec_ps_ivf_48_lim10_o401 1075.081 ms
+vec_ps_ivf_64_lim100_o0 1818.306 ms
+vec_ps_ivf_1_lim10_o4501 12.395 ms
+vec_ps_ivf_48_lim100_o997 1397.413 ms
+vec_ps_ivf_3_lim20_o3 102.406 ms
+vec_ps_ivf_1_lim400_o4501 3673.385 ms
+vec_ps_ivf_24_lim40_o997 841.64 ms
+vec_ps_ivf_1_lim400_o9001 4345.145 ms
+vec_ps_ivf_8_lim40_o11 723.535 ms
+vec_ps_ivf_5_lim80_o11 199.868 ms
+vec_ps_ivf_18_lim10_o0 636.124 ms
+vec_ps_ivf_18_lim5_o997 638.686 ms
+vec_ps_ivf_1_lim10_o9001 26.851 ms
+vec_ps_ivf_64_lim40_o4501 1237.499 ms
+vec_ps_ivf_24_lim200_o9001 817.448 ms
+vec_ps_ivf_18_lim10_o9001 637.519 ms
+vec_ps_ivf_64_lim100_o15001 866.194 ms
+vec_ps_ivf_8_lim40_o41 163.205 ms
+vec_ps_ivf_1_lim20_o401 46.035 ms
+vec_ps_ivf_18_lim100_o3 670.066 ms
+vec_ps_ivf_2_lim20_o3 40.868 ms
+vec_ps_ivf_32_lim80_o401 664.796 ms
+vec_ps_ivf_32_lim40_o127 417.147 ms
+vec_ps_ivf_48_lim5_o3 1416.707 ms
+vec_ps_ivf_5_lim20_o15001 84.854 ms
+vec_ps_ivf_12_lim80_o997 450.344 ms
+vec_ps_ivf_18_lim80_o4501 229.71 ms
+vec_ps_ivf_12_lim20_o0 327.32 ms
+vec_ps_ivf_8_lim80_o0 181.637 ms
+vec_ps_ivf_64_lim10_o4501 1153.993 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/ivf_scan_samples.jsonl count 500
+{
+  "operator": "Index Scan (ivfflat)",
+  "modeling_strategy": "separate linear model per index_name with log1p target and interaction terms",
+  "target_transform": "log1p(exclusive_ms)",
+  "features": [
+    "log_planner_startup_cost",
+    "log_ivf_startup_cost_est",
+    "log_estimated_candidates",
+    "log_estimated_startup_pages",
+    "log_limit_k",
+    "probes_over_lists",
+    "log_query_l2_norm",
+    "query_ref_dist_min",
+    "query_ref_dist_avg",
+    "query_ref_dist_std",
+    "anchor_offset_log",
+    "plan_width",
+    "probes_x_log_candidates",
+    "probes_x_log_limit",
+    "query_min_x_probes",
+    "query_std_x_log_limit",
+    "log_candidates_x_log_limit",
+    "query_avg_x_probes"
+  ],
+  "total_samples": 500,
+  "train_n": 400,
+  "test_n": 100,
+  "train_rmse_ms": 366.081255539132,
+  "train_mae_ms": 129.56182829804598,
+  "train_r2": 0.5051012053201761,
+  "test_rmse_ms": 416.7773672148688,
+  "test_mae_ms": 137.83782353291602,
+  "test_r2": 0.47743725742250853,
+  "test_mape_pct": 36.071997979356986,
+  "models_by_index": {
+    "idx_part_text_embedding_ivf": {
+      "index_name": "idx_part_text_embedding_ivf",
+      "target_transform": "log1p(exclusive_ms)",
+      "feature_names": [
+        "log_planner_startup_cost",
+        "log_ivf_startup_cost_est",
+        "log_estimated_candidates",
+        "log_estimated_startup_pages",
+        "log_limit_k",
+        "probes_over_lists",
+        "log_query_l2_norm",
+        "query_ref_dist_min",
+        "query_ref_dist_avg",
+        "query_ref_dist_std",
+        "anchor_offset_log",
+        "plan_width",
+        "probes_x_log_candidates",
+        "probes_x_log_limit",
+        "query_min_x_probes",
+        "query_std_x_log_limit",
+        "log_candidates_x_log_limit",
+        "query_avg_x_probes"
+      ],
+      "intercept_log_ms": 18.86165969052381,
+      "coef": {
+        "log_planner_startup_cost": -383546.4971636125,
+        "log_ivf_startup_cost_est": 383546.53681097046,
+        "log_estimated_candidates": -3948.6929643510052,
+        "log_estimated_startup_pages": 3949.790744254149,
+        "log_limit_k": 1.2672684326915673,
+        "probes_over_lists": 138.38739174161478,
+        "log_query_l2_norm": -7.036375264207154,
+        "query_ref_dist_min": 0.28309729456069316,
+        "query_ref_dist_avg": 0.3282698375073193,
+        "query_ref_dist_std": 0.4097790807255795,
+        "anchor_offset_log": -0.020185880828591535,
+        "plan_width": 226.3394934899424,
+        "probes_x_log_candidates": -12.175630453487353,
+        "probes_x_log_limit": 1.403810761730159,
+        "query_min_x_probes": -2.602904674084086,
+        "query_std_x_log_limit": 0.07942442410778963,
+        "log_candidates_x_log_limit": -0.12042485283305225,
+        "query_avg_x_probes": 7.863988518740951
+      },
+      "total_samples": 250,
+      "train_rmse_ms": 177.91286298950078,
+      "train_mae_ms": 49.199734973480865,
+      "train_r2": 0.4449001048303607,
+      "test_rmse_ms": 41.94795595660078,
+      "test_mae_ms": 22.857571055838903,
+      "test_r2": 0.9497653862778126,
+      "test_mape_pct": 20.321545489134728,
+      "train_n": 200,
+      "test_n": 50
+    },
+    "idx_ps_text_embedding_ivf": {
+      "index_name": "idx_ps_text_embedding_ivf",
+      "target_transform": "log1p(exclusive_ms)",
+      "feature_names": [
+        "log_planner_startup_cost",
+        "log_ivf_startup_cost_est",
+        "log_estimated_candidates",
+        "log_estimated_startup_pages",
+        "log_limit_k",
+        "probes_over_lists",
+        "log_query_l2_norm",
+        "query_ref_dist_min",
+        "query_ref_dist_avg",
+        "query_ref_dist_std",
+        "anchor_offset_log",
+        "plan_width",
+        "probes_x_log_candidates",
+        "probes_x_log_limit",
+        "query_min_x_probes",
+        "query_std_x_log_limit",
+        "log_candidates_x_log_limit",
+        "query_avg_x_probes"
+      ],
+      "intercept_log_ms": 58.12980189099845,
+      "coef": {
+        "log_planner_startup_cost": 831700.2861929217,
+        "log_ivf_startup_cost_est": -831700.1298074175,
+        "log_estimated_candidates": -21599.921547715203,
+        "log_estimated_startup_pages": 21602.70884003933,
+        "log_limit_k": 2.9645484618756193,
+        "probes_over_lists": -616.2299250249513,
+        "log_query_l2_norm": 10.575241779444058,
+        "query_ref_dist_min": 0.6322691116625176,
+        "query_ref_dist_avg": -4.165553080802306,
+        "query_ref_dist_std": 0.5938337860827173,
+        "anchor_offset_log": 0.10189102482438003,
+        "plan_width": 930.0857179763678,
+        "probes_x_log_candidates": 37.354708911282856,
+        "probes_x_log_limit": 13.702886155562902,
+        "query_min_x_probes": -1.4678090202705323,
+        "query_std_x_log_limit": -0.1854662959363633,
+        "log_candidates_x_log_limit": -0.2649703265579848,
+        "query_avg_x_probes": 12.335074355235118
+      },
+      "total_samples": 250,
+      "train_rmse_ms": 486.1871907990725,
+      "train_mae_ms": 209.9239216226111,
+      "train_r2": 0.4111163143876668,
+      "test_rmse_ms": 587.9176104150804,
+      "test_mae_ms": 252.8180760099931,
+      "test_r2": 0.3260765314027986,
+      "test_mape_pct": 51.82245046957926,
+      "train_n": 200,
+      "test_n": 50
+    }
+  }
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_coef.json /data/dzh/pgvector/dev/cost_fit/models/ivf_scan_test_predictions.jsonl
+=== Test metrics (160 train / 40 test by default for IVFFlat) ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 38.9379  R²: 0.259417
+  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
+
+=== Index Scan (ivfflat) ===
+  samples: 500  train: 400  test: 100
+  train RMSE (ms): 366.081  R²: 0.505101
+  test  RMSE (ms): 416.777  MAE: 137.838  R²: 0.477437  MAPE: 36.0720%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
+nohup: ignoring input
+=== ANALYZE tables ===
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+=== Python deps ===
+=== Collect + fit ===
+sort_lip_1000 12572.489999999998 ms
+sort_liq_1000 5955.985 ms
+sort_lid_1000 5718.039 ms
+sort_lisd_1000 4185.96 ms
+sort_licd_1000 4156.054999999999 ms
+sort_litx_1000 6509.515 ms
+sort_ot_1000 3520.415 ms
+sort_od_1000 1092.5130000000001 ms
+sort_ock_1000 1077.1719999999998 ms
+sort_osp_1000 1114.6209999999999 ms
+sort_oop_1000 2457.243 ms
+sort_pn_1000 305.515 ms
+sort_prp_1000 260.205 ms
+sort_psz_1000 163.46499999999997 ms
+sort_pbr_1000 291.484 ms
+sort_ca_1000 154.80199999999996 ms
+sort_cnk_1000 133.208 ms
+sort_cnm_1000 163.284 ms
+sort_sa_1000 16.803 ms
+sort_snk_1000 7.6 ms
+sort_snm_1000 19.003000000000004 ms
+sort_psc_1000 820.7669999999998 ms
+sort_psa_1000 682.788 ms
+sort_lip_2500 12435.881 ms
+sort_liq_2500 5952.606999999999 ms
+sort_lid_2500 5773.956 ms
+sort_lisd_2500 4364.527999999999 ms
+sort_licd_2500 4181.261 ms
+sort_litx_2500 6005.2970000000005 ms
+sort_ot_2500 3636.2949999999996 ms
+sort_od_2500 1083.751 ms
+sort_ock_2500 1161.565 ms
+sort_osp_2500 1124.634 ms
+sort_oop_2500 2385.669 ms
+sort_pn_2500 240.51399999999998 ms
+sort_prp_2500 213.95499999999998 ms
+sort_psz_2500 178.31 ms
+sort_pbr_2500 293.324 ms
+sort_ca_2500 205.448 ms
+sort_cnk_2500 106.44999999999999 ms
+sort_cnm_2500 212.01999999999998 ms
+sort_sa_2500 18.299 ms
+sort_snk_2500 11.172 ms
+sort_snm_2500 21.735 ms
+sort_psc_2500 847.5990000000002 ms
+sort_psa_2500 556.7379999999999 ms
+sort_lip_4000 12794.889 ms
+sort_liq_4000 5935.031 ms
+sort_lid_4000 5853.365 ms
+sort_lisd_4000 4283.043000000001 ms
+sort_licd_4000 4197.838000000001 ms
+sort_litx_4000 6109.199 ms
+sort_ot_4000 3766.4569999999994 ms
+sort_od_4000 1158.7479999999998 ms
+sort_ock_4000 1203.336 ms
+sort_osp_4000 1137.01 ms
+sort_oop_4000 2502.4329999999995 ms
+sort_pn_4000 250.35700000000003 ms
+sort_prp_4000 223.785 ms
+sort_psz_4000 141.302 ms
+sort_pbr_4000 296.172 ms
+sort_ca_4000 220.22699999999998 ms
+sort_cnk_4000 136.19399999999996 ms
+sort_cnm_4000 169.16100000000003 ms
+sort_sa_4000 28.906999999999996 ms
+sort_snk_4000 9.870000000000001 ms
+sort_snm_4000 20.161 ms
+sort_psc_4000 810.7470000000001 ms
+sort_psa_4000 637.885 ms
+sort_lip_8000 13116.086 ms
+sort_liq_8000 6099.032 ms
+sort_lid_8000 5820.725 ms
+sort_lisd_8000 4176.383999999999 ms
+sort_licd_8000 4181.651000000001 ms
+sort_litx_8000 6024.8189999999995 ms
+sort_ot_8000 4019.3369999999995 ms
+sort_od_8000 1115.536 ms
+sort_ock_8000 1112.951 ms
+sort_osp_8000 1071.544 ms
+sort_oop_8000 2324.6670000000004 ms
+sort_pn_8000 353.33700000000005 ms
+sort_prp_8000 248.135 ms
+sort_psz_8000 145.33300000000003 ms
+sort_pbr_8000 305.682 ms
+sort_ca_8000 190.017 ms
+sort_cnk_8000 140.64499999999998 ms
+sort_cnm_8000 228.06699999999998 ms
+sort_sa_8000 43.629000000000005 ms
+sort_snk_8000 15.956 ms
+sort_snm_8000 32.43300000000001 ms
+sort_psc_8000 896.5609999999999 ms
+sort_psa_8000 572.082 ms
+sort_lip_12000 12929.829 ms
+sort_liq_12000 5911.818 ms
+sort_lid_12000 5776.604 ms
+sort_lisd_12000 4186.588000000001 ms
+sort_licd_12000 4147.264999999999 ms
+sort_litx_12000 6029.709 ms
+sort_ot_12000 3769.178 ms
+sort_od_12000 1043.1709999999998 ms
+sort_ock_12000 1053.6529999999998 ms
+sort_osp_12000 1144.955 ms
+sort_oop_12000 2340.102 ms
+sort_pn_12000 307.00200000000007 ms
+sort_prp_12000 272.10799999999995 ms
+sort_psz_12000 191.209 ms
+sort_pbr_12000 356.618 ms
+sort_ca_12000 211.753 ms
+sort_cnk_12000 113.57299999999998 ms
+sort_cnm_12000 190.77299999999997 ms
+sort_sa_12000 44.620999999999995 ms
+sort_snk_12000 19.367999999999995 ms
+sort_snm_12000 33.104 ms
+sort_psc_12000 871.643 ms
+sort_psa_12000 621.9709999999999 ms
+sort_lip_25000 13751.392 ms
+sort_liq_25000 6037.608 ms
+sort_lid_25000 5923.6230000000005 ms
+sort_lisd_25000 4605.549000000001 ms
+sort_licd_25000 4223.639999999999 ms
+sort_litx_25000 6057.19 ms
+sort_ot_25000 4258.742 ms
+sort_od_25000 1074.3419999999999 ms
+sort_ock_25000 1162.8239999999998 ms
+sort_osp_25000 1072.5910000000001 ms
+sort_oop_25000 5797.722 ms
+sort_pn_25000 1953.113 ms
+sort_prp_25000 427.81199999999995 ms
+sort_psz_25000 163.811 ms
+sort_pbr_25000 437.42400000000004 ms
+sort_ca_25000 278.25 ms
+sort_cnk_25000 157.368 ms
+sort_cnm_25000 410.459 ms
+sort_sa_25000 71.288 ms
+sort_snk_25000 22.059 ms
+sort_snm_25000 26.206999999999997 ms
+sort_psc_25000 1089.2609999999997 ms
+sort_psa_25000 605.9190000000001 ms
+sort_lip_45000 191117.81699999998 ms
+sort_liq_45000 32648.721 ms
+sort_lid_45000 27661.012000000002 ms
+sort_lisd_45000 17596.845 ms
+sort_licd_45000 16840.883 ms
+sort_litx_45000 26011.062 ms
+sort_ot_45000 54089.649000000005 ms
+sort_od_45000 4439.481 ms
+sort_ock_45000 5648.595 ms
+sort_osp_45000 3340.834 ms
+sort_oop_45000 5799.7429999999995 ms
+sort_pn_45000 2149.451 ms
+sort_prp_45000 1376.3890000000001 ms
+sort_psz_45000 392.74799999999993 ms
+sort_pbr_45000 729.571 ms
+sort_ca_45000 1423.89 ms
+sort_cnk_45000 285.971 ms
+sort_cnm_45000 410.036 ms
+sort_sa_45000 76.188 ms
+sort_snk_45000 18.079 ms
+sort_snm_45000 36.5 ms
+sort_psc_45000 7919.782999999999 ms
+sort_psa_45000 2268.941 ms
+sort_lip_70000 191975.653 ms
+sort_liq_70000 32730.115999999998 ms
+sort_lid_70000 26976.407000000003 ms
+sort_lisd_70000 17039.681 ms
+sort_licd_70000 16900.872 ms
+sort_litx_70000 26859.404000000002 ms
+sort_ot_70000 54868.435 ms
+sort_od_70000 5118.979 ms
+sort_ock_70000 5646.116 ms
+sort_osp_70000 3305.191 ms
+sort_oop_70000 5956.1849999999995 ms
+sort_pn_70000 2064.196 ms
+sort_prp_70000 1569.7440000000001 ms
+sort_psz_70000 391.30099999999993 ms
+sort_pbr_70000 732.412 ms
+sort_ca_70000 1445.002 ms
+sort_cnk_70000 361.38100000000003 ms
+sort_cnm_70000 437.682 ms
+sort_sa_70000 79.378 ms
+sort_snk_70000 25.146 ms
+sort_snm_70000 30.505 ms
+sort_psc_70000 7879.0689999999995 ms
+sort_psa_70000 2187.41 ms
+sort_lip_95000 191022.485 ms
+sort_liq_95000 32573.232000000004 ms
+sort_lid_95000 26938.077 ms
+sort_lisd_95000 18113.400999999998 ms
+sort_licd_95000 16952.425 ms
+sort_litx_95000 27451.636 ms
+sort_ot_95000 54134.994 ms
+sort_od_95000 4482.371 ms
+sort_ock_95000 5642.393 ms
+sort_osp_95000 3231.9190000000003 ms
+sort_oop_95000 5948.411 ms
+sort_pn_95000 2084.718 ms
+sort_prp_95000 1387.033 ms
+sort_psz_95000 391.654 ms
+sort_pbr_95000 731.613 ms
+sort_ca_95000 1716.326 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/sort_samples_new.jsonl count 200
+{
+  "operator": "Sort",
+  "cost_ascii_section": "\u00a75 Sort / cost_tuplesort",
+  "features": [
+    "N_sort_logn",
+    "N_sort_plan",
+    "N_sort_spill_proxy_rows",
+    "sort_tuple_bytes_proxy"
+  ],
+  "feature_notes": {
+    "N_sort_logn": "C_cmp * N * log2(N) scale; N from Plan Rows",
+    "N_sort_plan": "C_op * N run term scale",
+    "N_sort_spill_proxy_rows": "external sort I/O proxy (N * external flag)",
+    "sort_tuple_bytes_proxy": "width * rows for memory / byte workload",
+    "intercept": "input path + omitted sort constants"
+  },
+  "total_samples": 200,
+  "intercept_ms": -347.18762623817673,
+  "coef": {
+    "N_sort_logn": 0.00018352706001787658,
+    "N_sort_plan": -0.006100385021250869,
+    "N_sort_spill_proxy_rows": 0.0009402369312019984,
+    "sort_tuple_bytes_proxy": 0.00016767051718190055
+  },
+  "train_rmse_ms": 18243.390692141096,
+  "train_mae_ms": 9167.818570080095,
+  "train_r2": 0.5370680744492439,
+  "test_rmse_ms": 14502.98715693928,
+  "test_mae_ms": 9059.26949351857,
+  "test_r2": -1.1018909633524223,
+  "test_mape_pct": 534.9477008482745,
+  "train_n": 160,
+  "test_n": 40
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/sort_coef_new.json /data/dzh/pgvector/dev/cost_fit/models/sort_test_predictions_new.jsonl
+mj_ol_3000 0.2600000000000001 ms
+mj_ol_6000 0.30600000000000005 ms
+mj_ol_12000 0.6020000000000001 ms
+mj_ol_15000 0.7370000000000001 ms
+mj_ol_25000 1.2650000000000001 ms
+mj_ol_40000 2.0169999999999995 ms
+mj_ol_65000 3.2540000000000004 ms
+mj_ol_90000 4.508000000000001 ms
+mj_ol_140000 7.002000000000001 ms
+mj_ol_200000 9.970000000000002 ms
+mj_ol_300000 14.948999999999998 ms
+mj_ol_450000 22.430999999999997 ms
+mj_ol_650000 32.498999999999995 ms
+mj_ol_900000 39.043000000000006 ms
+mj_ol_1250000 62.35900000000001 ms
+mj_ol_1600000 71.884 ms
+mj_ol_2100000 104.85300000000001 ms
+mj_ol_band_m2_12000 0.29899999999999993 ms
+mj_ol_band_m3_12000 0.20199999999999996 ms
+mj_ol_band_m5_12000 0.129 ms
+mj_ol_band_m7_12000 0.08900000000000008 ms
+mj_ol_band_m11_12000 0.05599999999999994 ms
+mj_ol_band_m13_12000 0.050000000000000044 ms
+mj_ol_band_m17_12000 0.039000000000000146 ms
+mj_ol_band_m23_12000 0.031000000000000028 ms
+mj_ol_band_m2_25000 0.621 ms
+mj_ol_band_m3_25000 0.4209999999999998 ms
+mj_ol_band_m5_25000 0.256 ms
+mj_ol_band_m7_25000 0.18700000000000006 ms
+mj_ol_band_m11_25000 0.11799999999999988 ms
+mj_ol_band_m13_25000 0.10099999999999998 ms
+mj_ol_band_m17_25000 0.07800000000000007 ms
+mj_ol_band_m23_25000 0.05899999999999972 ms
+mj_ol_band_m2_40000 0.9809999999999999 ms
+mj_ol_band_m3_40000 0.6619999999999999 ms
+mj_ol_band_m5_40000 0.40700000000000003 ms
+mj_ol_band_m7_40000 0.28000000000000025 ms
+mj_ol_band_m11_40000 0.18799999999999972 ms
+mj_ol_band_m13_40000 0.15900000000000025 ms
+mj_ol_band_m17_40000 0.1280000000000001 ms
+mj_ol_band_m23_40000 0.09600000000000009 ms
+mj_ol_band_m2_90000 2.213 ms
+mj_ol_band_m3_90000 1.492 ms
+mj_ol_band_m5_90000 0.9210000000000003 ms
+mj_ol_band_m7_90000 0.6530000000000005 ms
+mj_ol_band_m11_90000 0.43100000000000005 ms
+mj_ol_band_m13_90000 0.35999999999999943 ms
+mj_ol_band_m17_90000 0.28300000000000036 ms
+mj_ol_band_m23_90000 0.21300000000000097 ms
+mj_ol_band_m2_200000 4.876000000000001 ms
+mj_ol_band_m3_200000 3.2729999999999997 ms
+mj_ol_band_m5_200000 2.01 ms
+mj_ol_band_m7_200000 1.4539999999999988 ms
+mj_ol_band_m11_200000 0.945999999999998 ms
+mj_ol_band_m13_200000 0.8280000000000012 ms
+mj_ol_band_m17_200000 0.6309999999999985 ms
+mj_ol_band_m23_200000 0.4139999999999997 ms
+mj_ol_band_m2_450000 9.195 ms
+mj_ol_band_m3_450000 7.359000000000002 ms
+mj_ol_band_m5_450000 4.178000000000001 ms
+mj_ol_band_m7_450000 2.9250000000000043 ms
+mj_ol_band_m11_450000 2.1320000000000014 ms
+mj_ol_band_m13_450000 1.8210000000000015 ms
+mj_ol_band_m17_450000 1.3000000000000007 ms
+mj_ol_band_m23_450000 0.9759999999999991 ms
+mj_ol_band_m2_900000 20.847 ms
+mj_ol_band_m3_900000 14.840000000000003 ms
+mj_ol_band_m5_900000 9.069000000000003 ms
+mj_ol_band_m7_900000 6.511999999999993 ms
+mj_ol_band_m11_900000 4.2479999999999976 ms
+mj_ol_band_m13_900000 3.658999999999999 ms
+mj_ol_band_m17_900000 2.858000000000004 ms
+mj_ol_band_m23_900000 2.1189999999999998 ms
+mj_ol_band_m2_1600000 39.02999999999999 ms
+mj_ol_band_m3_1600000 26.283999999999992 ms
+mj_ol_band_m5_1600000 16.042999999999992 ms
+mj_ol_band_m7_1600000 11.537999999999997 ms
+mj_ol_band_m11_1600000 7.529999999999987 ms
+mj_ol_band_m13_1600000 6.432999999999993 ms
+mj_ol_band_m17_1600000 4.987999999999985 ms
+mj_ol_band_m23_1600000 3.7590000000000146 ms
+mj_co_2 401.837 ms
+mj_co_3 275.53499999999985 ms
+mj_co_4 301.5920000000001 ms
+mj_co_5 286.624 ms
+mj_co_7 294.84400000000005 ms
+mj_co_9 233.712 ms
+mj_co_11 252.21100000000013 ms
+mj_co_13 229.57799999999997 ms
+mj_co_16 243.10900000000015 ms
+mj_co_17 256.452 ms
+mj_co_19 246.65099999999995 ms
+mj_co_23 226.4330000000001 ms
+mj_co_29 238.56099999999992 ms
+mj_co_31 217.5730000000001 ms
+mj_co_37 254.96500000000015 ms
+mj_co_41 222.77100000000007 ms
+mj_co_43 223.97399999999993 ms
+mj_co_47 244.21900000000005 ms
+mj_co_53 245.47199999999998 ms
+mj_co_59 229.57600000000002 ms
+mj_co_band_5000 1.7049999999999996 ms
+mj_co_band_12000 3.7589999999999995 ms
+mj_co_band_25000 7.814 ms
+mj_co_band_50000 18.267000000000003 ms
+mj_co_band_80000 27.011000000000003 ms
+mj_co_band_120000 40.513999999999996 ms
+mj_co_band_180000 60.44800000000001 ms
+mj_co_band_250000 84.17299999999997 ms
+mj_co_band_400000 129.29399999999998 ms
+mj_co_band_700000 255.308 ms
+mj_co_band_1100000 384.5999999999999 ms
+mj_co_band_1500000 498.57100000000014 ms
+mj_ps_1_50000 14.052000000000003 ms
+mj_ps_1_150000 39.224 ms
+mj_ps_1_30000 8.416000000000002 ms
+mj_ps_1_100000 30.833999999999996 ms
+mj_ps_5000_90000 22.558999999999997 ms
+mj_ps_1_200000 52.001999999999995 ms
+mj_ps_2000_60000 18.046999999999997 ms
+mj_ps_1_80000 22.660999999999998 ms
+mj_ps_10000_120000 34.744 ms
+mj_ps_30000_180000 44.318 ms
+mj_ps_50000_250000 54.905 ms
+mj_ps_100000_350000 70.89599999999999 ms
+mj_ps_200000_500000 89.92099999999999 ms
+mj_ps_mod5_0 234.08100000000002 ms
+mj_ps_mod5_1 196.60000000000002 ms
+mj_ps_mod5_2 190.68600000000004 ms
+mj_ps_mod5_3 219.89999999999998 ms
+mj_ps_mod7_0 186.05899999999997 ms
+mj_ps_mod7_1 210.78099999999995 ms
+mj_ps_mod7_2 186.92599999999993 ms
+mj_ps_mod7_3 176.08900000000006 ms
+mj_ps_mod11_0 169.39499999999998 ms
+mj_ps_mod11_1 147.48900000000003 ms
+mj_ps_mod11_2 153.41899999999998 ms
+mj_ps_mod11_3 149.39300000000003 ms
+mj_ps_mod13_0 152.47200000000004 ms
+mj_ps_mod13_1 142.92699999999996 ms
+mj_ps_mod13_2 152.519 ms
+mj_ps_mod13_3 142.41600000000005 ms
+mj_ps_mod17_0 141.95100000000002 ms
+mj_ps_mod17_1 135.24599999999998 ms
+mj_ps_mod17_2 135.21299999999997 ms
+mj_ps_mod17_3 135.21300000000002 ms
+mj_ps_mod19_0 132.829 ms
+mj_ps_mod19_1 132.738 ms
+mj_ps_mod19_2 132.75099999999998 ms
+mj_ps_mod19_3 139.236 ms
+mj_sn_1 7.737000000000002 ms
+mj_sn_3 3.3059999999999974 ms
+mj_sn_5 1.5489999999999995 ms
+mj_sn_7 1.4260000000000002 ms
+mj_sn_9 1.1709999999999994 ms
+mj_sn_11 0.9109999999999996 ms
+mj_sn_13 0.6110000000000007 ms
+mj_sn_15 0.5280000000000005 ms
+mj_sn_17 0.5920000000000005 ms
+mj_sn_19 0.5259999999999998 ms
+mj_sn_21 0.37700000000000067 ms
+mj_sn_23 0.3470000000000004 ms
+mj_sn_25 0.3150000000000004 ms
+mj_sn_27 0.29300000000000015 ms
+mj_sn_29 0.2730000000000006 ms
+mj_sn_31 0.25599999999999934 ms
+mj_sn_33 0.24099999999999966 ms
+mj_sn_35 0.23399999999999999 ms
+mj_sn_37 0.21699999999999964 ms
+mj_sn_39 0.20399999999999974 ms
+mj_sn_41 0.19700000000000095 ms
+mj_sn_43 0.18700000000000028 ms
+mj_sn_47 0.1719999999999997 ms
+mj_sn_53 0.19500000000000028 ms
+mj_nr 0.01200000000000001 ms
+mj_cn 42.235 ms
+mj_cn_lt_1 1.7360000000000002 ms
+mj_cn_lt_2 3.2420000000000004 ms
+mj_cn_lt_3 4.814 ms
+mj_cn_lt_5 7.889 ms
+mj_cn_lt_8 13.365999999999998 ms
+mj_cn_lt_12 21.613 ms
+mj_cn_lt_15 25.037999999999997 ms
+mj_cn_lt_20 39.466 ms
+mj_cn_lt_25 45.489000000000004 ms
+mj_lip_m5_0 1261.643 ms
+mj_lip_m5_1 1221.7000000000007 ms
+mj_lip_m5_2 1225.2160000000003 ms
+mj_lip_m5_3 1223.821 ms
+mj_lip_m7_0 1110.3490000000002 ms
+mj_lip_m7_1 1107.9989999999998 ms
+mj_lip_m7_2 1106.7000000000007 ms
+mj_lip_m7_3 1117.6170000000002 ms
+mj_lip_m9_0 1045.3340000000007 ms
+mj_lip_m9_1 1042.4940000000006 ms
+mj_lip_m9_2 1110.2510000000002 ms
+mj_lip_m9_3 1044.8539999999994 ms
+mj_lip_m11_0 1004.3910000000014 ms
+mj_lip_m11_1 1004.1020000000008 ms
+mj_lip_m11_2 1007.3060000000005 ms
+wrote /data/dzh/pgvector/dev/cost_fit/data/mergejoin_samples_new.jsonl count 200
+{
+  "operator": "Merge Join",
+  "cost_ascii_section": "\u00a75 Merge Join",
+  "features": [
+    "R_outer_times_k",
+    "R_inner_plan",
+    "J_plan",
+    "proj_proxy_join_bytes"
+  ],
+  "feature_notes": {
+    "R_outer_times_k": "outer plan rows * merge_k (Merge Cond count)",
+    "R_inner_plan": "inner plan rows",
+    "J_plan": "join output J (Plan Rows)",
+    "proj_proxy_join_bytes": "T_pt * R_out proxy",
+    "intercept": "rescanratio / mat_inner vs bare_inner + mergequals detail omitted"
+  },
+  "total_samples": 200,
+  "intercept_ms": 22.87327868265466,
+  "coef": {
+    "R_outer_times_k": 2.239278288382152e-05,
+    "R_inner_plan": -0.0018040895061939798,
+    "J_plan": 0.0004751654827176256,
+    "proj_proxy_join_bytes": 0.0
+  },
+  "train_rmse_ms": 192.65256705400944,
+  "train_mae_ms": 115.11503448214678,
+  "train_r2": 0.4803251728733733,
+  "test_rmse_ms": 262.83821776062365,
+  "test_mae_ms": 155.9961604024724,
+  "test_r2": 0.5035332246980542,
+  "test_mape_pct": 11839.48708641769,
+  "train_n": 160,
+  "test_n": 40
+}
+wrote /data/dzh/pgvector/dev/cost_fit/models/mergejoin_coef_new.json /data/dzh/pgvector/dev/cost_fit/models/mergejoin_test_predictions_new.jsonl
+=== Test metrics ===
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 2.14303  R²: 0.999767
+  test  RMSE (ms): 1.9263  MAE: 1.29002  R²: 0.993804  MAPE: 5.5458%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 38.9379  R²: 0.259417
+  test  RMSE (ms): 19.6773  MAE: 15.3421  R²: -1.039960  MAPE: 74.7808%
+
+=== Index Scan (ivfflat) ===
+  samples: 500  train: 400  test: 100
+  train RMSE (ms): 366.081  R²: 0.505101
+  test  RMSE (ms): 416.777  MAE: 137.838  R²: 0.477437  MAPE: 36.0720%
+
+=== Sort ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 47081.8  R²: 0.110600
+  test  RMSE (ms): 12394.2  MAE: 10603.3  R²: 0.665413  MAPE: 2002.7805%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 146.594  R²: 0.973473
+  test  RMSE (ms): 579.205  MAE: 280.824  R²: 0.559552  MAPE: 18.6928%
+
+=== Merge Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 8.76143  R²: 0.998873
+  test  RMSE (ms): 4.7324  MAE: 3.80811  R²: 0.998084  MAPE: 239.9601%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0169653  R²: 0.999966
+  test  RMSE (ms): 0.00893523  MAE: 0.00665586  R²: 0.762131  MAPE: 29.1258%
+
+Done. Coefficients under /data/dzh/pgvector/dev/cost_fit/models/
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 18.7074  R²: 0.981469
+  test  RMSE (ms): 5.3338  MAE: 3.39634  R²: 0.953211  MAPE: 12.4533%
+
+index_scan_coef_new.json — missing
+hnsw_partition_scan_coef_new.json — missing
+=== Index Scan (ivfflat) ===
+  samples: 500  train: 400  test: 100
+  train RMSE (ms): 366.081  R²: 0.505101
+  test  RMSE (ms): 416.777  MAE: 137.838  R²: 0.477437  MAPE: 36.0720%
+
+=== Sort ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 18243.4  R²: 0.537068
+  test  RMSE (ms): 14503  MAE: 9059.27  R²: -1.101891  MAPE: 534.9477%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 740.483  R²: 0.212787
+  test  RMSE (ms): 594.311  MAE: 403.211  R²: 0.505275  MAPE: 51.4222%
+
+=== Merge Join ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 192.653  R²: 0.480325
+  test  RMSE (ms): 262.838  MAE: 155.996  R²: 0.503533  MAPE: 11839.4871%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0133933  R²: 0.999981
+  test  RMSE (ms): 0.0155146  MAE: 0.0104286  R²: 0.602071  MAPE: 34.8593%
+
+=== Seq Scan ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 18.7074  R²: 0.981469
+  test  RMSE (ms): 5.3338  MAE: 3.39634  R²: 0.953211  MAPE: 12.4533%
+
+index_scan_coef.json — missing
+=== Index Scan (hnsw, partition) ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 3.27297  R²: 0.928422
+  test  RMSE (ms): 3.55169  MAE: 2.44409  R²: 0.934048  MAPE: 14.3786%
+
+=== Index Scan (ivfflat) ===
+  samples: 500  train: 400  test: 100
+  train RMSE (ms): 366.081  R²: 0.505101
+  test  RMSE (ms): 416.777  MAE: 137.838  R²: 0.477437  MAPE: 36.0720%
+
+=== Sort ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 18243.4  R²: 0.537068
+  test  RMSE (ms): 14503  MAE: 9059.27  R²: -1.101891  MAPE: 534.9477%
+
+=== Hash Join ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 740.483  R²: 0.212787
+  test  RMSE (ms): 594.311  MAE: 403.211  R²: 0.505275  MAPE: 51.4222%
+
+=== Merge Join ===
+  samples: 200  train: 160  test: 40
+  train RMSE (ms): 192.653  R²: 0.480325
+  test  RMSE (ms): 262.838  MAE: 155.996  R²: 0.503533  MAPE: 11839.4871%
+
+=== Aggregate ===
+  samples: 55  train: 40  test: 10
+  train RMSE (ms): 0.0133933  R²: 0.999981
+  test  RMSE (ms): 0.0155146  MAE: 0.0104286  R²: 0.602071  MAPE: 34.8593%
+
