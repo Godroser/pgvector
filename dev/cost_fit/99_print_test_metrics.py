@@ -25,6 +25,7 @@ def main() -> None:
         "index_scan_coef.json",
         "hnsw_partition_scan_coef.json",
         "ivf_scan_coef.json",
+        "ivf_scan_coef_new.json",
         "sort_coef_new.json",
         "hashjoin_coef_new.json",
         "mergejoin_coef_new.json",
@@ -61,6 +62,12 @@ def main() -> None:
                 f"R²: {_fmt(d.get('test_r2'), '.6f')}  "
                 f"MAPE: {_fmt(d.get('test_mape_pct'), '.4f')}%"
             )
+            if d.get("test_median_feature_extract_time_us") is not None:
+                print(f"  test median feature (us): {_fmt(d.get('test_median_feature_extract_time_us'), '.6f')}")
+            if d.get("test_median_predict_time_us") is not None:
+                print(f"  test median predict (us): {_fmt(d.get('test_median_predict_time_us'), '.6f')}")
+            if d.get("test_median_total_inference_time_us") is not None:
+                print(f"  test median total infer (us): {_fmt(d.get('test_median_total_inference_time_us'), '.6f')}")
         print()
 
 

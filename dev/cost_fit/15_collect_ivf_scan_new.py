@@ -16,6 +16,8 @@ import sys
 import time
 from typing import Any
 
+import numpy as np
+
 from fit_common import (
     exclusive_total_time,
     explain_analyze_json,
@@ -28,19 +30,10 @@ from workloads import ivf_scan_workloads
 
 FORCE_INDEX = "SET LOCAL enable_seqscan TO off;"
 SEQUENTIAL_RATIO = 0.5
-IVF_REF_OFFSETS = {
-    # "part": [0, 5, 29, 131, 701, 1999],
-    # "partsupp": [0, 11, 127, 997, 4501, 15001],
-    "part": [
-        0, 5, 29, 131, 701, 1999, 2341, 3101, 4151, 4501, 5312, 6472, 7631, 9783, 12351, 13215, 14411, 15811, 17211, 19999, 20013, 21392,
-        22800, 24300, 25900, 27600, 29400, 31300, 33300, 35400, 37600, 39900, 42300, 44800, 47400, 50100, 52900, 55800, 58800, 61900,
-        65100, 68400, 71800, 75300, 78900, 82600, 86400, 90300, 94300, 98400
-    ],
-    "partsupp": [
-        0, 11, 127, 997, 4501, 15001, 29001, 45001, 50001, 55001, 61001, 67001, 73001, 79001, 85001, 91001, 97001, 103001, 109001, 115001, 121001, 127001, 133001, 139001, 145001, 151001, 157001, 163001, 169001, 175001, 181001, 187001, 193001, 199001,
-        205001, 211001, 217001, 223001, 229001, 235001, 241001, 247001, 253001, 259001, 265001, 271001, 277001, 283001, 289001, 295001
-    ]
-}
+SAMPLING_VECTOR_COUNT = 500
+DEFAULT_SAMPLING_NLIST = 50
+KMEANS_MAX_ITERS = 25
+KMEANS_SEED = 42
 IVF_REL_SPECS = {
     "part": {
         "vector_col": "text_embedding",
@@ -86,6 +79,16 @@ def _field_item_count(v) -> float:
     if isinstance(v, list):
         return float(len([x for x in v if x is not None]))
     return 1.0
+
+
+def _parse_vector_text(text: str) -> np.ndarray:
+    s = text.strip()
+    if not (s.startswith("[") and s.endswith("]")):
+        raise ValueError(f"Unexpected vector text: {text[:80]!r}")
+    body = s[1:-1].strip()
+    if not body:
+        return np.zeros(0, dtype=float)
+    return np.asarray([float(x) for x in body.split(",")], dtype=float)
 
 
 def _load_cost_gucs() -> dict:
@@ -138,12 +141,22 @@ def _quote_sql_literal(text: str) -> str:
     return "'" + text.replace("'", "''") + "'"
 
 
-def _load_reference_vectors() -> dict[str, list[str]]:
-    refs: dict[str, list[str]] = {}
-    for rel, offsets in IVF_REF_OFFSETS.items():
-        spec = IVF_REL_SPECS[rel]
-        values = ", ".join(f"({i}, {off})" for i, off in enumerate(offsets))
-        sql = f"""
+def _sample_offsets(total_rows: float, sample_n: int) -> list[int]:
+    total = max(1, int(total_rows))
+    want = min(sample_n, total)
+    if want <= 1:
+        return [0]
+    stride = max(1, total // want)
+    offs = list(dict.fromkeys(min(total - 1, i * stride) for i in range(want)))
+    if not offs:
+        offs = [0]
+    return offs[:want]
+
+
+def _fetch_vectors_by_offsets(rel: str, offsets: list[int]) -> list[np.ndarray]:
+    spec = IVF_REL_SPECS[rel]
+    values = ", ".join(f"({i}, {off})" for i, off in enumerate(offsets))
+    sql = f"""
 WITH offs(ord, off) AS (
   VALUES {values}
 )
@@ -158,79 +171,175 @@ SELECT ord,
 FROM offs
 ORDER BY ord;
 """
+    out = psql_sql(sql.strip(), tuples_only=True)
+    vecs: list[np.ndarray] = []
+    for line in out.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split("|", 1)
+        if len(parts) != 2:
+            continue
+        vec_txt = parts[1].strip()
+        if vec_txt:
+            vecs.append(_parse_vector_text(vec_txt))
+    return vecs
+
+
+def _fetch_sample_vectors(rel: str, sample_n: int, reltuples: float) -> tuple[list[np.ndarray], str]:
+    spec = IVF_REL_SPECS[rel]
+    want = max(1, min(sample_n, int(max(1.0, reltuples))))
+    pct = min(100.0, max(0.01, 400.0 * want / max(1.0, float(reltuples))))
+    last_method = "tablesample"
+    for _ in range(5):
+        sql = f"""
+SELECT {spec["vector_col"]}::text
+FROM {rel} TABLESAMPLE SYSTEM ({pct})
+WHERE {spec["not_null"]}
+LIMIT {want};
+"""
         out = psql_sql(sql.strip(), tuples_only=True)
-        vecs: list[str] = []
+        vecs = []
         for line in out.splitlines():
             line = line.strip()
-            if not line:
-                continue
-            parts = line.split("|", 1)
-            if len(parts) != 2:
-                continue
-            vec_txt = parts[1].strip()
-            if vec_txt:
-                vecs.append(vec_txt)
-        refs[rel] = vecs
-    return refs
+            if line:
+                vecs.append(_parse_vector_text(line))
+        if len(vecs) >= want:
+            return vecs[:want], last_method
+        pct = min(100.0, pct * 4.0)
+
+    offsets = _sample_offsets(reltuples, want)
+    return _fetch_vectors_by_offsets(rel, offsets), "offset_fallback"
 
 
-def _query_vector_features(
+def _kmeans_fit(vectors: np.ndarray, k: int, seed: int = KMEANS_SEED, max_iters: int = KMEANS_MAX_ITERS) -> tuple[np.ndarray, np.ndarray]:
+    n = vectors.shape[0]
+    if n == 0:
+        raise ValueError("cannot cluster zero vectors")
+    k = max(1, min(k, n))
+    if k == n:
+        return vectors.copy(), np.arange(n, dtype=int)
+
+    rng = np.random.default_rng(seed)
+    centers = np.empty((k, vectors.shape[1]), dtype=float)
+    first_idx = int(rng.integers(0, n))
+    centers[0] = vectors[first_idx]
+    min_sq = np.sum((vectors - centers[0]) ** 2, axis=1)
+    for i in range(1, k):
+        total = float(np.sum(min_sq))
+        if total <= 1e-18:
+            centers[i:] = vectors[rng.choice(n, size=k - i, replace=False)]
+            break
+        probs = min_sq / total
+        idx = int(rng.choice(n, p=probs))
+        centers[i] = vectors[idx]
+        min_sq = np.minimum(min_sq, np.sum((vectors - centers[i]) ** 2, axis=1))
+
+    labels = np.zeros(n, dtype=int)
+    for _ in range(max_iters):
+        sq_dists = np.sum((vectors[:, None, :] - centers[None, :, :]) ** 2, axis=2)
+        new_labels = np.argmin(sq_dists, axis=1)
+        if np.array_equal(labels, new_labels):
+            break
+        labels = new_labels
+        for j in range(k):
+            mask = labels == j
+            if np.any(mask):
+                centers[j] = np.mean(vectors[mask], axis=0)
+            else:
+                farthest = int(np.argmax(np.min(sq_dists, axis=1)))
+                centers[j] = vectors[farthest]
+    return centers, labels
+
+
+def _build_sampling_ivf_model(
+    *,
+    rel: str,
+    lists: int,
+    reltuples: float,
+    sampling_nlist: int,
+) -> dict[str, Any]:
+    vectors, sample_method = _fetch_sample_vectors(rel, SAMPLING_VECTOR_COUNT, reltuples)
+    if not vectors:
+        raise RuntimeError(f"No sample vectors fetched for {rel}")
+    mat = np.vstack(vectors)
+    effective_nlist = max(1, min(int(sampling_nlist), lists, mat.shape[0]))
+    centers, labels = _kmeans_fit(mat, effective_nlist)
+    cluster_counts = np.bincount(labels, minlength=effective_nlist).astype(float)
+    return {
+        "sample_size": int(mat.shape[0]),
+        "sampling_nlist": int(effective_nlist),
+        "sample_method": sample_method,
+        "centers": centers,
+        "cluster_counts": cluster_counts,
+    }
+
+
+def _fetch_query_vector(rel: str, anchor_off: int) -> np.ndarray:
+    spec = IVF_REL_SPECS[rel]
+    sql = f"""
+SELECT {spec["vector_col"]}::text
+FROM {rel}
+WHERE {spec["not_null"]}
+ORDER BY {spec["order_by"]}
+OFFSET {anchor_off} LIMIT 1;
+"""
+    out = psql_sql(sql.strip(), tuples_only=True).strip()
+    if not out:
+        raise RuntimeError(f"No query vector found for {rel} offset {anchor_off}")
+    line = out.splitlines()[0].strip()
+    if "|" in line:
+        line = line.split("|", 1)[-1].strip()
+    return _parse_vector_text(line)
+
+
+def _sampling_query_features(
     *,
     rel: str,
     anchor_off: int,
-    ref_vectors: dict[str, list[str]],
-    cache: dict[tuple[str, int], dict[str, float]],
+    probes: int,
+    lists: int,
+    relpages: float,
+    index_pages: float,
+    index_tuples: float,
+    sampling_models: dict[str, dict[str, Any]],
+    cache: dict[tuple[str, int], np.ndarray],
 ) -> dict[str, float]:
     cache_key = (rel, anchor_off)
     if cache_key in cache:
-        return cache[cache_key]
+        qvec = cache[cache_key]
+    else:
+        qvec = _fetch_query_vector(rel, anchor_off)
+        cache[cache_key] = qvec
 
-    spec = IVF_REL_SPECS[rel]
-    refs = ref_vectors.get(rel, [])
-    if not refs:
-        features = {
-            "anchor_offset": float(anchor_off),
-            "query_l2_norm": 0.0,
-            "query_ref_dist_min": 0.0,
-            "query_ref_dist_max": 0.0,
-            "query_ref_dist_avg": 0.0,
-            "query_ref_dist_std": 0.0,
-        }
-        cache[cache_key] = features
-        return features
-
-    dist_cols = []
-    for i, vec_txt in enumerate(refs, start=1):
-        lit = _quote_sql_literal(vec_txt)
-        dist_cols.append(f"(q.v <-> {lit}::{spec['vector_type']})::float8 AS d{i}")
-    sql = f"""
-WITH q AS (
-  SELECT {spec["vector_col"]} AS v
-  FROM {rel}
-  WHERE {spec["not_null"]}
-  ORDER BY {spec["order_by"]}
-  OFFSET {anchor_off} LIMIT 1
-)
-SELECT vector_norm(q.v)::float8,
-       {", ".join(dist_cols)}
-FROM q;
-"""
-    out = psql_sql(sql.strip(), tuples_only=True).strip()
-    parts = out.split("|") if out else []
-    norm = float(parts[0]) if parts and parts[0] else 0.0
-    dists = [float(x) for x in parts[1:] if x]
-    avg = statistics.fmean(dists) if dists else 0.0
-    std = statistics.pstdev(dists) if len(dists) > 1 else 0.0
-    features = {
-        "anchor_offset": float(anchor_off),
-        "query_l2_norm": norm,
-        "query_ref_dist_min": min(dists) if dists else 0.0,
-        "query_ref_dist_max": max(dists) if dists else 0.0,
-        "query_ref_dist_avg": avg,
-        "query_ref_dist_std": std,
+    model = sampling_models[rel]
+    centers = model["centers"]
+    cluster_counts = model["cluster_counts"]
+    sampling_nlist = int(model["sampling_nlist"])
+    sample_size = max(1, int(model["sample_size"]))
+    probe_ratio = 1.0 if lists <= 0 else min(1.0, float(probes) / float(lists))
+    effective_nprobe = max(1, min(sampling_nlist, int(round(probe_ratio * sampling_nlist))))
+    dists = np.linalg.norm(centers - qvec, axis=1)
+    nearest = np.argsort(dists)[:effective_nprobe]
+    sampled_candidate_count = float(np.sum(cluster_counts[nearest]))
+    sampled_candidate_share = sampled_candidate_count / float(sample_size)
+    sampling_estimated_candidates = max(1.0, sampled_candidate_share * float(index_tuples))
+    sampling_estimated_data_pages = max(1.0, sampled_candidate_share * float(relpages))
+    sampling_estimated_index_pages = max(1.0, sampled_candidate_share * float(index_pages))
+    sampling_probe_center_dist_avg = float(np.mean(dists[nearest])) if effective_nprobe > 0 else 0.0
+    sampling_probe_center_dist_max = float(np.max(dists[nearest])) if effective_nprobe > 0 else 0.0
+    return {
+        "query_l2_norm": float(np.linalg.norm(qvec)),
+        "sampling_sample_size": float(sample_size),
+        "sampling_nlist": float(sampling_nlist),
+        "sampling_nprobe": float(effective_nprobe),
+        "sampling_candidate_share": sampled_candidate_share,
+        "sampling_estimated_candidates": sampling_estimated_candidates,
+        "sampling_estimated_data_pages": sampling_estimated_data_pages,
+        "sampling_estimated_index_pages": sampling_estimated_index_pages,
+        "sampling_probe_center_dist_avg": sampling_probe_center_dist_avg,
+        "sampling_probe_center_dist_max": sampling_probe_center_dist_max,
     }
-    cache[cache_key] = features
-    return features
 
 
 def _node_buffer_stats(node: dict[str, Any]) -> dict[str, float]:
@@ -264,6 +373,9 @@ def _estimate_generic_ivf_costs(
     n_index_quals: float,
     n_orderbys: float,
     limit_k: int,
+    sampling_estimated_candidates: float,
+    sampling_estimated_data_pages: float,
+    sampling_estimated_index_pages: float,
     cost_gucs: dict,
 ) -> dict:
     random_page_cost = cost_gucs["random_page_cost"]
@@ -286,12 +398,16 @@ def _estimate_generic_ivf_costs(
     ratio = 1.0 if lists <= 0 else min(1.0, float(probes) / float(lists))
     tuples_per_list = idx_total_tuples / max(1.0, float(lists))
     pages_per_list = idx_total_pages / max(1.0, float(lists))
-    estimated_candidates = ratio * idx_total_tuples
-    estimated_startup_pages = ratio * num_index_pages
-    estimated_startup_tuples = max(float(limit_k), ratio * num_index_tuples)
+    estimated_candidates = max(float(limit_k), float(sampling_estimated_candidates))
+    estimated_startup_pages = max(1.0, float(sampling_estimated_index_pages))
+    estimated_startup_tuples = estimated_candidates
+    estimated_data_pages = max(1.0, float(sampling_estimated_data_pages))
     ivf_total_cost = generic_total_cost - SEQUENTIAL_RATIO * num_index_pages * (random_page_cost - seq_page_cost)
-    ivf_startup_cost = ivf_total_cost * ratio
-    startup_pages = num_index_pages * ratio
+    ivf_startup_cost = estimated_startup_pages * (
+        seq_page_cost + SEQUENTIAL_RATIO * (random_page_cost - seq_page_cost)
+    )
+    ivf_startup_cost += estimated_startup_tuples * (cpu_index_tuple_cost + qual_op_cost)
+    startup_pages = estimated_startup_pages
     if startup_pages > relpages and ratio < 0.5:
         ivf_startup_cost -= (1.0 - SEQUENTIAL_RATIO) * startup_pages * (random_page_cost - seq_page_cost)
         ivf_startup_cost -= (startup_pages - relpages) * seq_page_cost
@@ -310,6 +426,7 @@ def _estimate_generic_ivf_costs(
         "estimated_candidates": estimated_candidates,
         "estimated_startup_pages": estimated_startup_pages,
         "estimated_startup_tuples": estimated_startup_tuples,
+        "estimated_data_pages": estimated_data_pages,
         "ivf_total_cost_est": ivf_total_cost,
         "ivf_startup_cost_est": ivf_startup_cost,
     }
@@ -329,9 +446,10 @@ def _pick_ivf_scan(root: dict) -> dict | None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "data", "ivf_scan_samples.jsonl"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "data", "ivf_scan_samples_new.jsonl"))
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--target", type=int, default=500)
+    ap.add_argument("--sampling-nlist", type=int, default=DEFAULT_SAMPLING_NLIST)
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
@@ -339,8 +457,8 @@ def main() -> None:
     index_stats = load_index_stats()
     cost_gucs = _load_cost_gucs()
     ivf_lists = _load_ivf_lists_by_index()
-    ref_vectors = _load_reference_vectors()
-    query_cache: dict[tuple[str, int], dict[str, float]] = {}
+    sampling_models: dict[str, dict[str, Any]] = {}
+    query_cache: dict[tuple[str, int], np.ndarray] = {}
     workloads = ivf_scan_workloads(args.target)
     if args.limit:
         workloads = workloads[: args.limit]
@@ -376,19 +494,35 @@ def main() -> None:
             if lists <= 0:
                 print(f"[warn] {tag}: ivfflat lists missing for {index_name!r}", file=sys.stderr)
                 continue
+            if rel not in sampling_models:
+                try:
+                    sampling_models[rel] = _build_sampling_ivf_model(
+                        rel=rel,
+                        lists=lists,
+                        reltuples=tuples,
+                        sampling_nlist=args.sampling_nlist,
+                    )
+                except Exception as e:
+                    print(f"[warn] {tag}: sampling-IVF build failed for {rel}: {e}", file=sys.stderr)
+                    continue
             n_index_quals = _field_item_count(cand.get("Index Cond"))
             n_orderbys = _field_item_count(cand.get("Order By"))
             limit_k = _parse_limit(sql)
             anchor_offset = _parse_anchor_offset(sql)
             feature_extract_start_ns = time.perf_counter_ns()
-            query_feature_start_ns = feature_extract_start_ns
-            query_features = _query_vector_features(
+            sampling_feature_start_ns = feature_extract_start_ns
+            sampling_features = _sampling_query_features(
                 rel=rel,
                 anchor_off=anchor_offset,
-                ref_vectors=ref_vectors,
+                probes=int(knobs["ivfflat.probes"]),
+                lists=lists,
+                relpages=pages,
+                index_pages=index_pages,
+                index_tuples=index_tuples,
+                sampling_models=sampling_models,
                 cache=query_cache,
             )
-            query_feature_time_us = (time.perf_counter_ns() - query_feature_start_ns) / 1000.0
+            sampling_feature_time_us = (time.perf_counter_ns() - sampling_feature_start_ns) / 1000.0
             estimate_start_ns = time.perf_counter_ns()
             estimates = _estimate_generic_ivf_costs(
                 plan_rows=float(cand.get("Plan Rows") or 0),
@@ -401,6 +535,9 @@ def main() -> None:
                 n_index_quals=n_index_quals,
                 n_orderbys=n_orderbys,
                 limit_k=limit_k,
+                sampling_estimated_candidates=sampling_features["sampling_estimated_candidates"],
+                sampling_estimated_data_pages=sampling_features["sampling_estimated_data_pages"],
+                sampling_estimated_index_pages=sampling_features["sampling_estimated_index_pages"],
                 cost_gucs=cost_gucs,
             )
             estimate_feature_time_us = (time.perf_counter_ns() - estimate_start_ns) / 1000.0
@@ -436,11 +573,11 @@ def main() -> None:
                 "n_index_quals": n_index_quals,
                 "n_orderbys": n_orderbys,
                 "feature_extract_total_us": feature_extract_total_us,
-                "query_feature_time_us": query_feature_time_us,
+                "sampling_feature_time_us": sampling_feature_time_us,
                 "estimate_feature_time_us": estimate_feature_time_us,
                 **_node_buffer_stats(cand),
                 **cost_gucs,
-                **query_features,
+                **sampling_features,
                 **estimates,
             }
             fout.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -448,8 +585,8 @@ def main() -> None:
             print(tag, ex, "ms")
 
     print("wrote", args.out, "count", n_ok)
-    if n_ok < 500:
-        print(f"[warn] only {n_ok} ivf-scan samples (<200).", file=sys.stderr)
+    if n_ok < args.target:
+        print(f"[warn] only {n_ok} ivf-scan samples (<{args.target}).", file=sys.stderr)
 
 
 if __name__ == "__main__":

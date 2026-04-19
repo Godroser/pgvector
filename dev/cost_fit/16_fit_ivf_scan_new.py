@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""IVFFlat vector Index Scan fit: grouped per index, log target, interaction terms."""
+"""IVFFlat vector Index Scan fit: grouped per index, log target, sampling-IVF features."""
 
 from __future__ import annotations
 
@@ -22,34 +22,26 @@ def _feature_map(r: dict) -> dict[str, float]:
     probes_over_lists = float(r.get("probes_over_lists") or 0.0)
     log_planner_startup_cost = _safe_log1p(r.get("planner_startup_cost") or 0.0)
     log_ivf_startup_cost_est = _safe_log1p(r.get("ivf_startup_cost_est") or 0.0)
-    log_estimated_candidates = _safe_log1p(r.get("estimated_candidates") or 0.0)
-    log_estimated_startup_pages = _safe_log1p(r.get("estimated_startup_pages") or 0.0)
+    log_sampling_estimated_candidates = _safe_log1p(r.get("sampling_estimated_candidates") or 0.0)
+    log_sampling_estimated_data_pages = _safe_log1p(r.get("sampling_estimated_data_pages") or 0.0)
     log_limit_k = _safe_log1p(r.get("limit_k") or 0.0)
     log_query_l2_norm = _safe_log1p(r.get("query_l2_norm") or 0.0)
-    query_ref_dist_min = float(r.get("query_ref_dist_min") or 0.0)
-    query_ref_dist_avg = float(r.get("query_ref_dist_avg") or 0.0)
-    query_ref_dist_std = float(r.get("query_ref_dist_std") or 0.0)
-    anchor_offset_log = _safe_log1p(r.get("anchor_offset") or 0.0)
-    plan_width = float(r.get("plan_width") or 0.0)
+    sampling_probe_center_dist_avg = float(r.get("sampling_probe_center_dist_avg") or 0.0)
+    sampling_probe_center_dist_max = float(r.get("sampling_probe_center_dist_max") or 0.0)
     return {
         "log_planner_startup_cost": log_planner_startup_cost,
         "log_ivf_startup_cost_est": log_ivf_startup_cost_est,
-        "log_estimated_candidates": log_estimated_candidates,
-        "log_estimated_startup_pages": log_estimated_startup_pages,
+        "log_sampling_estimated_candidates": log_sampling_estimated_candidates,
+        "log_sampling_estimated_data_pages": log_sampling_estimated_data_pages,
         "log_limit_k": log_limit_k,
         "probes_over_lists": probes_over_lists,
         "log_query_l2_norm": log_query_l2_norm,
-        "query_ref_dist_min": query_ref_dist_min,
-        "query_ref_dist_avg": query_ref_dist_avg,
-        "query_ref_dist_std": query_ref_dist_std,
-        "anchor_offset_log": anchor_offset_log,
-        "plan_width": plan_width,
-        "probes_x_log_candidates": probes_over_lists * log_estimated_candidates,
-        "probes_x_log_limit": probes_over_lists * log_limit_k,
-        "query_min_x_probes": query_ref_dist_min * probes_over_lists,
-        "query_std_x_log_limit": query_ref_dist_std * log_limit_k,
-        "log_candidates_x_log_limit": log_estimated_candidates * log_limit_k,
-        "query_avg_x_probes": query_ref_dist_avg * probes_over_lists,
+        "sampling_probe_center_dist_avg": sampling_probe_center_dist_avg,
+        "sampling_probe_center_dist_max": sampling_probe_center_dist_max,
+        "probes_x_log_sampling_candidates": probes_over_lists * log_sampling_estimated_candidates,
+        "log_sampling_candidates_x_log_limit": log_sampling_estimated_candidates * log_limit_k,
+        "probe_dist_avg_x_probes": sampling_probe_center_dist_avg * probes_over_lists,
+        "probe_dist_max_x_log_limit": sampling_probe_center_dist_max * log_limit_k,
     }
 
 
@@ -60,9 +52,7 @@ def _predict_ms(reg, x: list[float]) -> float:
     return max(0.0, math.expm1(reg.predict(x)))
 
 
-def _predict_rows_with_timing(
-    reg, rows: list[dict], feature_names: list[str], benchmark_repeats: int = 200
-) -> tuple[list[float], list[float]]:
+def _predict_rows_with_timing(reg, rows: list[dict], feature_names: list[str], benchmark_repeats: int = 200) -> tuple[list[float], float]:
     preds = []
     xs = []
     for row in rows:
@@ -144,8 +134,8 @@ def _fit_group(rows: list[dict], feature_names: list[str], train_ratio: float, s
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data", default=os.path.join(os.path.dirname(__file__), "data", "ivf_scan_samples.jsonl"))
-    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "models", "ivf_scan_coef.json"))
+    ap.add_argument("--data", default=os.path.join(os.path.dirname(__file__), "data", "ivf_scan_samples_new.jsonl"))
+    ap.add_argument("--out", default=os.path.join(os.path.dirname(__file__), "models", "ivf_scan_coef_new.json"))
     ap.add_argument("--train-n", type=int, default=160)
     ap.add_argument("--test-n", type=int, default=40)
     ap.add_argument("--seed", type=int, default=42)
@@ -187,9 +177,7 @@ def main() -> None:
         all_test_feature_times_us.extend(
             float(r.get("feature_extract_total_us") or 0.0) for r in fit["test_rows"]
         )
-        all_test_predict_times_us.extend(
-            [fit["metrics"]["test_median_predict_time_us"]] * fit["metrics"]["test_n"]
-        )
+        all_test_predict_times_us.extend(fit["per_row_predict_times_us"])
         models_by_index[index_name] = {
             "index_name": index_name,
             "target_transform": "log1p(exclusive_ms)",
@@ -207,7 +195,7 @@ def main() -> None:
     test_m = regression_metrics(all_test_actual, all_test_pred)
     payload = {
         "operator": "Index Scan (ivfflat)",
-        "modeling_strategy": "separate linear model per index_name with log1p target and interaction terms",
+        "modeling_strategy": "separate linear model per index_name with log1p target and sampling-IVF candidate/page features",
         "target_transform": "log1p(exclusive_ms)",
         "features": FEATURE_NAMES,
         "total_samples": len(rows),
@@ -237,7 +225,7 @@ def main() -> None:
         "models_by_index": models_by_index,
         "test_predictions": all_test_predictions,
     }
-    pred_path = os.path.join(os.path.dirname(args.out), "ivf_scan_test_predictions.jsonl")
+    pred_path = os.path.join(os.path.dirname(args.out), "ivf_scan_test_predictions_new.jsonl")
     with open(pred_path, "w", encoding="utf-8") as pf:
         for item in all_test_predictions:
             pf.write(json.dumps(item, ensure_ascii=False) + "\n")
