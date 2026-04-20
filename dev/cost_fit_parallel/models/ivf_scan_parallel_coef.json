@@ -1,0 +1,32 @@
+{
+  "coef": {
+    "degree": -0.5650621281691082,
+    "single_exclusive_ms": 0.7845510199800058,
+    "single_times_log2_degree": 0.3720063591976492
+  },
+  "data_path": "/data/dzh/pgvector/dev/cost_fit_parallel/data/ivf_scan_parallel_samples.jsonl",
+  "feature_notes": {
+    "degree": "Number of concurrent identical EXPLAIN ANALYZE sessions",
+    "intercept": "Fixed overhead / contention not explained by linear terms",
+    "single_exclusive_ms": "Baseline exclusive time from solo run (cost_fit jsonl or measured)",
+    "single_times_log2_degree": "Interaction term: single * log2(max(degree,2))"
+  },
+  "features": [
+    "single_exclusive_ms",
+    "degree",
+    "single_times_log2_degree"
+  ],
+  "intercept_ms": 37.59345010706244,
+  "model": "parallel_exclusive_ms ~ linear(single_exclusive_ms, degree, single*log2(max(degree,2)))",
+  "operator": "ivf_scan",
+  "test_mae_ms": 92.88953733205571,
+  "test_mape_pct": 67.59600043064282,
+  "test_n": 20,
+  "test_r2": 0.9657617279181061,
+  "test_rmse_ms": 151.48581957719924,
+  "total_samples": 800,
+  "train_mae_ms": 102.85920848614896,
+  "train_n": 80,
+  "train_r2": 0.9441669616779564,
+  "train_rmse_ms": 186.42678977582707
+}
