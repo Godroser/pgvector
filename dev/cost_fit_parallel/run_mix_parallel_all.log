@@ -1,0 +1,707 @@
+nohup: ignoring input
+=== Python deps ===
+=== collect mixed batches ===
+[progress] batch 1 degree=2 ops=['sort', 'hashjoin'] focus0=sort_ca_1000 wall=11280.8ms
+[progress] measure-solo 'idx_li_0_400000' ...
+[warn] skip batch 2: no solo_ms for tag 'idx_li_0_400000'
+[progress] batch 3 degree=2 ops=['sort', 'mergejoin'] focus0=sort_pbr_1000 wall=992.1ms
+[progress] batch 4 degree=2 ops=['index_scan', 'mergejoin'] focus0=idx_part_3000_80000 wall=51.3ms
+[progress] measure-solo 'idx_li_2_150000' ...
+[warn] skip batch 5: no solo_ms for tag 'idx_li_2_150000'
+[progress] measure-solo 'idx_li_5_400000' ...
+[warn] skip batch 6: no solo_ms for tag 'idx_li_5_400000'
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 7: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] measure-solo 'idx_li_3_50000' ...
+[warn] skip batch 8: no solo_ms for tag 'idx_li_3_50000'
+[progress] measure-solo 'hj_sn_7' ...
+[progress] batch 9 degree=3 ops=['hashjoin', 'sort', 'mergejoin'] focus0=hj_sn_7 wall=5235.5ms
+[progress] batch 10 degree=4 ops=['scan', 'hashjoin', 'mergejoin', 'agg'] focus0=sup_m13_r3 wall=14101.0ms
+[progress] measure-solo 'idx_ord_cust_50' ...
+[warn] skip batch 11: no solo_ms for tag 'idx_ord_cust_50'
+[progress] measure-solo 'ord_m5_r2' ...
+[progress] measure-solo 'idx_ord_cust_2000' ...
+[warn] skip batch 12: no solo_ms for tag 'idx_ord_cust_2000'
+[progress] batch 13 degree=3 ops=['agg', 'hashjoin', 'sort'] focus0=agg_li_tax_2 wall=12714.9ms
+[progress] measure-solo 'ord_m5_r1' ...
+[progress] batch 14 degree=4 ops=['scan', 'hashjoin', 'sort', 'agg'] focus0=ord_m5_r1 wall=5301.1ms
+[progress] batch 15 degree=4 ops=['mergejoin', 'scan', 'index_scan', 'hashjoin'] focus0=mj_ol_band_m11_25000 wall=8554.6ms
+[progress] measure-solo 'idx_ord_cust_300' ...
+[warn] skip batch 16: no solo_ms for tag 'idx_ord_cust_300'
+[progress] measure-solo 'idx_li_0_800000' ...
+[warn] skip batch 17: no solo_ms for tag 'idx_li_0_800000'
+[progress] batch 18 degree=3 ops=['agg', 'mergejoin', 'scan'] focus0=agg_pad_li_11 wall=4374.3ms
+[progress] batch 19 degree=5 ops=['index_scan', 'scan', 'hashjoin', 'agg', 'sort'] focus0=idx_part_50000_200000 wall=9110.2ms
+[progress] batch 20 degree=4 ops=['agg', 'hashjoin', 'sort', 'mergejoin'] focus0=agg_pad_li_0 wall=7959.8ms
+[progress] measure-solo 'idx_li_4_800000' ...
+[warn] skip batch 21: no solo_ms for tag 'idx_li_4_800000'
+[progress] measure-solo 'agg_pad_li_32' ...
+[progress] batch 22 degree=3 ops=['mergejoin', 'hashjoin', 'agg'] focus0=mj_ol_band_m3_40000 wall=4717.0ms
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 23: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] batch 24 degree=2 ops=['hashjoin', 'agg'] focus0=hj_ol_m23 wall=17295.0ms
+[progress] batch 25 degree=3 ops=['index_scan', 'sort', 'agg'] focus0=idx_ps_1_8000 wall=5267.4ms
+[progress] measure-solo 'idx_li_2_50000' ...
+[warn] skip batch 26: no solo_ms for tag 'idx_li_2_50000'
+[progress] measure-solo 'idx_li_3_150000' ...
+[warn] skip batch 27: no solo_ms for tag 'idx_li_3_150000'
+[progress] batch 28 degree=3 ops=['agg', 'hashjoin', 'scan'] focus0=agg_pad_li_15 wall=5266.6ms
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 29: no solo_ms for tag 'idx_li_1_50000'
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 30: no solo_ms for tag 'idx_li_1_50000'
+[progress] batch 31 degree=2 ops=['mergejoin', 'sort'] focus0=mj_ol_band_m2_450000 wall=13240.4ms
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 32: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] measure-solo 'idx_cust_nat_0' ...
+[warn] skip batch 33: no solo_ms for tag 'idx_cust_nat_0'
+[progress] measure-solo 'idx_li_6_400000' ...
+[warn] skip batch 34: no solo_ms for tag 'idx_li_6_400000'
+[progress] batch 35 degree=2 ops=['agg', 'sort'] focus0=agg_li_si wall=19629.6ms
+[progress] measure-solo 'idx_li_2_50000' ...
+[warn] skip batch 36: no solo_ms for tag 'idx_li_2_50000'
+[progress] batch 37 degree=3 ops=['hashjoin', 'scan', 'mergejoin'] focus0=hj_sn_7 wall=1527.4ms
+[progress] measure-solo 'idx_li_1_150000' ...
+[warn] skip batch 38: no solo_ms for tag 'idx_li_1_150000'
+[progress] measure-solo 'agg_pad_li_28' ...
+[progress] measure-solo 'idx_li_6_150000' ...
+[warn] skip batch 39: no solo_ms for tag 'idx_li_6_150000'
+[progress] batch 40 degree=2 ops=['mergejoin', 'scan'] focus0=mj_ol_3000 wall=28.4ms
+[progress] batch 41 degree=4 ops=['scan', 'hashjoin', 'agg', 'index_scan'] focus0=cust_m13_r2 wall=4475.5ms
+[progress] batch 42 degree=5 ops=['mergejoin', 'agg', 'hashjoin', 'sort', 'scan'] focus0=mj_ol_band_m11_40000 wall=14536.6ms
+[progress] batch 43 degree=4 ops=['sort', 'agg', 'scan', 'hashjoin'] focus0=sort_prp_4000 wall=7806.3ms
+[progress] measure-solo 'idx_cust_nat_5' ...
+[warn] skip batch 44: no solo_ms for tag 'idx_cust_nat_5'
+[progress] batch 45 degree=2 ops=['index_scan', 'sort'] focus0=idx_part_50000_200000 wall=2764.3ms
+[progress] batch 46 degree=3 ops=['scan', 'sort', 'mergejoin'] focus0=cust_m7_r1 wall=424.8ms
+[progress] measure-solo 'idx_ord_cust_20' ...
+[warn] skip batch 47: no solo_ms for tag 'idx_ord_cust_20'
+[progress] batch 48 degree=4 ops=['hashjoin', 'mergejoin', 'agg', 'sort'] focus0=hj_ol_m25 wall=7196.8ms
+[progress] batch 49 degree=4 ops=['scan', 'hashjoin', 'sort', 'agg'] focus0=cust_m3_r0 wall=4122.8ms
+[progress] measure-solo 'idx_ord_1996-01-01' ...
+[warn] skip batch 50: no solo_ms for tag 'idx_ord_1996-01-01'
+[progress] batch 51 degree=3 ops=['hashjoin', 'sort', 'mergejoin'] focus0=hj_ol_m43 wall=7007.3ms
+[progress] measure-solo 'idx_cust_nat_21' ...
+[warn] skip batch 52: no solo_ms for tag 'idx_cust_nat_21'
+[progress] batch 53 degree=4 ops=['sort', 'agg', 'mergejoin', 'scan'] focus0=sort_sa_1000 wall=5288.5ms
+[progress] measure-solo 'hj_nr' ...
+[progress] batch 54 degree=4 ops=['mergejoin', 'hashjoin', 'scan', 'agg'] focus0=mj_ol_band_m2_450000 wall=17895.5ms
+[progress] batch 55 degree=2 ops=['agg', 'scan'] focus0=agg_pad_li_26 wall=4705.4ms
+[progress] batch 56 degree=2 ops=['sort', 'hashjoin'] focus0=sort_lisd_4000 wall=12686.8ms
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 57: no solo_ms for tag 'idx_li_1_50000'
+[progress] measure-solo 'idx_ord_cust_300' ...
+[warn] skip batch 58: no solo_ms for tag 'idx_ord_cust_300'
+[progress] measure-solo 'idx_li_3_800000' ...
+[warn] skip batch 59: no solo_ms for tag 'idx_li_3_800000'
+[progress] measure-solo 'hj_sn_11' ...
+[progress] measure-solo 'idx_cust_nat_7' ...
+[warn] skip batch 60: no solo_ms for tag 'idx_cust_nat_7'
+[progress] measure-solo 'idx_cust_nat_12' ...
+[warn] skip batch 61: no solo_ms for tag 'idx_cust_nat_12'
+[progress] batch 62 degree=4 ops=['scan', 'mergejoin', 'hashjoin', 'sort'] focus0=cust_m17_r2 wall=11950.6ms
+[progress] batch 63 degree=2 ops=['scan', 'mergejoin'] focus0=sup_m7_r1 wall=45.8ms
+[progress] measure-solo 'idx_li_4_150000' ...
+[warn] skip batch 64: no solo_ms for tag 'idx_li_4_150000'
+[progress] batch 65 degree=2 ops=['hashjoin', 'agg'] focus0=hj_co_m11 wall=4539.8ms
+[progress] measure-solo 'agg_pad_li_29' ...
+[progress] batch 66 degree=5 ops=['agg', 'index_scan', 'hashjoin', 'sort', 'scan'] focus0=agg_pad_li_29 wall=7651.9ms
+[progress] measure-solo 'idx_li_5_400000' ...
+[warn] skip batch 67: no solo_ms for tag 'idx_li_5_400000'
+[progress] measure-solo 'ord_m5_r0' ...
+[progress] measure-solo 'idx_ord_cust_200' ...
+[warn] skip batch 68: no solo_ms for tag 'idx_ord_cust_200'
+[progress] batch 69 degree=2 ops=['agg', 'scan'] focus0=agg_li_rf wall=14386.0ms
+[progress] batch 70 degree=3 ops=['hashjoin', 'scan', 'sort'] focus0=hj_co_m13 wall=5333.0ms
+[progress] batch 71 degree=4 ops=['agg', 'sort', 'hashjoin', 'scan'] focus0=agg_li_disc_13 wall=8097.3ms
+[progress] batch 72 degree=5 ops=['agg', 'hashjoin', 'mergejoin', 'sort', 'scan'] focus0=agg_pad_li_15 wall=12099.6ms
+[progress] measure-solo 'idx_li_6_150000' ...
+[warn] skip batch 73: no solo_ms for tag 'idx_li_6_150000'
+[progress] batch 74 degree=2 ops=['hashjoin', 'agg'] focus0=hj_ol_m19 wall=7584.1ms
+[progress] measure-solo 'idx_ord_1994-06-01' ...
+[warn] skip batch 75: no solo_ms for tag 'idx_ord_1994-06-01'
+[progress] batch 76 degree=3 ops=['agg', 'sort', 'hashjoin'] focus0=agg_pad_li_5 wall=5118.9ms
+[progress] batch 77 degree=4 ops=['sort', 'mergejoin', 'hashjoin', 'agg'] focus0=sort_litx_4000 wall=18087.4ms
+[progress] batch 78 degree=2 ops=['mergejoin', 'scan'] focus0=mj_ol_band_m17_40000 wall=1687.5ms
+[progress] measure-solo 'ord_m3_r2' ...
+[progress] batch 79 degree=2 ops=['scan', 'agg'] focus0=ord_m3_r2 wall=4897.7ms
+[progress] measure-solo 'idx_li_2_150000' ...
+[warn] skip batch 80: no solo_ms for tag 'idx_li_2_150000'
+[progress] batch 81 degree=2 ops=['sort', 'scan'] focus0=sort_pbr_1000 wall=637.8ms
+[progress] measure-solo 'idx_cust_nat_1' ...
+[warn] skip batch 82: no solo_ms for tag 'idx_cust_nat_1'
+[progress] measure-solo 'idx_cust_nat_15' ...
+[warn] skip batch 83: no solo_ms for tag 'idx_cust_nat_15'
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 84: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] batch 85 degree=3 ops=['hashjoin', 'scan', 'sort'] focus0=hj_co_m23 wall=2687.7ms
+[progress] batch 86 degree=4 ops=['hashjoin', 'agg', 'sort', 'scan'] focus0=hj_ol_m11 wall=12903.4ms
+[progress] batch 87 degree=3 ops=['agg', 'mergejoin', 'sort'] focus0=agg_ord_clerk_7 wall=1941.6ms
+[progress] batch 88 degree=5 ops=['scan', 'sort', 'mergejoin', 'agg', 'hashjoin'] focus0=ord_m5_r0 wall=17933.7ms
+[progress] batch 89 degree=5 ops=['scan', 'sort', 'hashjoin', 'mergejoin', 'agg'] focus0=ord_m3_r0 wall=5440.6ms
+[progress] batch 90 degree=3 ops=['scan', 'mergejoin', 'hashjoin'] focus0=cust_m2_r0 wall=17045.4ms
+[progress] measure-solo 'idx_cust_nat_18' ...
+[warn] skip batch 91: no solo_ms for tag 'idx_cust_nat_18'
+[progress] measure-solo 'ord_m3_r1' ...
+[progress] batch 92 degree=2 ops=['sort', 'scan'] focus0=sort_ock_1000 wall=2698.2ms
+[progress] batch 93 degree=5 ops=['mergejoin', 'sort', 'hashjoin', 'agg', 'scan'] focus0=mj_ol_900000 wall=9562.7ms
+[progress] batch 94 degree=5 ops=['hashjoin', 'scan', 'agg', 'sort', 'mergejoin'] focus0=hj_ol_m2 wall=17121.4ms
+[progress] measure-solo 'idx_li_3_800000' ...
+[warn] skip batch 95: no solo_ms for tag 'idx_li_3_800000'
+[progress] measure-solo 'idx_li_2_50000' ...
+[warn] skip batch 96: no solo_ms for tag 'idx_li_2_50000'
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 97: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] batch 98 degree=4 ops=['hashjoin', 'mergejoin', 'sort', 'scan'] focus0=hj_ol_m31 wall=7057.3ms
+[progress] measure-solo 'idx_li_3_50000' ...
+[warn] skip batch 99: no solo_ms for tag 'idx_li_3_50000'
+[progress] batch 100 degree=3 ops=['sort', 'hashjoin', 'agg'] focus0=sort_licd_4000 wall=12643.1ms
+[progress] batch 101 degree=2 ops=['hashjoin', 'index_scan'] focus0=hj_ol_band_15000 wall=8535.8ms
+[progress] measure-solo 'idx_li_6_400000' ...
+[warn] skip batch 102: no solo_ms for tag 'idx_li_6_400000'
+[progress] measure-solo 'hj_sn_13' ...
+[progress] batch 103 degree=2 ops=['scan', 'hashjoin'] focus0=cust_m11_r0 wall=165.8ms
+[progress] batch 104 degree=5 ops=['agg', 'mergejoin', 'scan', 'sort', 'index_scan'] focus0=agg_pad_li_12 wall=4537.6ms
+[progress] batch 105 degree=5 ops=['scan', 'agg', 'hashjoin', 'mergejoin', 'sort'] focus0=ord_m2_r1 wall=9913.1ms
+[progress] measure-solo 'idx_li_5_50000' ...
+[warn] skip batch 106: no solo_ms for tag 'idx_li_5_50000'
+[progress] measure-solo 'idx_ord_cust_500' ...
+[warn] skip batch 107: no solo_ms for tag 'idx_ord_cust_500'
+[progress] measure-solo 'idx_li_3_800000' ...
+[warn] skip batch 108: no solo_ms for tag 'idx_li_3_800000'
+[progress] measure-solo 'idx_li_0_150000' ...
+[warn] skip batch 109: no solo_ms for tag 'idx_li_0_150000'
+[progress] batch 110 degree=2 ops=['hashjoin', 'mergejoin'] focus0=hj_ol_band_3000 wall=8680.6ms
+[progress] measure-solo 'idx_ord_cust_100' ...
+[warn] skip batch 111: no solo_ms for tag 'idx_ord_cust_100'
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 112: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] batch 113 degree=4 ops=['mergejoin', 'sort', 'agg', 'scan'] focus0=mj_ol_90000 wall=12848.8ms
+[progress] batch 114 degree=3 ops=['mergejoin', 'agg', 'scan'] focus0=mj_ol_band_m2_12000 wall=4686.2ms
+[progress] batch 115 degree=4 ops=['sort', 'mergejoin', 'hashjoin', 'agg'] focus0=sort_lip_2500 wall=19527.0ms
+[progress] batch 116 degree=3 ops=['hashjoin', 'sort', 'index_scan'] focus0=hj_co_m2 wall=4750.0ms
+[progress] batch 117 degree=3 ops=['agg', 'scan', 'sort'] focus0=agg_pad_li_28 wall=5204.7ms
+[progress] batch 118 degree=4 ops=['scan', 'agg', 'index_scan', 'mergejoin'] focus0=sup_m7_r0 wall=17207.7ms
+[progress] measure-solo 'idx_li_2_150000' ...
+[warn] skip batch 119: no solo_ms for tag 'idx_li_2_150000'
+[progress] measure-solo 'idx_li_3_800000' ...
+[warn] skip batch 120: no solo_ms for tag 'idx_li_3_800000'
+[progress] measure-solo 'idx_ord_1992-06-01' ...
+[warn] skip batch 121: no solo_ms for tag 'idx_ord_1992-06-01'
+[progress] measure-solo 'idx_li_3_150000' ...
+[warn] skip batch 122: no solo_ms for tag 'idx_li_3_150000'
+[progress] batch 123 degree=2 ops=['mergejoin', 'agg'] focus0=mj_ol_450000 wall=4385.7ms
+[progress] batch 124 degree=2 ops=['mergejoin', 'sort'] focus0=mj_ol_band_m3_25000 wall=12672.0ms
+[progress] batch 125 degree=5 ops=['hashjoin', 'sort', 'mergejoin', 'scan', 'agg'] focus0=hj_co_m19 wall=4512.5ms
+[progress] measure-solo 'idx_li_1_800000' ...
+[warn] skip batch 126: no solo_ms for tag 'idx_li_1_800000'
+[progress] batch 127 degree=3 ops=['agg', 'mergejoin', 'hashjoin'] focus0=agg_pad_li_25 wall=10731.2ms
+[progress] batch 128 degree=2 ops=['mergejoin', 'hashjoin'] focus0=mj_ol_band_m13_40000 wall=1225.8ms
+[progress] batch 129 degree=4 ops=['scan', 'sort', 'agg', 'hashjoin'] focus0=sup_m13_r0 wall=7322.2ms
+[progress] measure-solo 'idx_li_0_150000' ...
+[warn] skip batch 130: no solo_ms for tag 'idx_li_0_150000'
+[progress] batch 131 degree=2 ops=['agg', 'hashjoin'] focus0=agg_pad_li_9 wall=12969.3ms
+[progress] measure-solo 'idx_li_4_150000' ...
+[warn] skip batch 132: no solo_ms for tag 'idx_li_4_150000'
+[progress] batch 133 degree=5 ops=['agg', 'scan', 'sort', 'mergejoin', 'hashjoin'] focus0=agg_ord_clerk_7 wall=9077.6ms
+[progress] measure-solo 'idx_li_6_150000' ...
+[warn] skip batch 134: no solo_ms for tag 'idx_li_6_150000'
+[progress] batch 135 degree=2 ops=['scan', 'sort'] focus0=sup_m13_r1 wall=308.6ms
+[progress] batch 136 degree=4 ops=['sort', 'scan', 'agg', 'hashjoin'] focus0=sort_osp_4000 wall=8348.8ms
+[progress] measure-solo 'idx_ord_cust_1000' ...
+[warn] skip batch 137: no solo_ms for tag 'idx_ord_cust_1000'
+[progress] measure-solo 'idx_li_4_400000' ...
+[warn] skip batch 138: no solo_ms for tag 'idx_li_4_400000'
+[progress] measure-solo 'idx_li_6_400000' ...
+[warn] skip batch 139: no solo_ms for tag 'idx_li_6_400000'
+[progress] batch 140 degree=2 ops=['mergejoin', 'sort'] focus0=mj_ol_band_m11_25000 wall=2641.1ms
+[progress] measure-solo 'idx_ord_1994-06-01' ...
+[warn] skip batch 141: no solo_ms for tag 'idx_ord_1994-06-01'
+[progress] batch 142 degree=5 ops=['mergejoin', 'scan', 'agg', 'index_scan', 'sort'] focus0=mj_ol_band_m3_450000 wall=4519.1ms
+[progress] measure-solo 'hj_cn' ...
+[progress] batch 143 degree=3 ops=['sort', 'hashjoin', 'scan'] focus0=sort_psc_1000 wall=1684.9ms
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 144: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] measure-solo 'idx_li_5_150000' ...
+[warn] skip batch 145: no solo_ms for tag 'idx_li_5_150000'
+[progress] measure-solo 'idx_cust_nat_5' ...
+[warn] skip batch 146: no solo_ms for tag 'idx_cust_nat_5'
+[progress] measure-solo 'idx_cust_nat_2' ...
+[warn] skip batch 147: no solo_ms for tag 'idx_cust_nat_2'
+[progress] batch 148 degree=3 ops=['scan', 'sort', 'mergejoin'] focus0=cust_m5_r0 wall=653.0ms
+[progress] batch 149 degree=2 ops=['scan', 'sort'] focus0=cust_m5_r1 wall=582.4ms
+[progress] batch 150 degree=5 ops=['sort', 'mergejoin', 'scan', 'hashjoin', 'agg'] focus0=sort_licd_1000 wall=11871.8ms
+[progress] batch 151 degree=5 ops=['agg', 'sort', 'hashjoin', 'scan', 'mergejoin'] focus0=agg_li_disc_17 wall=5498.5ms
+[progress] measure-solo 'idx_li_3_400000' ...
+[warn] skip batch 152: no solo_ms for tag 'idx_li_3_400000'
+[progress] batch 153 degree=2 ops=['scan', 'mergejoin'] focus0=cust_m13_r0 wall=165.4ms
+[progress] batch 154 degree=2 ops=['sort', 'hashjoin'] focus0=sort_licd_4000 wall=12067.5ms
+[progress] batch 155 degree=4 ops=['hashjoin', 'agg', 'scan', 'sort'] focus0=hj_ol_m23 wall=7156.3ms
+[progress] batch 156 degree=3 ops=['mergejoin', 'agg', 'sort'] focus0=mj_ol_band_m17_40000 wall=12179.1ms
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 157: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] batch 158 degree=4 ops=['scan', 'hashjoin', 'sort', 'mergejoin'] focus0=ord_m5_r0 wall=6992.8ms
+[progress] batch 159 degree=3 ops=['sort', 'scan', 'hashjoin'] focus0=sort_pbr_2500 wall=2794.3ms
+[progress] batch 160 degree=5 ops=['agg', 'hashjoin', 'scan', 'mergejoin', 'sort'] focus0=agg_ord_clerk_3 wall=2589.7ms
+[progress] measure-solo 'idx_li_0_150000' ...
+[warn] skip batch 161: no solo_ms for tag 'idx_li_0_150000'
+[progress] measure-solo 'idx_cust_nat_18' ...
+[warn] skip batch 162: no solo_ms for tag 'idx_cust_nat_18'
+[progress] batch 163 degree=5 ops=['hashjoin', 'mergejoin', 'agg', 'sort', 'scan'] focus0=hj_co_m7 wall=13676.2ms
+[progress] measure-solo 'idx_ord_1992-06-01' ...
+[warn] skip batch 164: no solo_ms for tag 'idx_ord_1992-06-01'
+[progress] batch 165 degree=2 ops=['index_scan', 'hashjoin'] focus0=idx_ps_1_8000 wall=8549.4ms
+[progress] batch 166 degree=2 ops=['hashjoin', 'agg'] focus0=hj_ps_1_35000 wall=1730.2ms
+[progress] batch 167 degree=3 ops=['mergejoin', 'agg', 'hashjoin'] focus0=mj_ol_band_m2_40000 wall=4502.7ms
+[progress] batch 168 degree=4 ops=['mergejoin', 'hashjoin', 'scan', 'agg'] focus0=mj_ol_band_m17_90000 wall=5024.6ms
+[progress] batch 169 degree=2 ops=['scan', 'sort'] focus0=sup_m5_r2 wall=12509.8ms
+[progress] batch 170 degree=3 ops=['agg', 'scan', 'hashjoin'] focus0=agg_ord_st wall=8194.3ms
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 171: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] measure-solo 'idx_li_3_400000' ...
+[warn] skip batch 172: no solo_ms for tag 'idx_li_3_400000'
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 173: no solo_ms for tag 'idx_li_1_50000'
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 174: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] batch 175 degree=2 ops=['sort', 'mergejoin'] focus0=sort_oop_4000 wall=4098.3ms
+[progress] batch 176 degree=3 ops=['scan', 'agg', 'hashjoin'] focus0=cust_m11_r2 wall=5233.9ms
+[progress] measure-solo 'idx_cust_nat_3' ...
+[warn] skip batch 177: no solo_ms for tag 'idx_cust_nat_3'
+[progress] batch 178 degree=2 ops=['agg', 'hashjoin'] focus0=agg_sup_nat wall=8375.9ms
+[progress] measure-solo 'idx_li_5_400000' ...
+[warn] skip batch 179: no solo_ms for tag 'idx_li_5_400000'
+[progress] measure-solo 'idx_ord_cust_2000' ...
+[warn] skip batch 180: no solo_ms for tag 'idx_ord_cust_2000'
+[progress] batch 181 degree=2 ops=['sort', 'hashjoin'] focus0=sort_ca_1000 wall=8170.7ms
+[progress] measure-solo 'idx_li_3_150000' ...
+[warn] skip batch 182: no solo_ms for tag 'idx_li_3_150000'
+[progress] batch 183 degree=3 ops=['hashjoin', 'mergejoin', 'sort'] focus0=hj_ol_m27 wall=7288.2ms
+[progress] measure-solo 'idx_li_1_800000' ...
+[warn] skip batch 184: no solo_ms for tag 'idx_li_1_800000'
+[progress] batch 185 degree=2 ops=['mergejoin', 'sort'] focus0=mj_ol_band_m13_12000 wall=12593.1ms
+[progress] measure-solo 'idx_li_2_800000' ...
+[warn] skip batch 186: no solo_ms for tag 'idx_li_2_800000'
+[progress] batch 187 degree=3 ops=['agg', 'scan', 'sort'] focus0=agg_pad_li_20 wall=4813.2ms
+[progress] measure-solo 'idx_li_0_400000' ...
+[warn] skip batch 188: no solo_ms for tag 'idx_li_0_400000'
+[progress] measure-solo 'idx_li_6_800000' ...
+[warn] skip batch 189: no solo_ms for tag 'idx_li_6_800000'
+[progress] measure-solo 'agg_pad_li_30' ...
+[progress] batch 190 degree=2 ops=['scan', 'agg'] focus0=sup_m3_r0 wall=5204.4ms
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 191: no solo_ms for tag 'idx_li_1_50000'
+[progress] measure-solo 'idx_ord_cust_500' ...
+[warn] skip batch 192: no solo_ms for tag 'idx_ord_cust_500'
+[progress] batch 193 degree=4 ops=['scan', 'index_scan', 'agg', 'sort'] focus0=cust_m17_r2 wall=5116.6ms
+[progress] batch 194 degree=3 ops=['scan', 'agg', 'mergejoin'] focus0=sup_m17_r3 wall=9302.6ms
+[progress] batch 195 degree=5 ops=['scan', 'agg', 'sort', 'mergejoin', 'hashjoin'] focus0=sup_m13_r1 wall=7981.6ms
+[progress] batch 196 degree=5 ops=['sort', 'agg', 'index_scan', 'scan', 'mergejoin'] focus0=sort_ot_1000 wall=6049.1ms
+[progress] batch 197 degree=3 ops=['index_scan', 'sort', 'hashjoin'] focus0=idx_part_10000_90000 wall=8257.0ms
+[progress] batch 198 degree=4 ops=['agg', 'scan', 'sort', 'mergejoin'] focus0=agg_pad_li_11 wall=5082.6ms
+[progress] batch 199 degree=3 ops=['mergejoin', 'scan', 'agg'] focus0=mj_ol_band_m13_200000 wall=13017.4ms
+[progress] batch 200 degree=4 ops=['sort', 'hashjoin', 'mergejoin', 'scan'] focus0=sort_ock_4000 wall=5334.7ms
+[progress] measure-solo 'idx_li_0_150000' ...
+[warn] skip batch 201: no solo_ms for tag 'idx_li_0_150000'
+[progress] measure-solo 'idx_cust_nat_7' ...
+[warn] skip batch 202: no solo_ms for tag 'idx_cust_nat_7'
+[progress] batch 203 degree=5 ops=['sort', 'mergejoin', 'agg', 'scan', 'hashjoin'] focus0=sort_liq_2500 wall=11836.7ms
+[progress] batch 204 degree=4 ops=['hashjoin', 'agg', 'sort', 'scan'] focus0=hj_ol_m11 wall=11887.9ms
+[progress] batch 205 degree=2 ops=['agg', 'sort'] focus0=agg_li_tax_7 wall=12659.6ms
+[progress] batch 206 degree=5 ops=['scan', 'index_scan', 'agg', 'mergejoin', 'hashjoin'] focus0=sup_m7_r2 wall=6999.0ms
+[progress] measure-solo 'idx_ord_cust_500' ...
+[warn] skip batch 207: no solo_ms for tag 'idx_ord_cust_500'
+[progress] batch 208 degree=2 ops=['mergejoin', 'hashjoin'] focus0=mj_ol_900000 wall=1162.1ms
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 209: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] batch 210 degree=5 ops=['mergejoin', 'agg', 'scan', 'hashjoin', 'sort'] focus0=mj_ol_band_m23_25000 wall=13789.2ms
+[progress] measure-solo 'agg_pad_li_31' ...
+[progress] batch 211 degree=4 ops=['sort', 'scan', 'agg', 'mergejoin'] focus0=sort_liq_1000 wall=11874.1ms
+[progress] measure-solo 'idx_ord_cust_2000' ...
+[warn] skip batch 212: no solo_ms for tag 'idx_ord_cust_2000'
+[progress] measure-solo 'idx_li_5_800000' ...
+[warn] skip batch 213: no solo_ms for tag 'idx_li_5_800000'
+[progress] measure-solo 'idx_li_4_800000' ...
+[warn] skip batch 214: no solo_ms for tag 'idx_li_4_800000'
+[progress] batch 215 degree=4 ops=['mergejoin', 'hashjoin', 'agg', 'sort'] focus0=mj_ol_band_m23_25000 wall=5117.5ms
+[progress] batch 216 degree=3 ops=['hashjoin', 'agg', 'mergejoin'] focus0=hj_ol_m23 wall=6881.4ms
+[progress] batch 217 degree=4 ops=['mergejoin', 'agg', 'index_scan', 'hashjoin'] focus0=mj_ol_25000 wall=2654.4ms
+[progress] measure-solo 'idx_ord_cust_2000' ...
+[warn] skip batch 218: no solo_ms for tag 'idx_ord_cust_2000'
+[progress] batch 219 degree=2 ops=['scan', 'agg'] focus0=cust_m11_r0 wall=5682.9ms
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 220: no solo_ms for tag 'idx_li_1_50000'
+[progress] batch 221 degree=2 ops=['sort', 'hashjoin'] focus0=sort_od_4000 wall=6616.6ms
+[progress] batch 222 degree=2 ops=['agg', 'sort'] focus0=agg_pad_li_12 wall=4465.4ms
+[progress] measure-solo 'idx_ord_cust_500' ...
+[warn] skip batch 223: no solo_ms for tag 'idx_ord_cust_500'
+[progress] batch 224 degree=2 ops=['scan', 'sort'] focus0=cust_m17_r3 wall=560.4ms
+[progress] measure-solo 'idx_ord_1992-06-01' ...
+[warn] skip batch 225: no solo_ms for tag 'idx_ord_1992-06-01'
+[progress] batch 226 degree=3 ops=['hashjoin', 'agg', 'index_scan'] focus0=hj_ol_m47 wall=6327.1ms
+[progress] measure-solo 'idx_li_5_150000' ...
+[warn] skip batch 227: no solo_ms for tag 'idx_li_5_150000'
+[progress] measure-solo 'idx_li_4_400000' ...
+[warn] skip batch 228: no solo_ms for tag 'idx_li_4_400000'
+[progress] batch 229 degree=3 ops=['hashjoin', 'sort', 'mergejoin'] focus0=hj_nr wall=1570.1ms
+[progress] measure-solo 'idx_cust_nat_0' ...
+[warn] skip batch 230: no solo_ms for tag 'idx_cust_nat_0'
+[progress] batch 231 degree=2 ops=['agg', 'scan'] focus0=agg_pad_li_5 wall=5007.6ms
+[progress] batch 232 degree=2 ops=['hashjoin', 'agg'] focus0=hj_ol_m15 wall=7529.9ms
+[progress] measure-solo 'idx_li_4_400000' ...
+[warn] skip batch 233: no solo_ms for tag 'idx_li_4_400000'
+[progress] measure-solo 'idx_cust_nat_3' ...
+[warn] skip batch 234: no solo_ms for tag 'idx_cust_nat_3'
+[progress] batch 235 degree=2 ops=['agg', 'hashjoin'] focus0=agg_pad_li_29 wall=4504.8ms
+[progress] measure-solo 'idx_li_2_400000' ...
+[warn] skip batch 236: no solo_ms for tag 'idx_li_2_400000'
+[progress] batch 237 degree=3 ops=['agg', 'scan', 'sort'] focus0=agg_ord_clerk_7 wall=1738.5ms
+[progress] batch 238 degree=3 ops=['scan', 'index_scan', 'hashjoin'] focus0=cust_m17_r0 wall=1611.4ms
+[progress] measure-solo 'idx_cust_nat_3' ...
+[warn] skip batch 239: no solo_ms for tag 'idx_cust_nat_3'
+[progress] measure-solo 'idx_cust_nat_1' ...
+[warn] skip batch 240: no solo_ms for tag 'idx_cust_nat_1'
+[progress] batch 241 degree=3 ops=['hashjoin', 'sort', 'scan'] focus0=hj_sn_7 wall=18476.7ms
+[progress] measure-solo 'idx_li_1_800000' ...
+[warn] skip batch 242: no solo_ms for tag 'idx_li_1_800000'
+[progress] measure-solo 'idx_cust_nat_3' ...
+[warn] skip batch 243: no solo_ms for tag 'idx_cust_nat_3'
+[progress] measure-solo 'idx_ord_1996-01-01' ...
+[warn] skip batch 244: no solo_ms for tag 'idx_ord_1996-01-01'
+[progress] batch 245 degree=3 ops=['scan', 'sort', 'hashjoin'] focus0=sup_m7_r3 wall=12021.1ms
+[progress] batch 246 degree=2 ops=['agg', 'hashjoin'] focus0=agg_pad_li_23 wall=8735.2ms
+[progress] batch 247 degree=3 ops=['sort', 'hashjoin', 'scan'] focus0=sort_psc_2500 wall=1985.0ms
+[progress] measure-solo 'idx_li_3_150000' ...
+[warn] skip batch 248: no solo_ms for tag 'idx_li_3_150000'
+[progress] batch 249 degree=5 ops=['sort', 'hashjoin', 'mergejoin', 'scan', 'agg'] focus0=sort_lisd_1000 wall=12206.3ms
+[progress] batch 250 degree=5 ops=['sort', 'agg', 'scan', 'hashjoin', 'index_scan'] focus0=sort_cnm_2500 wall=6962.4ms
+[progress] batch 251 degree=3 ops=['hashjoin', 'scan', 'sort'] focus0=hj_co_m7 wall=3679.3ms
+[progress] measure-solo 'idx_li_0_400000' ...
+[warn] skip batch 252: no solo_ms for tag 'idx_li_0_400000'
+[progress] batch 253 degree=5 ops=['hashjoin', 'agg', 'sort', 'mergejoin', 'scan'] focus0=hj_ol_m41 wall=19390.2ms
+[progress] measure-solo 'idx_li_2_50000' ...
+[warn] skip batch 254: no solo_ms for tag 'idx_li_2_50000'
+[progress] measure-solo 'idx_ord_1993-01-01' ...
+[warn] skip batch 255: no solo_ms for tag 'idx_ord_1993-01-01'
+[progress] batch 256 degree=3 ops=['mergejoin', 'sort', 'scan'] focus0=mj_ol_12000 wall=45.0ms
+[progress] batch 257 degree=2 ops=['mergejoin', 'sort'] focus0=mj_ol_band_m7_12000 wall=462.1ms
+[progress] measure-solo 'idx_li_0_400000' ...
+[warn] skip batch 258: no solo_ms for tag 'idx_li_0_400000'
+[progress] batch 259 degree=4 ops=['hashjoin', 'sort', 'agg', 'mergejoin'] focus0=hj_ol_m9 wall=14025.4ms
+[progress] measure-solo 'idx_ord_1995-01-01' ...
+[warn] skip batch 260: no solo_ms for tag 'idx_ord_1995-01-01'
+[progress] batch 261 degree=4 ops=['sort', 'scan', 'agg', 'mergejoin'] focus0=sort_ca_2500 wall=1825.5ms
+[progress] measure-solo 'idx_li_4_800000' ...
+[warn] skip batch 262: no solo_ms for tag 'idx_li_4_800000'
+[progress] batch 263 degree=5 ops=['mergejoin', 'scan', 'hashjoin', 'agg', 'sort'] focus0=mj_ol_band_m13_90000 wall=12066.4ms
+[progress] measure-solo 'idx_cust_nat_1' ...
+[warn] skip batch 264: no solo_ms for tag 'idx_cust_nat_1'
+[progress] batch 265 degree=3 ops=['sort', 'mergejoin', 'scan'] focus0=sort_lid_1000 wall=12106.0ms
+[progress] measure-solo 'idx_li_0_400000' ...
+[warn] skip batch 266: no solo_ms for tag 'idx_li_0_400000'
+[progress] batch 267 degree=3 ops=['agg', 'scan', 'hashjoin'] focus0=agg_li_ship_1996-01-01 wall=13579.0ms
+[progress] measure-solo 'idx_ord_cust_20' ...
+[warn] skip batch 268: no solo_ms for tag 'idx_ord_cust_20'
+[progress] batch 269 degree=5 ops=['hashjoin', 'agg', 'mergejoin', 'sort', 'index_scan'] focus0=hj_ps_1_35000 wall=4116.4ms
+[progress] batch 270 degree=2 ops=['hashjoin', 'agg'] focus0=hj_co_m23 wall=4714.3ms
+[progress] measure-solo 'idx_li_3_50000' ...
+[warn] skip batch 271: no solo_ms for tag 'idx_li_3_50000'
+[progress] batch 272 degree=2 ops=['scan', 'mergejoin'] focus0=ord_m5_r0 wall=1428.7ms
+[progress] measure-solo 'idx_li_4_400000' ...
+[warn] skip batch 273: no solo_ms for tag 'idx_li_4_400000'
+[progress] batch 274 degree=3 ops=['agg', 'mergejoin', 'hashjoin'] focus0=agg_pad_li_5 wall=8510.7ms
+[progress] batch 275 degree=3 ops=['mergejoin', 'agg', 'scan'] focus0=mj_ol_6000 wall=13104.9ms
+[progress] measure-solo 'idx_li_1_150000' ...
+[warn] skip batch 276: no solo_ms for tag 'idx_li_1_150000'
+[progress] batch 277 degree=5 ops=['agg', 'scan', 'index_scan', 'mergejoin', 'sort'] focus0=agg_part_ty wall=12680.5ms
+[progress] measure-solo 'idx_li_2_50000' ...
+[warn] skip batch 278: no solo_ms for tag 'idx_li_2_50000'
+[progress] measure-solo 'idx_li_4_800000' ...
+[warn] skip batch 279: no solo_ms for tag 'idx_li_4_800000'
+[progress] batch 280 degree=3 ops=['mergejoin', 'hashjoin', 'agg'] focus0=mj_ol_band_m13_12000 wall=14537.1ms
+[progress] measure-solo 'idx_ord_cust_2000' ...
+[warn] skip batch 281: no solo_ms for tag 'idx_ord_cust_2000'
+[progress] batch 282 degree=4 ops=['index_scan', 'agg', 'sort', 'hashjoin'] focus0=idx_part_1_40000 wall=4296.7ms
+[progress] measure-solo 'idx_cust_nat_21' ...
+[warn] skip batch 283: no solo_ms for tag 'idx_cust_nat_21'
+[progress] batch 284 degree=2 ops=['sort', 'agg'] focus0=sort_lid_1000 wall=12529.2ms
+[progress] batch 285 degree=4 ops=['agg', 'mergejoin', 'scan', 'hashjoin'] focus0=agg_pad_li_13 wall=5531.4ms
+[progress] batch 286 degree=4 ops=['agg', 'hashjoin', 'scan', 'sort'] focus0=agg_pad_li_24 wall=13825.5ms
+[progress] measure-solo 'idx_ord_1994-06-01' ...
+[warn] skip batch 287: no solo_ms for tag 'idx_ord_1994-06-01'
+[progress] measure-solo 'idx_cust_nat_7' ...
+[warn] skip batch 288: no solo_ms for tag 'idx_cust_nat_7'
+[progress] batch 289 degree=4 ops=['agg', 'hashjoin', 'scan', 'sort'] focus0=agg_pad_li_21 wall=6500.2ms
+[progress] batch 290 degree=2 ops=['hashjoin', 'mergejoin'] focus0=hj_ol_band_100000 wall=9087.4ms
+[progress] batch 291 degree=4 ops=['scan', 'mergejoin', 'index_scan', 'sort'] focus0=sup_m2_r1 wall=2794.7ms
+[progress] measure-solo 'idx_ord_1996-01-01' ...
+[warn] skip batch 292: no solo_ms for tag 'idx_ord_1996-01-01'
+[progress] measure-solo 'idx_li_3_150000' ...
+[warn] skip batch 293: no solo_ms for tag 'idx_li_3_150000'
+[progress] batch 294 degree=4 ops=['sort', 'agg', 'hashjoin', 'mergejoin'] focus0=sort_ca_2500 wall=4863.6ms
+[progress] measure-solo 'idx_cust_nat_12' ...
+[warn] skip batch 295: no solo_ms for tag 'idx_cust_nat_12'
+[progress] measure-solo 'idx_li_1_50000' ...
+[warn] skip batch 296: no solo_ms for tag 'idx_li_1_50000'
+[progress] measure-solo 'idx_li_6_150000' ...
+[warn] skip batch 297: no solo_ms for tag 'idx_li_6_150000'
+[progress] batch 298 degree=4 ops=['mergejoin', 'agg', 'scan', 'hashjoin'] focus0=mj_ol_12000 wall=23093.8ms
+[progress] measure-solo 'idx_cust_nat_15' ...
+[warn] skip batch 299: no solo_ms for tag 'idx_cust_nat_15'
+[progress] measure-solo 'idx_ord_cust_1000' ...
+[warn] skip batch 300: no solo_ms for tag 'idx_ord_cust_1000'
+wrote /data/dzh/pgvector/dev/cost_fit_parallel/data/mix_parallel_samples.jsonl rows 540
+=== fit mixed model ===
+{
+  "model": "mixed concurrent: parallel_exclusive_ms ~ linear(features)",
+  "features": [
+    "degree",
+    "focus_solo_ms",
+    "sum_solo_peers_ms",
+    "n_sort",
+    "n_mergejoin",
+    "n_hashjoin",
+    "n_scan",
+    "n_index_scan",
+    "n_agg",
+    "n_ivf_scan",
+    "solo_sum_sort_ms",
+    "solo_sum_mergejoin_ms",
+    "solo_sum_hashjoin_ms",
+    "solo_sum_scan_ms",
+    "solo_sum_index_scan_ms",
+    "solo_sum_agg_ms",
+    "solo_sum_ivf_scan_ms"
+  ],
+  "feature_notes": {
+    "degree": "Concurrent session count (batch size)",
+    "focus_solo_ms": "Primary operator solo exclusive time for the focus query",
+    "sum_solo_peers_ms": "Sum of solo times of other queries in the same batch",
+    "n_*": "Count of queries per operator family in the batch",
+    "solo_sum_*_ms": "Sum of solo times for queries in each family (same batch)"
+  },
+  "train_batch_ids": [
+    "024356e6-240d-4c57-b106-dca617182a1e",
+    "02550257-a70e-4a33-befe-2ad5337b5fd9",
+    "02f55b81-9c91-4c92-90fe-d0fd523231c1",
+    "037fec6f-5e3b-45a5-8da8-67753cbfbe1d",
+    "04dfb6c2-8d4d-4f76-b6cd-dcd7898d6072",
+    "05b98e95-0cd2-4fa7-84a1-aad98d993f87",
+    "066124ab-02d8-46ed-aaa2-7abd9a3e582d",
+    "08b55a4d-9756-4c28-85e9-68e203c06e26",
+    "0957c939-b103-421e-8513-084627260e5f",
+    "0988d858-1476-4857-a784-8fd0d24bb012",
+    "0b29d26d-36e0-4c14-95fd-850c2d83a244",
+    "0ec26d60-6c9e-4181-ab55-17624a0220b0",
+    "1069fc73-695f-45f8-84f2-0be24e159103",
+    "10b751a5-237c-472e-a6d2-342291cc68e5",
+    "10fcec9a-0f7f-4bf8-9e93-70f4fbef0847",
+    "1141ff12-5bdc-43d8-94c2-d1ee257747be",
+    "11e668bb-81bb-4085-88ed-aedf38fde53e",
+    "136986e6-33c5-46ec-a573-8704f7beea45",
+    "14d5ff0f-3fbe-40cc-a007-d64bcec5e9b1",
+    "1561cdf2-8f57-4b0c-920a-4b6b29e1af15",
+    "165517f8-0500-4612-b0a9-7dc94abbc15f",
+    "183faef9-c49b-4881-b361-8737a7b5b66f",
+    "193f7fee-d849-44cd-b384-ae8f572e0a49",
+    "1ac306eb-bb4d-4bd7-9678-5c9eeab6b848",
+    "1b742f6e-b97d-4cee-a032-b662ea243961",
+    "1cd1b211-b5cd-4679-b256-22f760d8d26d",
+    "1dc28e42-dbdf-4c7f-95da-cf03b4ee8db6",
+    "214be97e-6103-49a7-a5f5-9292e66bff08",
+    "2335433e-1853-450c-8b41-36be75f9113b",
+    "2d756990-7a03-473e-a870-870d3eeb6afe",
+    "2dc52d78-e997-415e-b997-0c68ff1a36eb",
+    "2e622d13-0330-4593-a39e-2a55ea95b6b9",
+    "34399329-8ed4-421a-8d2d-ebfc8bc48920",
+    "3453e42a-bea1-488b-b9b1-43fdca03d77b",
+    "3505eb26-eaa4-43db-aa7a-ab1ea519fa00",
+    "35bd04a3-baf9-4425-baaf-91c7ab297389",
+    "383400f4-61be-414e-9384-01fd867d905e",
+    "39c1e85b-2737-42b0-b85e-3ca033d61da8",
+    "3d0fcb91-6eed-4af2-a9c4-e032e0cc721c",
+    "3e76824d-7edc-4402-982b-4a2031deb6ea",
+    "3f02f187-c2ff-443b-b16a-08bf54774e1f",
+    "407e1f93-3201-44df-9ad1-06f7d19dacdc",
+    "40cae71f-66fd-4117-8770-33123623d7b6",
+    "41c56acc-9ecf-498c-91a9-735a560ef3b3",
+    "4220ce81-d714-46a3-88f8-f77ec92301ed",
+    "42c416a8-f4a9-4cd8-a5cc-2fa6dd6f2c39",
+    "43485da5-a223-4e61-96e2-ca8cab7fc2ae",
+    "43650a16-0295-4c64-bca2-c0ba3ab6ef86",
+    "454b838e-2752-4fca-87be-1673aaa547b6",
+    "4bd05f6e-c835-4aa9-b752-8a16d762767c",
+    "4fea2c3b-802a-4ee0-a89f-37bccfc31ebd",
+    "51415f1a-45a6-444f-9762-1686341c2440",
+    "51e4374d-641e-44b1-b617-eb4620ae5538",
+    "53e41da2-5c5b-4822-a251-ed94ab627980",
+    "54ae0acb-ed3f-4dee-928c-0f9bf192a2fc",
+    "54d7aede-8c95-4ed3-b31f-5fdd3cc81ec4",
+    "54fa0f15-4a1d-4021-9eac-f8a5bef22253",
+    "57fbc36a-df14-4363-b470-f287273ae936",
+    "590e2d02-145c-478f-a6ac-e91681857bbb",
+    "5a23e0ce-044b-4bf6-97d7-b569a72c84d7",
+    "5f5828e4-6539-47a9-9aec-14d1f476235a",
+    "6060a921-b4f0-46fe-ab86-fad111d8faa5",
+    "644c13d1-6809-463a-8d89-e060fbad3d51",
+    "6461892c-7ada-491d-8e45-3bdce207c24b",
+    "674b5959-e740-417f-9b91-60299898c022",
+    "6cd167d1-aab0-4f30-af37-8933057aad6c",
+    "6d482b3c-36fe-4ba5-91a8-ddfcce218856",
+    "71173503-5df9-42c3-9a8c-d32ebfd6bfde",
+    "7213494a-01e0-4a74-91a7-1f3b8a2c1fe2",
+    "73f4c59d-69d4-4887-8a29-41dba19a2307",
+    "789b727d-ed97-4293-8646-6ae1ccff8728",
+    "791e3243-f1f8-4a16-9e65-3afa7987a73f",
+    "79bbdd76-d400-449b-b20f-c38339ca5f61",
+    "7b77dc53-6b7f-4ffa-b51c-8c412cf9276a",
+    "7c25a6fd-a557-44a7-97f2-1f25e5913df1",
+    "7cdaa1ee-b127-4946-86bb-0b53f69a3693",
+    "80cb7b7f-f255-49c2-a84d-d560a652ae9b",
+    "8de11e6d-f658-4099-a13f-90eb95289371",
+    "8e601715-cc06-4042-aa24-c0e8153cb618",
+    "9325ecf8-94ae-434e-abab-de90ed76e163",
+    "93d175c5-3d58-428d-bf6c-9236096c4256",
+    "95afd06a-44bd-4d4b-bc53-7fef6d8ebdb7",
+    "9801b6d0-b88a-40b1-8ed3-f5680985e337",
+    "9f7236e7-4336-42c4-bb52-2be3650f0895",
+    "a1be1d7a-551c-4084-a92f-5de911630c88",
+    "a1d31775-c874-43cd-9961-fc853199b550",
+    "a39dcf17-dc45-474c-8e1a-ef77f1a782f5",
+    "a5d78a89-c0fe-4f6e-871b-bbd9d83f8519",
+    "a733bef0-fca8-4a72-85a7-474a1d39cb35",
+    "a7899d48-8013-4dc3-adca-c70fdac8e2e1",
+    "a9691e10-a884-421d-b9a6-f5126eb4a40d",
+    "abd36228-d420-4a76-9753-b3c0ea11bbfd",
+    "ac4629e1-b4b6-4f6c-88a3-c45ad760536a",
+    "b06e4333-731f-41d3-a59d-843ca94f96b5",
+    "b26be153-f2ea-4c11-ac79-4bcd4dd9e1da",
+    "b2d5e407-e509-41e4-ba44-631e0dd31870",
+    "b5c3f804-f46c-466e-a3ac-4c58169aeb64",
+    "b7939604-c6fb-466c-9f90-d518168a82f3",
+    "b7c1fd5a-58ac-43c0-ab36-0497ba03d731",
+    "b81e4213-e7cc-4eb4-b0ac-6df608389f39",
+    "b9ff1732-71a0-4ef2-b348-a19ac41c5ff8",
+    "bb06f493-5e37-4781-ab98-3279883d3701",
+    "c55d6a2e-b862-480c-9110-44997a429479",
+    "ccbcd921-95e0-4209-92ba-630f491f5d82",
+    "cfc9e62e-8939-4fec-842a-b3c0939bc8be",
+    "d1c952cf-8d1a-4e06-b688-8adb6c1adfca",
+    "d201f3ad-6b72-4c27-b8cd-e9b8f85bb000",
+    "d26b24f5-9eba-465f-9ed2-944cc42dc255",
+    "d342eb51-55e7-46ce-a476-f4834a76460e",
+    "d40b17be-5cfb-4e5c-9b08-cfcfa0b35cfa",
+    "d51c8387-b25c-4986-bb36-6f89dd8136cd",
+    "d5a94b6a-0100-42e8-b284-1cefdb34b79d",
+    "d7497884-1f59-4e38-8e19-70401b0d59d2",
+    "d753bfac-bad1-465d-a8e0-fb4ca7f9fd95",
+    "da0350a4-7c22-451f-a460-cb9778f3bac9",
+    "de840f4f-656a-4626-8965-4479c4d2b8df",
+    "df686f20-9fe7-4a02-ac5e-f90edbe498df",
+    "e67a4063-eaf3-410e-b4da-495a8ec0f7de",
+    "e74fbc7d-ff92-4a05-a236-e4dfd5949301",
+    "e82d6ffb-432b-498b-b462-5e5e9c68077f",
+    "e82f4023-37be-4cea-8d61-ffd6e7c2c39f",
+    "f123aa00-822c-44fd-a6d8-9eebe1491f35",
+    "f17e89e3-2405-4493-a943-af7c4c0270a3",
+    "f2c0f48e-4763-4bcf-96a1-24568a5f5fd8",
+    "f2cc2f97-bbe7-44d4-9317-c0f8799bc78a",
+    "f6c5206a-c29f-4b30-8c57-30414ecfe5ef",
+    "f6fb54b7-1ae7-4c12-841f-13017125df0b",
+    "f8220aa6-7c74-4a9c-898f-8cd5a697c91c",
+    "f85f5333-008c-48ed-aeec-b93cae7ee9f0",
+    "f86dcb04-819d-4f61-a01c-abdfebb1e98b",
+    "f9318eae-48c2-4bde-999d-a268ee03578f",
+    "fd036eb1-e8a0-4dc5-8350-480563aa415a",
+    "ffd119da-c198-4108-9b1d-05fd1fc75981"
+  ],
+  "test_batch_ids": [
+    "07eb23c0-f0ee-45b5-980f-4f842fc6b2c2",
+    "1016eb9b-3978-42e7-9e61-44ec76f49917",
+    "1a617eef-8007-4ade-a882-da7c0a74d9ba",
+    "1adaa637-0eed-4454-b194-4d07b9da2cc7",
+    "2730c395-8998-4348-81eb-e7eb760da4fa",
+    "2eb982f9-d8f2-4e85-ab5a-9ffaecd115f2",
+    "406b18db-863d-4789-b1c7-c4531f38ae63",
+    "502120a2-b0bf-4181-ad52-db2ee26d2e7a",
+    "54a76e20-f009-4a74-ad10-a58cf0dd74c5",
+    "54e91e57-6233-4cb4-a65b-397b27580ed4",
+    "581f3d1b-4d2c-4188-802b-0145806d9552",
+    "5adbd8cd-2220-4597-90d7-f63e18adea6d",
+    "71aa2cb3-1ad4-4743-a847-452ad76e8bee",
+    "7c92b360-e5e3-4f7a-9c5b-35bf18b998aa",
+    "820749b7-1199-45e6-bbbe-2ca57819385a",
+    "88583ead-744f-473c-9433-b8c062426092",
+    "8d4a6b5e-2b44-47b1-9571-73f7b55542a6",
+    "965967d0-15f5-4736-a542-8aea275d0530",
+    "9fea17a2-e143-4ad9-8ed6-62fa666d6abf",
+    "a26c7300-1b8a-427a-bbda-d6a5dfa9b529",
+    "a7be8737-0c0b-44cb-bf85-f01dd9ca9000",
+    "b46bc6fe-1310-4b72-aed4-0f5b0c1f6f02",
+    "b7307565-32b9-4195-a419-d3ec4b88a93b",
+    "bf9c9d64-5c3d-495b-b4c2-73b3ceba839a",
+    "c63029f2-d405-4074-a0db-c603a24b295d",
+    "ca2c71f9-5755-4210-80d2-e5eca354d30f",
+    "cbf195e0-84ae-4af9-8240-6a2494f5d323",
+    "cc60d7dc-151c-4b33-8d8a-ecda43447c6d",
+    "cf3a7a6b-d2b5-4744-bc6b-ac9c0f6c8184",
+    "e2384eb5-edf7-4aee-8b19-688f920e54db",
+    "e8eb1f77-6631-4998-b71d-819d272b05ef",
+    "eb15cb0e-19e3-4a74-af89-6c7f8f9677c9",
+    "ff11ed4f-81e5-472b-b2b0-b88bd777b60c"
+  ],
+  "train_rows": 431,
+  "test_rows": 109,
+  "intercept_ms": 1213.1306084145383,
+  "coef": {
+    "degree": -254.05086776870235,
+    "focus_solo_ms": -0.2728912561653849,
+    "sum_solo_peers_ms": -0.7071260022987208,
+    "n_sort": -100.54195300077288,
+    "n_mergejoin": -100.5311944909211,
+    "n_hashjoin": 77.74163699482283,
+    "n_scan": -452.70013461792973,
+    "n_index_scan": -242.92962620644553,
+    "n_agg": 564.91040355284,
+    "n_ivf_scan": -8.526512829121202e-14,
+    "solo_sum_sort_ms": 0.9397456370745584,
+    "solo_sum_mergejoin_ms": 0.8202975516133356,
+    "solo_sum_hashjoin_ms": 1.1945585999025394,
+    "solo_sum_scan_ms": 0.9587199365640061,
+    "solo_sum_index_scan_ms": 0.6892018894129678,
+    "solo_sum_agg_ms": -5.582540874263018,
+    "solo_sum_ivf_scan_ms": 0.0
+  },
+  "train_rmse_ms": 1833.2411992520795,
+  "train_mae_ms": 1040.498793122107,
+  "train_r2": 0.3777785321794299,
+  "test_rmse_ms": 2932.7364758366175,
+  "test_mae_ms": 1386.8640499172452,
+  "test_r2": -0.3096952768631347,
+  "test_mape_pct": 67006.84484107881
+}
+wrote /data/dzh/pgvector/dev/cost_fit_parallel/models/mix_parallel_coef.json /data/dzh/pgvector/dev/cost_fit_parallel/models/mix_parallel_test_predictions.jsonl
+=== predict smoke ===
+{
+  "predicted_parallel_exclusive_ms": 728.7771633275929,
+  "features": {
+    "degree": 2.0,
+    "focus_solo_ms": 50.0,
+    "sum_solo_peers_ms": 2.0,
+    "n_sort": 1.0,
+    "n_mergejoin": 0.0,
+    "n_hashjoin": 1.0,
+    "n_scan": 0.0,
+    "n_index_scan": 0.0,
+    "n_agg": 0.0,
+    "n_ivf_scan": 0.0,
+    "solo_sum_sort_ms": 2.0,
+    "solo_sum_mergejoin_ms": 0.0,
+    "solo_sum_hashjoin_ms": 50.0,
+    "solo_sum_scan_ms": 0.0,
+    "solo_sum_index_scan_ms": 0.0,
+    "solo_sum_agg_ms": 0.0,
+    "solo_sum_ivf_scan_ms": 0.0
+  }
+}
+Done. Coef: /data/dzh/pgvector/dev/cost_fit_parallel/models/mix_parallel_coef.json
